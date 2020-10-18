@@ -152,13 +152,13 @@ public class Register extends AppCompatActivity {
                 }
 
 
-                //verifie the phone number
+                //verify the phone number
                 for (char x: userPhoneNumber.toCharArray()){
                     Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
                     Matcher matche = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
                     boolean result = matche.find();
                     if(!result){
-                        fullName.setError("the number should be betwen 0 and 9");
+                        phoneNumber.setError("the number should be betwen 0 and 9");
                         return;
                     }
                 }
