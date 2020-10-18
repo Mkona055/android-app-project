@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
-    Button logout;
+    //Button logout;
 
 
     @Override
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.textViewPhoneNumbertoFill);
         email = findViewById(R.id.textViewEmailToFill);
         employeeID = findViewById(R.id.textViewEmailToFill);
-        logout = findViewById(R.id.buttonLogout);
+       // logout = findViewById(R.id.buttonLogout);
 
         userID = fAuth.getCurrentUser().getUid();
 
@@ -52,28 +52,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
-                fullName.setText(documentSnapshot.getString("FullName") + "");
+                fullName.setText(documentSnapshot.getString("FullName"));
                 hisName.setText(documentSnapshot.getString("FullName") + "");
                 email.setText(documentSnapshot.getString("Email") + "");
                 phoneNumber.setText(documentSnapshot.getString("PhoneNumber") + "");
                 role.setText(documentSnapshot.getString("Role") + "");
                 if (documentSnapshot.getString("Role").equals("Employee")) {
-                    employeeID.setVisibility(View.VISIBLE);
+                   employeeID.setVisibility(View.VISIBLE);
                     employeeID.setText(documentSnapshot.getString("IDEmployee") + "");
                 }
 
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), Login.class));
-
-            }
-        });
 
 
+
+
+    }
+
+    public void logout(View view) {
+
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(),Login.class));
+        finish();
     }
 }
 

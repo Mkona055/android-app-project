@@ -237,13 +237,13 @@ public class Register extends AppCompatActivity {
                             DocumentReference documentReference = fStore.collection("users").document(userID);
 
                             Map<String, Object> user = new HashMap<>();
-                           user.put("FullName ", fStoreFullName);
-                           user.put("Email ", fStoreEmail);
-                           user.put("PhoneNumber ",userPhoneNumber);
-                           user.put("Role ", role);
+                           user.put("FullName", fStoreFullName);
+                           user.put("Email", fStoreEmail);
+                           user.put("PhoneNumber",userPhoneNumber);
+                           user.put("Role", role);
 
                            if(role.equals("Employee")){
-                               user.put("IDEmployee ", employeeID.getText().toString());
+                               user.put("IDEmployee", employeeID.getText().toString());
                            }
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
