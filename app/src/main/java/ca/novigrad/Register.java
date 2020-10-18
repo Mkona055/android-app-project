@@ -195,8 +195,9 @@ public class Register extends AppCompatActivity {
 
                         }
                         if(!isMatching) {
-
                             employeeID.setError("This ID is not in our database. Please contact the administrator of your branch to have a valid Employee ID");
+                            return;
+                            
                         }else{
                             Toast.makeText(Register.this, idAssigned, Toast.LENGTH_SHORT).show();
                             DatabaseReference dr = FirebaseDatabase.getInstance().getReference("EmployeesID");
