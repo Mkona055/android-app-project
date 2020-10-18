@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Register extends AppCompatActivity {
 
@@ -136,6 +138,29 @@ public class Register extends AppCompatActivity {
                     password.setError("Password is required.");
                     return;
                 }
+                //check the name
+                for (char x: fStoreFullName.toCharArray()){
+                    Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
+                    Matcher matche = pattern.matcher("a b c d e f g h i j k l m n o p k r s t u v w x y z");
+                    boolean result = matche.find();
+                    if(!result){
+                        fullName.setError("the name should not content carracter");
+                        return;
+                    }
+                }
+
+
+                //verifie the phone number
+                for (char x: userPhoneNumber.toCharArray()){
+                    Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
+                    Matcher matche = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
+                    boolean result = matche.find();
+                    if(!result){
+                        fullName.setError("the number should be betwen 0 and 9");
+                        return;
+                    }
+                }
+
 
                 if(fStorePassword.length() <7){
 
