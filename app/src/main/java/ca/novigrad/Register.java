@@ -49,7 +49,7 @@ public class Register extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userID;
     String role;
-    ArrayList<String> mEmployeesID;
+    boolean isMatching;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class Register extends AppCompatActivity {
         employeeID =findViewById(R.id.editTextEmployeeID);
         employeeID.setVisibility(View.GONE);
 
-        mEmployeesID = new ArrayList<>();
+        isMatching =false;
 
 
         // if the user is already login
@@ -152,33 +152,25 @@ public class Register extends AppCompatActivity {
                     employee.setError("Please select the type of account you would like to create");
                     customer.setError("Please select the type of account you would like to create");
                 }
-//                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmployeesID");
-//                reference.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        for (DataSnapshot id : dataSnapshot.getChildren()) {
-//                            mEmployeesID.add(id.getValue().toString());
-//                            Log.d(TAG,"Value is : "+ id.getValue().toString());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled( DatabaseError error) {
-//                        Log.w(TAG,"Failed" , error.toException());
-//
-//                    }
-//                });
+
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmployeesID");
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             EmployeeID idFromDataBase = snapshot.getValue(EmployeeID.class);
-                            if (! idFromDataBase.isAttributed()){
-                                mEmployeesID.add(idFromDataBase.getId());
+                            //Toast.makeText(Register.this,employeeID.getText().toString() + " " + idFromDataBase.getId() + " " + employeeID.getText().toString().compareTo(idFromDataBase.getId()) , Toast.LENGTH_LONG).show();
+                            if (! idFromDataBase.isAttributed() && employeeID.getText().toString().compareTo(idFromDataBase.getId()) == 0){
+                                isMatching =true;
+                                break;
                             }
 
                         }
+                        if(!isMatching) {
+                            //Toast.makeText(Register.this, mEmployeesID.get(0), Toast.LENGTH_SHORT).show();
+                            employeeID.setError("This ID is not in our database. Please contact the administrator of your branch to have a valid Employee ID");
+                        }
+
                     }
 
                     @Override
@@ -187,11 +179,7 @@ public class Register extends AppCompatActivity {
                     }
                 });
 
-                if(mEmployeesID.indexOf(employeeID.getText().toString().trim()) == -1){
-                    employeeID.setError("This ID is not in our database. Please contact the administrator of your branch to have a valid Employee ID" + mEmployeesID.indexOf(0));
-                    return;
 
-                }
 //                else{
 //                    Query query  = FirebaseDatabase.getInstance().getReference("EmployeesID")
 //                            .orderByChild("id")
@@ -234,8 +222,9 @@ public class Register extends AppCompatActivity {
                         } else{
 
                             Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+
                         }
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
 
