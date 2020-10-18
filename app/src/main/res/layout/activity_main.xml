@@ -4,19 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewFullName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Name:  "
-        android:textSize="14sp"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        android:fontFamily="sans-serif-medium"
+        android:text="hisname"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWelcome" />
 
     <Button
         android:id="@+id/buttonLogout"
@@ -30,21 +33,10 @@
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewFullName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User Full Name"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
-
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="216dp"
-        android:layout_height="37dp"
+        android:layout_width="310dp"
+        android:layout_height="106dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,37 +44,159 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewWelcome"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="124dp"
-        android:text="Your Profile"
-        android:textColor="#000000"
-        android:textSize="18sp"
+        android:layout_height="54dp"
+        android:layout_marginTop="48dp"
+        android:capitalize="none"
+        android:fontFamily="sans-serif-medium"
+        android:text="Welcome !"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="#435ADC"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewConnectedAs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:text="Email: "
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="sans-serif-medium"
+        android:text="You are connected as "
+        android:textColor="#435ADC"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.298"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewFullName1" />
 
     <TextView
-        android:id="@+id/textViewEmail"
+        android:id="@+id/textViewRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="role"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewConnectedAs" />
+
+    <View
+        android:id="@+id/textViewPhoneNumber"
+        android:layout_width="384dp"
+        android:layout_height="220dp"
+        android:layout_marginBottom="76dp"
+        android:background="@drawable/land_bg2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEmployeeIDtoFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Employee ID"
+        android:textColor="#454040"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/textViewEmployeeID"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumbertoFill" />
+
+    <TextView
+        android:id="@+id/textViewEmployeeID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="EmployeeID: "
+        android:textColor="#435ADC"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumberNotToFill" />
+
+    <TextView
+        android:id="@+id/textViewPhoneNumbertoFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:textColor="#454040"
+        app:layout_constraintStart_toEndOf="@+id/textViewPhoneNumberNotToFill"
+        app:layout_constraintTop_toTopOf="@+id/textViewPhoneNumberNotToFill" />
+
+    <TextView
+        android:id="@+id/textViewEmailToFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="284dp"
         android:text="Email"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        android:textColor="#454040"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPhoneNumber"
+        app:layout_constraintStart_toEndOf="@+id/textViewEmailnotToFill"
+        app:layout_constraintTop_toTopOf="@+id/textViewEmailnotToFill" />
+
+    <TextView
+        android:id="@+id/textViewEmailnotToFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="120dp"
+        android:text="Email: "
+        android:textColor="#435ADC"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLogout"
+        app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber" />
+
+    <TextView
+        android:id="@+id/textViewFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="192dp"
+        android:text="User Full Name"
+        android:textColor="#454040"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPhoneNumber"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewName"
+        app:layout_constraintTop_toTopOf="@+id/textViewName" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="Full Name:  "
+        android:textColor="#435ADC"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEmailnotToFill"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPersonalnformations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile Informations"
+        android:textColor="#435ADC"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber"
+        app:layout_constraintTop_toTopOf="@+id/textViewPhoneNumber" />
+
+    <TextView
+        android:id="@+id/textViewPhoneNumberNotToFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="Phone Number: "
+        android:textColor="#435ADC"
+        app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmailnotToFill" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
