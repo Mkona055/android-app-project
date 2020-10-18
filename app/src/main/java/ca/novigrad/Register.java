@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,7 +38,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
-     String TAG = "TAG";
+    String TAG = "TAG";
     EditText fullName,username,email, phoneNumber, password, repeatPassword,employeeID;
     TextView login, loginAccount;
     TextView status;
@@ -50,23 +51,6 @@ public class Register extends AppCompatActivity {
     String role;
     ArrayList<String> mEmployeesID;
 
-    private void getEmployeesID(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("EmployeesID");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot employeesIDS) {
-                for(DataSnapshot id : employeesIDS.getChildren()){
-                    mEmployeesID.add(id.getValue().toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +58,7 @@ public class Register extends AppCompatActivity {
 
 
 
-        fullName = findViewById(R.id.editTextEmployeeID);
+        fullName = findViewById(R.id.editTextFullname);
         username = findViewById(R.id.editTextUsername);
         email =  findViewById(R.id.editTextEmail);
         phoneNumber = findViewById(R.id.editTextPhoneNumber);
@@ -132,65 +116,94 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String theemail = email.getText().toString().trim();
-                String thepassword = password.getText().toString().trim();
-                String thepassword2 = repeatPassword.getText().toString().trim();
-                final String thefullName = fullName.getText().toString();
-                final String userUsername = username.getText().toString();
-                final String userPhonenumber = phoneNumber.getText().toString();
+                final String fStoreEmail = email.getText().toString().trim();
+                String fStorePassword = password.getText().toString().trim();
+                String repeatedPassword = repeatPassword.getText().toString().trim();
+                final String fStoreFullName = fullName.getText().toString();
+                final String userPhoneNumber = phoneNumber.getText().toString();
 
 
 
 
-                if(TextUtils.isEmpty(theemail)){
+                if(TextUtils.isEmpty(fStoreEmail)){
 
                     email.setError("Email is Required.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(thepassword)){
+                if(TextUtils.isEmpty(fStorePassword)){
 
                     password.setError("Password is required.");
                     return;
                 }
 
-                if(thepassword.length() <7){
+                if(fStorePassword.length() <7){
 
                     password.setError("Password must be  seven(7) Characters minimum ");
                     return;
                 }
 
-                if(!thepassword.equals(thepassword2)){
+                if(!fStorePassword.equals(repeatedPassword)){
 
                     repeatPassword.setError("The passwords do not not match");
                     return;
                 }
+                if (!employee.isChecked() && !customer.isChecked()){
+                    employee.setError("Please select the type of account you would like to create");
+                    customer.setError("Please select the type of account you would like to create");
+                }
+//                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmployeesID");
+//                reference.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot id : dataSnapshot.getChildren()) {
+//                            mEmployeesID.add(id.getValue().toString());
+//                            Log.d(TAG,"Value is : "+ id.getValue().toString());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled( DatabaseError error) {
+//                        Log.w(TAG,"Failed" , error.toException());
+//
+//                    }
+//                });
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmployeesID");
-                reference.addValueEventListener(new ValueEventListener() {
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot id : dataSnapshot.getChildren()) {
-                            mEmployeesID.add(id.getValue().toString());
-                            Log.d(TAG,"Value is : "+ id.getValue().toString());
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            EmployeeID idFromDataBase = snapshot.getValue(EmployeeID.class);
+                            if (! idFromDataBase.isAttributed()){
+                                mEmployeesID.add(idFromDataBase.getId());
+                            }
+
                         }
                     }
 
                     @Override
-                    public void onCancelled( DatabaseError error) {
-                        Log.w(TAG,"Failed" , error.toException());
+                    public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
-                if(mEmployeesID.indexOf(employeeID.getText().toString()) == -1){
-                    employeeID.setError("This ID is not in our database. Please contact the administrator of your branch to have a valid Employee ID");
+
+                if(mEmployeesID.indexOf(employeeID.getText().toString().trim()) == -1){
+                    employeeID.setError("This ID is not in our database. Please contact the administrator of your branch to have a valid Employee ID" + mEmployeesID.indexOf(0));
+                    return;
 
                 }
+//                else{
+//                    Query query  = FirebaseDatabase.getInstance().getReference("EmployeesID")
+//                            .orderByChild("id")
+//                            .equalTo(employeeID.getText().toString().trim());
+//                    query.orderByValue().
+//                }
 
 
                 progressBar.setVisibility(View.VISIBLE);
 
 
-                fAuth.createUserWithEmailAndPassword(theemail, thepassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
@@ -199,14 +212,13 @@ public class Register extends AppCompatActivity {
                             DocumentReference documentReference = fStore.collection("users").document(userID);
 
                             Map<String, Object> user = new HashMap<>();
-                           user.put("FullName", thefullName);
-                           user.put("Email", theemail);
-                           user.put("Username",userUsername);
-                           user.put("PhoneNumber",userPhonenumber);
+                           user.put("FullName ", fStoreFullName);
+                           user.put("Email ", fStoreEmail);
+                           user.put("PhoneNumber ",userPhoneNumber);
                            user.put("Role ", role);
 
                            if(role.equals("Employee")){
-                               user.put("IDEmployee ", employeeID);
+                               user.put("IDEmployee ", employeeID.getText().toString());
                            }
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
