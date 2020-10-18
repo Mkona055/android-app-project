@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
        //GET DATA FROM DATA BASE
         DocumentReference documentReference = fStore.collection("users").document(userID);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+        documentReference.addSnapshotListener(MainActivity.this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
 
-                fullName.setText(documentSnapshot.getString("usrName"));
-                email.setText(documentSnapshot.getString("usrEmail"));
+                fullName.setText("Welcome "+ documentSnapshot.getString("FullName"));
+                email.setText(documentSnapshot.getString("Email"));
 
             }
         });
