@@ -39,7 +39,7 @@ import java.util.Map;
 public class Register extends AppCompatActivity {
 
     String TAG = "TAG";
-    EditText fullName,username,email, phoneNumber, password, repeatPassword,employeeID;
+    EditText fullName,email, phoneNumber, password, repeatPassword,employeeID;
     TextView login, loginAccount;
     TextView status;
     CheckBox employee, customer;
@@ -59,7 +59,7 @@ public class Register extends AppCompatActivity {
 
 
         fullName = findViewById(R.id.editTextFullname);
-        username = findViewById(R.id.editTextUsername);
+
         email =  findViewById(R.id.editTextEmail);
         phoneNumber = findViewById(R.id.editTextPhoneNumber);
         password = findViewById(R.id.editTextPassword);
@@ -167,8 +167,21 @@ public class Register extends AppCompatActivity {
 
                         }
                         if(!isMatching) {
-                            //Toast.makeText(Register.this, mEmployeesID.get(0), Toast.LENGTH_SHORT).show();
+
                             employeeID.setError("This ID is not in our database. Please contact the administrator of your branch to have a valid Employee ID");
+                        }else{
+                            Query query  = FirebaseDatabase.getInstance().getReference("EmployeesID")
+                                    .orderByChild("id")
+                                    .equalTo(employeeID.getText().toString().trim());
+                            DatabaseReference dr = query.getRef();
+                            HashMap map = new HashMap<>();
+                            map.put("attributed","false");
+                            dr.updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(Register.this, "Success", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
 
                     }
