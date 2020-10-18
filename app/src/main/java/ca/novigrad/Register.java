@@ -222,7 +222,7 @@ public class Register extends AppCompatActivity {
                     }
                 });
 
-            isMatching = false;
+                isMatching = false;
 
 
                 progressBar.setVisibility(View.VISIBLE);
@@ -253,8 +253,6 @@ public class Register extends AppCompatActivity {
                                 }
                             });
 
-
-
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else{
 
@@ -269,10 +267,10 @@ public class Register extends AppCompatActivity {
         });
 
 
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });

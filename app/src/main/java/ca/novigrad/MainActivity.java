@@ -1,5 +1,6 @@
 package ca.novigrad;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -20,11 +23,12 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class MainActivity extends AppCompatActivity {
 
 
-    TextView fullName, email, hisName, role, phoneNumber, employeeID;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
-    String userID;
-    //Button logout;
+    private TextView fullName, email, hisName, role, phoneNumber, employeeID,employeeIDNotToFill;
+    private FirebaseAuth fAuth;
+    private DocumentReference documentReference;
+    private FirebaseFirestore fStore;
+    private String userID;
+    private Button logout;
 
 
     @Override
@@ -40,42 +44,51 @@ public class MainActivity extends AppCompatActivity {
         role = findViewById(R.id.textViewRole);
         phoneNumber = findViewById(R.id.textViewPhoneNumbertoFill);
         email = findViewById(R.id.textViewEmailToFill);
-        employeeID = findViewById(R.id.textViewEmailToFill);
-       // logout = findViewById(R.id.buttonLogout);
+        employeeID = findViewById(R.id.textViewEmployeeIDtoFill);
+        employeeIDNotToFill = findViewById(R.id.textViewEmployeeID);
+
+
+        logout = (Button) findViewById(R.id.buttonLogout);
 
         userID = fAuth.getCurrentUser().getUid();
-
-
         //GET DATA FROM DATA BASE
-        DocumentReference documentReference = fStore.collection("users").document(userID);
-        documentReference.addSnapshotListener(MainActivity.this, new EventListener<DocumentSnapshot>() {
+        documentReference = fStore.collection("users").document(userID);
+        EventListener<DocumentSnapshot> eventListener = new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-
-                fullName.setText(documentSnapshot.getString("FullName"));
-                hisName.setText(documentSnapshot.getString("FullName") + "");
-                email.setText(documentSnapshot.getString("Email") + "");
-                phoneNumber.setText(documentSnapshot.getString("PhoneNumber") + "");
-                role.setText(documentSnapshot.getString("Role") + "");
-                if (documentSnapshot.getString("Role").equals("Employee")) {
-                   employeeID.setVisibility(View.VISIBLE);
-                    employeeID.setText(documentSnapshot.getString("IDEmployee") + "");
+                if(fAuth.getCurrentUser()!= null){
+                    fullName.setText(documentSnapshot.getString("FullName"));
+                    hisName.setText(documentSnapshot.getString("FullName"));
+                    email.setText(documentSnapshot.getString("Email"));
+                    phoneNumber.setText(documentSnapshot.getString("PhoneNumber"));
+                    role.setText(documentSnapshot.getString("Role"));
+                    if (documentSnapshot.getString("Role").compareTo("Employee") == 0) {
+                        employeeID.setVisibility(View.VISIBLE);
+                        employeeID.setText(documentSnapshot.getString("IDEmployee"));
+                    }else{
+                        employeeID.setVisibility(View.GONE);
+                        employeeIDNotToFill.setVisibility(View.GONE);
+                    }
                 }
+
+
+            }
+        };
+
+        documentReference.addSnapshotListener(MainActivity.this, eventListener);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Logout();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent (MainActivity.this, Login.class));
+                finish();
 
             }
         });
 
-
-
-
     }
 
-    public void logout(View view) {
-
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),Login.class));
-        finish();
-    }
 }
 
 
