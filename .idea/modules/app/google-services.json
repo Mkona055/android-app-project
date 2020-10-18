@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1081754322429-m22gtunvj7srkfv1b5c7edon6jhfhd7p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.novigrad",
+            "certificate_hash": "a2ddef40fa0d5e8d729910601c3d4b464db88c8d"
+          }
+        },
+        {
           "client_id": "1081754322429-poufngh9iak0lgr5jmn1fuq8oreds5oq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

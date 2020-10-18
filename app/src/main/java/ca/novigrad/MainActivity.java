@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
 
-                fullName.setText(documentSnapshot.getString("usrName"));
-                email.setText(documentSnapshot.getString("usrEmail"));
+                fullName.setText("Welcome "+ documentSnapshot.getString("FullName"));
+                email.setText(documentSnapshot.getString("Email"));
 
             }
         });
