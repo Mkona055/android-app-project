@@ -11,8 +11,8 @@
         android:id="@+id/imageView5"
         android:layout_width="80dp"
         android:layout_height="26dp"
-        android:layout_marginEnd="164dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/glbmlogo" />
@@ -108,11 +108,11 @@
 
     <View
         android:id="@+id/textViewPhoneNumber"
-        android:layout_width="387dp"
+        android:layout_width="0dp"
         android:layout_height="173dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/land_bg2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.407"
