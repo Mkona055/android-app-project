@@ -51,6 +51,7 @@ public class Register extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userID;
     String role;
+    String idAssigned;
     boolean isMatching;
 
     @Override
@@ -84,6 +85,7 @@ public class Register extends AppCompatActivity {
         employeeID.setVisibility(View.GONE);
 
         isMatching =false;
+
 
 
         // if the user is already login
@@ -183,6 +185,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            idAssigned = snapshot.getKey();
                             EmployeeID idFromDataBase = snapshot.getValue(EmployeeID.class);
                             //Toast.makeText(Register.this,employeeID.getText().toString() + " " + idFromDataBase.getId() + " " + employeeID.getText().toString().compareTo(idFromDataBase.getId()) , Toast.LENGTH_LONG).show();
                             if (! idFromDataBase.isAttributed() && employeeID.getText().toString().compareTo(idFromDataBase.getId()) == 0){
@@ -195,13 +198,13 @@ public class Register extends AppCompatActivity {
 
                             employeeID.setError("This ID is not in our database. Please contact the administrator of your branch to have a valid Employee ID");
                         }else{
-                            Query query  = FirebaseDatabase.getInstance().getReference("EmployeesID")
-                                    .orderByChild("id")
-                                    .equalTo(employeeID.getText().toString().trim());
-                            DatabaseReference dr = query.getRef();
+                            Toast.makeText(Register.this, idAssigned, Toast.LENGTH_SHORT).show();
+                            DatabaseReference dr = FirebaseDatabase.getInstance().getReference("EmployeesID");
                             HashMap map = new HashMap<>();
-                            map.put("attributed","false");
-                            dr.updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                            map.put("attributed",true);
+
+                            dr.child(idAssigned).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(Register.this, "Success", Toast.LENGTH_SHORT).show();
@@ -211,19 +214,14 @@ public class Register extends AppCompatActivity {
 
                     }
 
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
 
-
-//                else{
-//                    Query query  = FirebaseDatabase.getInstance().getReference("EmployeesID")
-//                            .orderByChild("id")
-//                            .equalTo(employeeID.getText().toString().trim());
-//                    query.orderByValue().
-//                }
+            isMatching = false;
 
 
                 progressBar.setVisibility(View.VISIBLE);
