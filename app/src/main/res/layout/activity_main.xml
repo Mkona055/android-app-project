@@ -108,7 +108,7 @@
 
     <View
         android:id="@+id/textViewPhoneNumber"
-        android:layout_width="352dp"
+        android:layout_width="0dp"
         android:layout_height="202dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
