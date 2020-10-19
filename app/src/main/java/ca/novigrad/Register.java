@@ -33,18 +33,18 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
-    String TAG = "TAG";
-    EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchID,customerAddress;
-    TextView login, loginAccount;
-    TextView status;
-    CheckBox employee, customer;
-    Button register;
-    FirebaseAuth fAuth;
-    DatabaseReference reference;
-    ProgressBar progressBar;
-    FirebaseFirestore fStore;
-    String userID;
-    String role;
+    private String TAG = "TAG";
+    private EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchID,customerAddress;
+    private TextView login, loginAccount;
+    private TextView status;
+    private CheckBox employee, customer;
+    private Button register;
+    private FirebaseAuth fAuth;
+    private DatabaseReference reference;
+    private ProgressBar progressBar;
+    private FirebaseFirestore fStore;
+    private String userID;
+    private String role;
 
 
 
@@ -262,7 +262,7 @@ public class Register extends AppCompatActivity {
 
 
     }
-    public boolean formIsValid(String fStoreEmail, String fStorePassword, String repeatedPassword, String fStoreFullName, String userPhoneNumber,
+    private boolean formIsValid(String fStoreEmail, String fStorePassword, String repeatedPassword, String fStoreFullName, String userPhoneNumber,
                                String bNumber, String cAddress, String bAddress){
 
         //Verification of the Full Name

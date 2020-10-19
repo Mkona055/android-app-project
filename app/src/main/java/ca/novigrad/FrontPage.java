@@ -9,10 +9,10 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Frontpage extends AppCompatActivity {
+public class FrontPage extends AppCompatActivity {
 
-    FirebaseAuth fAuth;
-    Button login, register;
+    private FirebaseAuth fAuth;
+    private Button login, register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
