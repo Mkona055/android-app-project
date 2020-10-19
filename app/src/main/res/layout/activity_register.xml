@@ -9,8 +9,8 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="394dp"
+        android:layout_width="362dp"
+        android:layout_height="433dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
@@ -31,8 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxCustomer"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxCustomer" />
 
     <EditText
         android:id="@+id/editTextBranchID"
@@ -42,6 +41,7 @@
         android:ems="10"
         android:hint="Branch ID"
         android:inputType="textPersonName"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -102,6 +102,7 @@
         android:ems="10"
         android:hint="Branch Address"
         android:inputType="textPersonName"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextBranchID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"

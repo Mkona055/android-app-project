@@ -29,23 +29,22 @@
         android:inputType="textPersonName"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintHorizontal_bias="0.658"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPassword"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPassword" />
 
     <EditText
         android:id="@+id/editTextBranchID"
-        android:layout_width="312dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="Branch ID"
         android:inputType="textPersonName"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxEmployee"
         tools:visibility="gone" />
 
     <EditText
@@ -97,17 +96,16 @@
 
     <EditText
         android:id="@+id/editTextBranchAddress"
-        android:layout_width="312dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="Branch Address"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBranchID"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxCustomer"
-        app:layout_constraintVertical_bias="1.0"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/editTextBranchID"
+        app:layout_constraintTop_toTopOf="@+id/editTextBranchID"
         tools:visibility="gone" />
 
     <EditText
