@@ -34,17 +34,17 @@ import java.util.Map;
 public class Register extends AppCompatActivity {
 
     private String TAG = "TAG";
+    private String userID;
+    private String role;
+    private Branch branch;
     private EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchID,customerAddress;
-    private TextView login, loginAccount;
+    private TextView login;
     private TextView status;
     private CheckBox employee, customer;
     private Button register;
     private FirebaseAuth fAuth;
-    private DatabaseReference reference;
     private ProgressBar progressBar;
     private FirebaseFirestore fStore;
-    private String userID;
-    private String role;
 
 
 
@@ -61,7 +61,6 @@ public class Register extends AppCompatActivity {
         repeatPassword = findViewById(R.id.editTextRepeatPassword);
 
         login = findViewById(R.id.textLogin);
-        loginAccount = findViewById(R.id.textLoginAccount);
         status =findViewById(R.id.textStatus);
 
         employee = findViewById(R.id.checkBoxEmployee);
@@ -70,7 +69,7 @@ public class Register extends AppCompatActivity {
         register = findViewById(R.id.buttonRegister);
         //reference to the Firebase
         fAuth = FirebaseAuth.getInstance();
-        reference = FirebaseDatabase.getInstance().getReference("Branches");
+
 
         progressBar = findViewById(R.id.progressBarRegister);
         fStore = FirebaseFirestore.getInstance();
@@ -156,7 +155,7 @@ public class Register extends AppCompatActivity {
                             boolean addressIsMatching = false;
                             boolean numberIsMatching = false;
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                Branch branch = snapshot.getValue(Branch.class);
+                                branch = snapshot.getValue(Branch.class);
                                 if (branch.getBranchAddress().compareTo(bAddress) == 0) {
                                     addressIsMatching = true;
                                     break;
