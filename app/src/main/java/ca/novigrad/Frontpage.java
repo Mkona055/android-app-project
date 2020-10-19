@@ -18,6 +18,7 @@ public class Frontpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frontpage);
 
+        //affect reference to every component
         login = findViewById(R.id.buttonLogin);
         register = findViewById(R.id.buttonRegister);
         fAuth = FirebaseAuth.getInstance();
@@ -28,7 +29,7 @@ public class Frontpage extends AppCompatActivity {
         }
 
 
-
+        //if you already have an account
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +38,7 @@ public class Frontpage extends AppCompatActivity {
             }
         });
 
+        //create an account if you doesn't have oone
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

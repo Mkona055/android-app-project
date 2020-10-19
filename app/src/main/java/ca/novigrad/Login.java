@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        //affect reference to all the component
         email =  findViewById(R.id.editTextEmail);
         password = findViewById(R.id.editTextPassword);
 
@@ -112,7 +112,7 @@ public class Login extends AppCompatActivity {
         });
 
 
-
+        //if doesn't have an account, then you can go and create one
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
