@@ -9,28 +9,29 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="372dp"
-        android:layout_height="462dp"
+        android:layout_width="0dp"
+        android:layout_height="422dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/bg_register_v2"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLogo"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
     <EditText
         android:id="@+id/editTextBranchID"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="Branch ID"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBranchAddress"
         tools:visibility="visible" />
 
     <EditText
@@ -41,6 +42,7 @@
         android:ems="10"
         android:hint="Full Name"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,12 +63,11 @@
         android:id="@+id/imageLogo"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01"
         app:srcCompat="@drawable/logo" />
 
     <TextView
@@ -75,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="CREATE NEW ACCOUNT"
-        android:textColor="#FF6E40"
+        android:textColor="@color/NovigradOrange"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,12 +86,14 @@
         android:id="@+id/editTextBranchAddress"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:ems="10"
         android:hint="Branch Address"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBranchID"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxCustomer"
         tools:visibility="visible" />
 
     <EditText
@@ -119,15 +122,17 @@
 
     <Button
         android:id="@+id/buttonRegister"
-        android:layout_width="312dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/roundedlayout"
         android:text="REGISTER"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
         android:id="@+id/textLogin"
@@ -136,12 +141,10 @@
         android:layout_marginTop="8dp"
         android:text="Already Registered? Login Here"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
 
     <EditText
         android:id="@+id/editTextRepeatPassword"
@@ -160,17 +163,17 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textStatus"
         android:layout_width="57dp"
         android:layout_height="26dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Status :"
         app:layout_constraintEnd_toStartOf="@+id/checkBoxCustomer"
         app:layout_constraintHorizontal_bias="0.593"
@@ -181,7 +184,7 @@
         android:id="@+id/checkBoxCustomer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:checked="false"
         android:text="Customer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -203,13 +206,13 @@
         android:id="@+id/imageView"
         android:layout_width="80dp"
         android:layout_height="26dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.005"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textLogin"
-        app:layout_constraintVertical_bias="0.777"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/glbmlogo" />
 
     <TextView

@@ -14,9 +14,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/land_bg2"
+        android:background="@drawable/roundedlayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
@@ -24,7 +23,7 @@
         android:id="@+id/editTextFullname"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="7dp"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="textPersonName"
@@ -61,28 +60,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="CREATE NEW ACCOUNT"
-        android:textColor="#FF6E40"
+        android:textColor="@color/NovigradOrange"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view" />
-
-    <EditText
-        android:id="@+id/editTextBranchAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:hint="Employee ID"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintStart_toEndOf="@+id/checkBoxEmployee"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPassword"
-        app:layout_constraintVertical_bias="0.0"
-        tools:visibility="visible" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -113,9 +95,10 @@
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="226dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/roundedlayout"
         android:text="REGISTER"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -207,5 +190,31 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/editTextBranchAddress2"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Branch Address"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxEmployee"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPassword"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/editTextBranchID2"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="Branch ID"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/editTextBranchAddress2"
+        app:layout_constraintTop_toTopOf="@+id/editTextBranchAddress2"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
