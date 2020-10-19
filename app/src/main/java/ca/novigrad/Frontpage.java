@@ -25,6 +25,7 @@ public class Frontpage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Login.class));
+                finish();
             }
         });
 
@@ -32,6 +33,7 @@ public class Frontpage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Register.class));
+                finish();
             }
         });
 
