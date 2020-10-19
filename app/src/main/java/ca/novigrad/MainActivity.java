@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//set reference to the Firebase
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-
+//set reference to  every component
         fullName = findViewById(R.id.textViewFullName);
         hisName = findViewById(R.id.textViewFullName1);
         role = findViewById(R.id.textViewRole);

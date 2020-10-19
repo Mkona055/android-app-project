@@ -54,7 +54,7 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+//reference to component of the register
         fullName = findViewById(R.id.editTextFullname);
 
         email =  findViewById(R.id.editTextEmail);
@@ -70,7 +70,7 @@ public class Register extends AppCompatActivity {
         customer = findViewById(R.id.checkBoxCustomer);
 
         register = findViewById(R.id.buttonRegister);
-
+//reference to the Firebase
         fAuth = FirebaseAuth.getInstance();
 
         progressBar = findViewById(R.id.progressBarRegister);
@@ -91,7 +91,7 @@ public class Register extends AppCompatActivity {
             finish();
 
         }
-
+        //set what happen when we chose to be register like employe
         employee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +101,7 @@ public class Register extends AppCompatActivity {
                 branchNumber.setVisibility(View.VISIBLE);
             }
         });
-
+        //set what happen when we chose to be register like employe
         customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +117,8 @@ public class Register extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*set variable that will help us to accept or not any type of account that whant to
+                be create*/
                 final String fStoreEmail = email.getText().toString().trim();
                 String fStorePassword = password.getText().toString().trim();
                 String repeatedPassword = repeatPassword.getText().toString().trim();
@@ -127,19 +128,19 @@ public class Register extends AppCompatActivity {
                 final String bAddress = branchAddress.getText().toString().trim();
 
 
-
+                //verification of the email
                 if(TextUtils.isEmpty(fStoreEmail)){
 
                     email.setError("Email is Required.");
                     return;
                 }
-
+                //verification of the password
                 if(TextUtils.isEmpty(fStorePassword)){
 
                     password.setError("Password is required.");
                     return;
                 }
-                //check the name
+                //check the name: it does'nt have to content any caracters of number
                 for (char x: fStoreFullName.toCharArray()){
                     Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
                     Matcher matcher = pattern.matcher("a b c d e f g h i j k l m n o p k r s t u v w x y z");
@@ -151,7 +152,7 @@ public class Register extends AppCompatActivity {
                 }
 
 
-                //verify the phone number
+                //verification of the phone number: it must be 10 caracters and just number betwen 0 to 9
                 for (char x: userPhoneNumber.toCharArray()){
                     Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
                     Matcher matcher = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
@@ -163,23 +164,27 @@ public class Register extends AppCompatActivity {
                     }
                 }
 
-
+                 //verification of the password it must be more than 7 carracter
                 if(fStorePassword.length() <7){
 
                     password.setError("Password must be  seven(7) characters minimum ");
                     return;
                 }
 
+                //the password have to be the same in both editText
                 if(!fStorePassword.equals(repeatedPassword)){
 
                     repeatPassword.setError("The passwords do not not match");
                     return;
                 }
+
+                //have to chose whit kind of account we whant to create
                 if (!employee.isChecked() && !customer.isChecked()){
                     employee.setError("Please select the type of account you would like to create");
                     customer.setError("Please select the type of account you would like to create");
                 }
 
+                //If it's the employee account that as been choose
                 if(role.compareTo("Employee")==0) {
                     for (char x : userPhoneNumber.toCharArray()) {
                         Pattern pattern = Pattern.compile(x + "", Pattern.CASE_INSENSITIVE);
@@ -193,6 +198,9 @@ public class Register extends AppCompatActivity {
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Branches");
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                        /* we have to verify if the adresse and the number are already inside our database
+                        if not, we have to store them*/
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -244,7 +252,8 @@ public class Register extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-
+                /*if all informations entered by the user was valides, we stock them inside our Firebase
+                  the place where errors was detected will be show */
                 fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -277,6 +286,8 @@ public class Register extends AppCompatActivity {
                             Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
+
+                        //the progress bar is just see when we finish the process of registration
                         progressBar.setVisibility(View.GONE);
                     }
                 });
@@ -285,6 +296,7 @@ public class Register extends AppCompatActivity {
         });
 
 
+        //if we already have an account, we go to the login page to get inside our account
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
