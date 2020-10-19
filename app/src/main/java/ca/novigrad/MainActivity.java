@@ -1,6 +1,5 @@
 package ca.novigrad;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,9 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -23,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class MainActivity extends AppCompatActivity {
 
 
-    private TextView fullName, email, hisName, role, phoneNumber, employeeID,employeeIDNotToFill;
+    private TextView fullName, email, hisName, role, phoneNumber, branchAddress,branchAddressNotToFill,branchNumber,branchNumberNotToFill;
     private FirebaseAuth fAuth;
     private DocumentReference documentReference;
     private FirebaseFirestore fStore;
@@ -44,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
         role = findViewById(R.id.textViewRole);
         phoneNumber = findViewById(R.id.textViewPhoneNumbertoFill);
         email = findViewById(R.id.textViewEmailToFill);
-        employeeID = findViewById(R.id.textViewEmployeeIDtoFill);
-        employeeIDNotToFill = findViewById(R.id.textViewEmployeeID);
+        branchAddress = findViewById(R.id.textViewBranchAddress);
+        branchAddressNotToFill = findViewById(R.id.textViewBranchAddressNotToFill);
+        branchNumber = findViewById(R.id.textViewBranchNumber);
+        branchNumberNotToFill =findViewById(R.id.textViewBranchNumberNotToFill);
 
 
         logout = (Button) findViewById(R.id.buttonLogout);
@@ -62,12 +61,25 @@ public class MainActivity extends AppCompatActivity {
                     email.setText(documentSnapshot.getString("Email"));
                     phoneNumber.setText(documentSnapshot.getString("PhoneNumber"));
                     role.setText(documentSnapshot.getString("Role"));
+
                     if (documentSnapshot.getString("Role").compareTo("Employee") == 0) {
-                        employeeID.setVisibility(View.VISIBLE);
-                        employeeID.setText(documentSnapshot.getString("IDEmployee"));
+
+
+                        branchAddress.setVisibility(View.VISIBLE);
+                        branchAddress.setText(documentSnapshot.getString("BranchAddress"));
+                        branchAddressNotToFill.setVisibility(View.VISIBLE);
+
+                        branchNumber.setVisibility(View.VISIBLE);
+                        branchNumber.setText(documentSnapshot.getString("BranchNumber"));
+                        branchNumberNotToFill.setVisibility(View.VISIBLE);
+
+
                     }else{
-                        employeeID.setVisibility(View.GONE);
-                        employeeIDNotToFill.setVisibility(View.GONE);
+                        branchAddress.setVisibility(View.GONE);
+                        branchAddressNotToFill.setVisibility(View.GONE);
+
+                        branchNumber.setVisibility(View.GONE);
+                        branchNumberNotToFill.setVisibility(View.GONE);
                     }
                 }
 

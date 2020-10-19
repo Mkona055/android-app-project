@@ -48,7 +48,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:onClick="logout"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
@@ -108,8 +107,8 @@
 
     <View
         android:id="@+id/textViewPhoneNumber"
-        android:layout_width="435dp"
-        android:layout_height="129dp"
+        android:layout_width="466dp"
+        android:layout_height="148dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -119,20 +118,41 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewRole" />
 
     <TextView
-        android:id="@+id/textViewEmployeeIDtoFill"
+        android:id="@+id/textViewBranchNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Employee ID"
+        android:text="Branch Number"
         android:textColor="#454040"
         android:visibility="visible"
-        app:layout_constraintStart_toEndOf="@+id/textViewEmployeeID"
-        app:layout_constraintTop_toTopOf="@+id/textViewEmployeeID" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewBranchAddress"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBranchAddress" />
 
     <TextView
-        android:id="@+id/textViewEmployeeID"
+        android:id="@+id/textViewBranchNumberNotToFill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EmployeeID: "
+        android:text="BranchNumber:"
+        android:textColor="#435ADC"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/textViewBranchNumber"
+        app:layout_constraintStart_toStartOf="@+id/textViewBranchAddressNotToFill"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBranchAddressNotToFill" />
+
+    <TextView
+        android:id="@+id/textViewBranchAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BranchAddress"
+        android:textColor="#454040"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/textViewBranchAddressNotToFill"
+        app:layout_constraintTop_toTopOf="@+id/textViewBranchAddressNotToFill" />
+
+    <TextView
+        android:id="@+id/textViewBranchAddressNotToFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Branch Address"
         android:textColor="#435ADC"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumberNotToFill"

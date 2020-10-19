@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,15 +24,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -41,7 +36,7 @@ import java.util.regex.Matcher;
 public class Register extends AppCompatActivity {
 
     String TAG = "TAG";
-    EditText fullName,email, phoneNumber, password, repeatPassword,employeeID;
+    EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchNumber;
     TextView login, loginAccount;
     TextView status;
     CheckBox employee, customer;
@@ -51,15 +46,14 @@ public class Register extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userID;
     String role;
-    String idAssigned;
-    boolean isMatching;
+    String branchKey;
 
+    boolean addressIsMatching;
+    boolean numberIsMatching;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-
 
         fullName = findViewById(R.id.editTextFullname);
 
@@ -81,10 +75,12 @@ public class Register extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBarRegister);
         fStore = FirebaseFirestore.getInstance();
-        employeeID =findViewById(R.id.editTextEmployeeID);
-        employeeID.setVisibility(View.GONE);
+        branchAddress =findViewById(R.id.editTextBranchAddress);
+        branchAddress.setVisibility(View.GONE);
+        branchNumber = findViewById(R.id.editTextBranchNumber);
+        branchNumber.setVisibility(View.GONE);
 
-        isMatching =false;
+        addressIsMatching = numberIsMatching  = false;
 
 
 
@@ -101,7 +97,8 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 role = "Employee";
                 customer.setChecked(false);
-                employeeID.setVisibility(View.VISIBLE);
+                branchAddress.setVisibility(View.VISIBLE);
+                branchNumber.setVisibility(View.VISIBLE);
             }
         });
 
@@ -109,8 +106,9 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 role = "Customer";
-               employee.setChecked(false);
-               employeeID.setVisibility(View.GONE);
+                employee.setChecked(false);
+                branchAddress.setVisibility(View.GONE);
+                branchNumber.setVisibility(View.GONE);
             }
         });
 
@@ -123,9 +121,10 @@ public class Register extends AppCompatActivity {
                 final String fStoreEmail = email.getText().toString().trim();
                 String fStorePassword = password.getText().toString().trim();
                 String repeatedPassword = repeatPassword.getText().toString().trim();
-                final String fStoreFullName = fullName.getText().toString();
-                final String userPhoneNumber = phoneNumber.getText().toString();
-
+                final String fStoreFullName = fullName.getText().toString().trim();
+                final String userPhoneNumber = phoneNumber.getText().toString().trim();
+                final String bNumber = branchNumber.getText().toString().trim();
+                final String bAddress = branchAddress.getText().toString().trim();
 
 
 
@@ -143,10 +142,10 @@ public class Register extends AppCompatActivity {
                 //check the name
                 for (char x: fStoreFullName.toCharArray()){
                     Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
-                    Matcher matche = pattern.matcher("a b c d e f g h i j k l m n o p k r s t u v w x y z");
-                    boolean result = matche.find();
+                    Matcher matcher = pattern.matcher("a b c d e f g h i j k l m n o p k r s t u v w x y z");
+                    boolean result = matcher.find();
                     if(!result){
-                        fullName.setError("the name should not content carracter");
+                        fullName.setError("The name can not contain a digit and a special character");
                         return;
                     }
                 }
@@ -155,10 +154,11 @@ public class Register extends AppCompatActivity {
                 //verify the phone number
                 for (char x: userPhoneNumber.toCharArray()){
                     Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
-                    Matcher matche = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
-                    boolean result = matche.find();
+                    Matcher matcher = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
+                    boolean result = matcher.find();
                     if(!result || userPhoneNumber.length() != 10){
-                        phoneNumber.setError("the number should be betwen 0 and 9");
+                        phoneNumber.setError("The phone number must take 10 digits");
+
                         return;
                     }
                 }
@@ -166,7 +166,7 @@ public class Register extends AppCompatActivity {
 
                 if(fStorePassword.length() <7){
 
-                    password.setError("Password must be  seven(7) Characters minimum ");
+                    password.setError("Password must be  seven(7) characters minimum ");
                     return;
                 }
 
@@ -180,50 +180,67 @@ public class Register extends AppCompatActivity {
                     customer.setError("Please select the type of account you would like to create");
                 }
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmployeesID");
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            idAssigned = snapshot.getKey();
-                            EmployeeID idFromDataBase = snapshot.getValue(EmployeeID.class);
-                            //Toast.makeText(Register.this,employeeID.getText().toString() + " " + idFromDataBase.getId() + " " + employeeID.getText().toString().compareTo(idFromDataBase.getId()) , Toast.LENGTH_LONG).show();
-                            if (! idFromDataBase.isAttributed() && employeeID.getText().toString().compareTo(idFromDataBase.getId()) == 0){
-                                isMatching =true;
-                                break;
+                if(role.compareTo("Employee")==0) {
+                    for (char x : userPhoneNumber.toCharArray()) {
+                        Pattern pattern = Pattern.compile(x + "", Pattern.CASE_INSENSITIVE);
+                        Matcher matcher = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
+                        boolean result = matcher.find();
+                        if (!result || userPhoneNumber.length() != 10) {
+                            branchNumber.setError("The phone number must take 10 digits");
+                            return;
+                        }
+                    }
+
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Branches");
+                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                Branch branch = snapshot.getValue(Branch.class);
+                                if (branch.getBranchAddress().compareTo(bAddress) == 0) {
+                                    addressIsMatching = true;
+                                    break;
+                                }
+                                if (branch.getBranchNumber().compareTo(bAddress) == 0) {
+                                    numberIsMatching = true;
+                                    break;
+                                }
+
+                            }
+                            if (addressIsMatching) {
+                                branchAddress.setError("This branch address is already in our database");
+                                return;
+
+                            } else if (numberIsMatching) {
+                                branchAddress.setError("This branch address is already in our database");
+                                return;
+
+                            } else {
+
+                                DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Branches");
+                                HashMap map = new HashMap<>();
+
+                                map.put("BranchAddress", bAddress);
+                                map.put("BranchNumber", bNumber);
+
+                                dr.child(bNumber).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(Register.this, "Success", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
 
                         }
-                        if(!isMatching) {
-                            employeeID.setError("This ID is not in our database. Please contact the administrator of your branch to have a valid Employee ID");
-                            return;
-                            
-                        }else{
-                            Toast.makeText(Register.this, idAssigned, Toast.LENGTH_SHORT).show();
-                            DatabaseReference dr = FirebaseDatabase.getInstance().getReference("EmployeesID");
-                            HashMap map = new HashMap<>();
 
-                            map.put("attributed",true);
 
-                            dr.child(idAssigned).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(Register.this, "Success", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
                         }
-
-                    }
-
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-                isMatching = false;
-
+                    });
+                }
 
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -237,13 +254,14 @@ public class Register extends AppCompatActivity {
                             DocumentReference documentReference = fStore.collection("users").document(userID);
 
                             Map<String, Object> user = new HashMap<>();
-                           user.put("FullName", fStoreFullName);
-                           user.put("Email", fStoreEmail);
-                           user.put("PhoneNumber",userPhoneNumber);
-                           user.put("Role", role);
+                            user.put("FullName", fStoreFullName);
+                            user.put("Email", fStoreEmail);
+                            user.put("PhoneNumber",userPhoneNumber);
+                            user.put("Role", role);
 
                            if(role.equals("Employee")){
-                               user.put("IDEmployee", employeeID.getText().toString());
+                               user.put("BranchNumber", branchNumber.getText().toString());
+                               user.put("BranchAddress", branchAddress.getText().toString());
                            }
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Frontpage extends AppCompatActivity {
 
-
+    FirebaseAuth fAuth;
     Button login, register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,12 @@ public class Frontpage extends AppCompatActivity {
 
         login = findViewById(R.id.buttonLogin);
         register = findViewById(R.id.buttonRegister);
+        fAuth = FirebaseAuth.getInstance();
+
+        if(fAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
 
 
 
