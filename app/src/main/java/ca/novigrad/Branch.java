@@ -1,17 +1,17 @@
 package ca.novigrad;
 
 public class Branch {
-    String BranchNumber;
-    String BranchAddress;
+    String branchNumber;
+    String branchAddress;
 
     public Branch(){
 
     }
     public String getBranchAddress() {
-        return BranchAddress;
+        return branchAddress;
     }
 
     public String getBranchNumber() {
-        return BranchNumber;
+        return branchNumber;
     }
 }
