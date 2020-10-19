@@ -46,7 +46,7 @@ public class Register extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userID;
     String role;
-    String branchKey;
+
 
     boolean addressIsMatching;
     boolean numberIsMatching;
@@ -54,7 +54,7 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-//reference to component of the register
+        //reference to component of the register
         fullName = findViewById(R.id.editTextFullname);
 
         email =  findViewById(R.id.editTextEmail);
@@ -70,7 +70,7 @@ public class Register extends AppCompatActivity {
         customer = findViewById(R.id.checkBoxCustomer);
 
         register = findViewById(R.id.buttonRegister);
-//reference to the Firebase
+        //reference to the Firebase
         fAuth = FirebaseAuth.getInstance();
 
         progressBar = findViewById(R.id.progressBarRegister);
@@ -91,7 +91,7 @@ public class Register extends AppCompatActivity {
             finish();
 
         }
-        //set what happen when we chose to be register like employe
+        //set what happen when we chose to be register like employee
         employee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,9 +99,15 @@ public class Register extends AppCompatActivity {
                 customer.setChecked(false);
                 branchAddress.setVisibility(View.VISIBLE);
                 branchNumber.setVisibility(View.VISIBLE);
+
+                if(!employee.isChecked() && !customer.isChecked()){
+                    branchAddress.setVisibility(View.GONE);
+                    branchNumber.setVisibility(View.GONE);
+                }
             }
         });
-        //set what happen when we chose to be register like employe
+        //set what happen when we chose to be register like customer
+
         customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +123,7 @@ public class Register extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*set variable that will help us to accept or not any type of account that whant to
+                /*set variable that will help us to accept or not any type of account that want to
                 be create*/
                 final String fStoreEmail = email.getText().toString().trim();
                 String fStorePassword = password.getText().toString().trim();
@@ -152,7 +158,7 @@ public class Register extends AppCompatActivity {
                 }
 
 
-                //verification of the phone number: it must be 10 caracters and just number betwen 0 to 9
+                //verification of the phone number: it must be 10 characters and just number between 0 to 9
                 for (char x: userPhoneNumber.toCharArray()){
                     Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
                     Matcher matcher = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
@@ -164,7 +170,7 @@ public class Register extends AppCompatActivity {
                     }
                 }
 
-                 //verification of the password it must be more than 7 carracter
+                 //verification of the password it must be more than 7 character
                 if(fStorePassword.length() <7){
 
                     password.setError("Password must be  seven(7) characters minimum ");
@@ -178,13 +184,13 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-                //have to chose whit kind of account we whant to create
+                //have to chose which kind of account we want to create
                 if (!employee.isChecked() && !customer.isChecked()){
                     employee.setError("Please select the type of account you would like to create");
                     customer.setError("Please select the type of account you would like to create");
                 }
 
-                //If it's the employee account that as been choose
+
                 if(role.compareTo("Employee")==0) {
                     for (char x : userPhoneNumber.toCharArray()) {
                         Pattern pattern = Pattern.compile(x + "", Pattern.CASE_INSENSITIVE);
@@ -252,8 +258,8 @@ public class Register extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                /*if all informations entered by the user was valides, we stock them inside our Firebase
-                  the place where errors was detected will be show */
+                //if all information entered by the user was correct, we stock them inside our FireStore and register the user
+
                 fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
