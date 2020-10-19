@@ -1,7 +1,7 @@
 package ca.novigrad;
 
 public class Branch {
-    String branchNumber;
+    String branchID;
     String branchAddress;
 
     public Branch(){
@@ -12,6 +12,6 @@ public class Branch {
     }
 
     public String getBranchNumber() {
-        return branchNumber;
+        return branchID;
     }
 }

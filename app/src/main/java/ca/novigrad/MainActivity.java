@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         branchAddressNotToFill.setVisibility(View.VISIBLE);
 
                         branchNumber.setVisibility(View.VISIBLE);
-                        branchNumber.setText(documentSnapshot.getString("BranchNumber"));
+                        branchNumber.setText(documentSnapshot.getString("BranchID"));
                         branchNumberNotToFill.setVisibility(View.VISIBLE);
 
 

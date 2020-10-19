@@ -36,7 +36,7 @@ import java.util.regex.Matcher;
 public class Register extends AppCompatActivity {
 
     String TAG = "TAG";
-    EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchNumber;
+    EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchID;
     TextView login, loginAccount;
     TextView status;
     CheckBox employee, customer;
@@ -77,8 +77,8 @@ public class Register extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         branchAddress =findViewById(R.id.editTextBranchAddress);
         branchAddress.setVisibility(View.GONE);
-        branchNumber = findViewById(R.id.editTextBranchNumber);
-        branchNumber.setVisibility(View.GONE);
+        branchID = findViewById(R.id.editTextBranchID);
+        branchID.setVisibility(View.GONE);
 
         addressIsMatching = numberIsMatching  = false;
 
@@ -98,11 +98,11 @@ public class Register extends AppCompatActivity {
                 role = "Employee";
                 customer.setChecked(false);
                 branchAddress.setVisibility(View.VISIBLE);
-                branchNumber.setVisibility(View.VISIBLE);
+                branchID.setVisibility(View.VISIBLE);
 
                 if(!employee.isChecked() && !customer.isChecked()){
                     branchAddress.setVisibility(View.GONE);
-                    branchNumber.setVisibility(View.GONE);
+                    branchID.setVisibility(View.GONE);
                 }
             }
         });
@@ -114,7 +114,7 @@ public class Register extends AppCompatActivity {
                 role = "Customer";
                 employee.setChecked(false);
                 branchAddress.setVisibility(View.GONE);
-                branchNumber.setVisibility(View.GONE);
+                branchID.setVisibility(View.GONE);
             }
         });
 
@@ -130,7 +130,7 @@ public class Register extends AppCompatActivity {
                 String repeatedPassword = repeatPassword.getText().toString().trim();
                 final String fStoreFullName = fullName.getText().toString().trim();
                 final String userPhoneNumber = phoneNumber.getText().toString().trim();
-                final String bNumber = branchNumber.getText().toString().trim();
+                final String bNumber = branchID.getText().toString().trim();
                 final String bAddress = branchAddress.getText().toString().trim();
 
 
@@ -146,7 +146,7 @@ public class Register extends AppCompatActivity {
                     password.setError("Password is required.");
                     return;
                 }
-                //check the name: it does'nt have to content any caracters of number
+                //check the name: it does'nt have to content any characters of number
                 for (char x: fStoreFullName.toCharArray()){
                     Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
                     Matcher matcher = pattern.matcher("a b c d e f g h i j k l m n o p k r s t u v w x y z");
@@ -197,7 +197,7 @@ public class Register extends AppCompatActivity {
                         Matcher matcher = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
                         boolean result = matcher.find();
                         if (!result || userPhoneNumber.length() != 10) {
-                            branchNumber.setError("The phone number must take 10 digits");
+                            branchID.setError("The phone number must take 10 digits");
                             return;
                         }
                     }
@@ -275,7 +275,7 @@ public class Register extends AppCompatActivity {
                             user.put("Role", role);
 
                            if(role.equals("Employee")){
-                               user.put("BranchNumber", branchNumber.getText().toString());
+                               user.put("BranchID", branchID.getText().toString());
                                user.put("BranchAddress", branchAddress.getText().toString());
                            }
 

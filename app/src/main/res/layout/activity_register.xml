@@ -20,12 +20,12 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <EditText
-        android:id="@+id/editTextBranchNumber"
+        android:id="@+id/editTextBranchID"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:ems="10"
-        android:hint="Branch Number"
+        android:hint="Branch ID"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,7 @@
         android:ems="10"
         android:hint="Branch Address"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBranchNumber"
+        app:layout_constraintBottom_toTopOf="@+id/editTextBranchID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
