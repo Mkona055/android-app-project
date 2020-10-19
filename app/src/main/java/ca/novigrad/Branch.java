@@ -11,7 +11,7 @@ public class Branch {
         return branchAddress;
     }
 
-    public String getBranchNumber() {
+    public String getBranchID() {
         return branchID;
     }
 }

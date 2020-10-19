@@ -30,26 +30,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 public class Register extends AppCompatActivity {
 
     String TAG = "TAG";
-    EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchID;
+    EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchID,customerAddress;
     TextView login, loginAccount;
     TextView status;
     CheckBox employee, customer;
     Button register;
     FirebaseAuth fAuth;
+    DatabaseReference reference;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
     String userID;
     String role;
 
 
-    boolean addressIsMatching;
-    boolean numberIsMatching;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +70,7 @@ public class Register extends AppCompatActivity {
         register = findViewById(R.id.buttonRegister);
         //reference to the Firebase
         fAuth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference("Branches");
 
         progressBar = findViewById(R.id.progressBarRegister);
         fStore = FirebaseFirestore.getInstance();
@@ -79,10 +78,8 @@ public class Register extends AppCompatActivity {
         branchAddress.setVisibility(View.GONE);
         branchID = findViewById(R.id.editTextBranchID);
         branchID.setVisibility(View.GONE);
-
-        addressIsMatching = numberIsMatching  = false;
-
-
+        customerAddress = findViewById(R.id.editTextCustomerAddress);
+        customerAddress.setVisibility(View.GONE);
 
         // if the user is already login
         if(fAuth.getCurrentUser()!= null){
@@ -99,10 +96,12 @@ public class Register extends AppCompatActivity {
                 customer.setChecked(false);
                 branchAddress.setVisibility(View.VISIBLE);
                 branchID.setVisibility(View.VISIBLE);
+                customerAddress.setVisibility(View.GONE);
 
                 if(!employee.isChecked() && !customer.isChecked()){
                     branchAddress.setVisibility(View.GONE);
                     branchID.setVisibility(View.GONE);
+                    customerAddress.setVisibility(View.GONE);
                 }
             }
         });
@@ -113,18 +112,23 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 role = "Customer";
                 employee.setChecked(false);
+                customerAddress.setVisibility(View.VISIBLE);
                 branchAddress.setVisibility(View.GONE);
                 branchID.setVisibility(View.GONE);
+                if(!employee.isChecked() && !customer.isChecked()){
+                    customerAddress.setVisibility(View.GONE);
+                    branchAddress.setVisibility(View.GONE);
+                    branchID.setVisibility(View.GONE);
+                }
             }
         });
+
 
 
          // Registration process
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*set variable that will help us to accept or not any type of account that want to
-                be create*/
                 final String fStoreEmail = email.getText().toString().trim();
                 String fStorePassword = password.getText().toString().trim();
                 String repeatedPassword = repeatPassword.getText().toString().trim();
@@ -132,91 +136,32 @@ public class Register extends AppCompatActivity {
                 final String userPhoneNumber = phoneNumber.getText().toString().trim();
                 final String bNumber = branchID.getText().toString().trim();
                 final String bAddress = branchAddress.getText().toString().trim();
+                final String cAddress = customerAddress.getText().toString().trim();
 
-
-                //verification of the email
-                if(TextUtils.isEmpty(fStoreEmail)){
-
-                    email.setError("Email is Required.");
+                if(!formIsValid(fStoreEmail, fStorePassword,repeatedPassword, fStoreFullName, userPhoneNumber,
+                        bNumber,cAddress,bAddress)){
                     return;
-                }
-                //verification of the password
-                if(TextUtils.isEmpty(fStorePassword)){
-
-                    password.setError("Password is required.");
-                    return;
-                }
-                //check the name: it does'nt have to content any characters of number
-                for (char x: fStoreFullName.toCharArray()){
-                    Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
-                    Matcher matcher = pattern.matcher("a b c d e f g h i j k l m n o p k r s t u v w x y z");
-                    boolean result = matcher.find();
-                    if(!result){
-                        fullName.setError("The name can not contain a digit and a special character");
-                        return;
-                    }
-                }
-
-
-                //verification of the phone number: it must be 10 characters and just number between 0 to 9
-                for (char x: userPhoneNumber.toCharArray()){
-                    Pattern pattern = Pattern.compile(x+"", Pattern.CASE_INSENSITIVE);
-                    Matcher matcher = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
-                    boolean result = matcher.find();
-                    if(!result || userPhoneNumber.length() != 10){
-                        phoneNumber.setError("The phone number must take 10 digits");
-
-                        return;
-                    }
-                }
-
-                 //verification of the password it must be more than 7 character
-                if(fStorePassword.length() <7){
-
-                    password.setError("Password must be  seven(7) characters minimum ");
-                    return;
-                }
-
-                //the password have to be the same in both editText
-                if(!fStorePassword.equals(repeatedPassword)){
-
-                    repeatPassword.setError("The passwords do not not match");
-                    return;
-                }
-
-                //have to chose which kind of account we want to create
-                if (!employee.isChecked() && !customer.isChecked()){
-                    employee.setError("Please select the type of account you would like to create");
-                    customer.setError("Please select the type of account you would like to create");
-                }
-
+                };
 
                 if(role.compareTo("Employee")==0) {
-                    for (char x : userPhoneNumber.toCharArray()) {
-                        Pattern pattern = Pattern.compile(x + "", Pattern.CASE_INSENSITIVE);
-                        Matcher matcher = pattern.matcher(" 0 1 2 3 4 5 6 7 8 9");
-                        boolean result = matcher.find();
-                        if (!result || userPhoneNumber.length() != 10) {
-                            branchID.setError("The phone number must take 10 digits");
-                            return;
-                        }
-                    }
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Branches");
                     reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
-                        /* we have to verify if the adresse and the number are already inside our database
+                        /* we have to verify if the address and the number are already inside our database
                         if not, we have to store them*/
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                            boolean addressIsMatching = false;
+                            boolean numberIsMatching = false;
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 Branch branch = snapshot.getValue(Branch.class);
                                 if (branch.getBranchAddress().compareTo(bAddress) == 0) {
                                     addressIsMatching = true;
                                     break;
                                 }
-                                if (branch.getBranchNumber().compareTo(bAddress) == 0) {
+                                if (branch.getBranchID().compareTo(bAddress) == 0) {
                                     numberIsMatching = true;
                                     break;
                                 }
@@ -236,7 +181,7 @@ public class Register extends AppCompatActivity {
                                 HashMap map = new HashMap<>();
 
                                 map.put("BranchAddress", bAddress);
-                                map.put("BranchNumber", bNumber);
+                                map.put("BranchID", bNumber);
 
                                 dr.child(bNumber).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -256,10 +201,11 @@ public class Register extends AppCompatActivity {
                     });
                 }
 
+
                 progressBar.setVisibility(View.VISIBLE);
 
-                //if all information entered by the user was correct, we stock them inside our FireStore and register the user
 
+                //if all data entered by the user were correct, we stock them inside our FireStore and register the user
                 fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -277,6 +223,8 @@ public class Register extends AppCompatActivity {
                            if(role.equals("Employee")){
                                user.put("BranchID", branchID.getText().toString());
                                user.put("BranchAddress", branchAddress.getText().toString());
+                           }else{
+                               user.put("Address",cAddress);
                            }
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -287,6 +235,7 @@ public class Register extends AppCompatActivity {
                             });
 
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                         } else{
 
                             Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -313,4 +262,78 @@ public class Register extends AppCompatActivity {
 
 
     }
+    public boolean formIsValid(String fStoreEmail, String fStorePassword, String repeatedPassword, String fStoreFullName, String userPhoneNumber,
+                               String bNumber, String cAddress, String bAddress){
+
+        //Verification of the Full Name
+        String regex = "^[a-zA-Z\\s]+";
+        if(!fStoreFullName.matches(regex)){
+            fullName.setError("The name section does not accept any special character and digits");
+            return false;
+        }
+        //verification of the email
+        // email incorrect format will be handled by the firebase while creating the account;
+        if(TextUtils.isEmpty(fStoreEmail)){
+
+            email.setError("Email is Required.");
+            return false ;
+        }
+
+        // verification of the phone Number
+        regex = "^\\d{10}$";
+            if(!userPhoneNumber.matches(regex)){
+                phoneNumber.setError("The phone number must take 10 digits ");
+                return false;
+            }
+
+
+        //verification of the password
+        if(TextUtils.isEmpty(fStorePassword)){
+
+            password.setError("Password is required.");
+            return false;
+        }
+        //verification of the password it must be more than 7 characters
+        if(fStorePassword.length() <7){
+
+            password.setError("Password must be  seven(7) characters minimum ");
+            return false;
+        }
+
+        //the password has to be the same in both editText
+        if(!fStorePassword.equals(repeatedPassword)){
+
+            repeatPassword.setError("The passwords do not not match");
+            return false;
+        }
+
+        //user has to chose which kind of account he wants to create
+        if (!employee.isChecked() && !customer.isChecked()){
+            employee.setError("Please select the type of account you would like to create");
+            customer.setError("Please select the type of account you would like to create");
+            return false;
+        }
+
+        //verify that the branch ID has 4 digits and the address is not empty
+        if(role.compareTo("Employee") == 0) {
+            if(TextUtils.isEmpty(bAddress)){
+                branchAddress.setError("An address must be entered");
+                return false;
+            }
+            regex = "^\\d{4}$";
+            if(!bNumber.matches(regex)){
+                branchID.setError("Please enter a 4 digits number");
+                return false;
+            }
+        }else{
+            // verify that the address field is not empty
+            if (TextUtils.isEmpty(cAddress)){
+                customerAddress.setError("An address must be entered");
+                return false;
+            }
+        }
+        return true;
+
+    }
+
 }

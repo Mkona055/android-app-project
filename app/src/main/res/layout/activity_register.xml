@@ -20,6 +20,21 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <EditText
+        android:id="@+id/editTextCustomerAddress"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxCustomer"
+        app:layout_constraintVertical_bias="0.064"
+        tools:visibility="visible" />
+
+    <EditText
         android:id="@+id/editTextBranchID"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
@@ -31,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <EditText
         android:id="@+id/editTextFullname"
@@ -90,8 +105,11 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editTextBranchID"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxCustomer"
+        app:layout_constraintVertical_bias="1.0"
+        tools:visibility="gone" />
 
     <EditText
         android:id="@+id/editTextEmail"
