@@ -45,9 +45,10 @@
 
     <Button
         android:id="@+id/buttonLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="203dp"
+        android:layout_height="40dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/roundedlayout"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
@@ -74,7 +75,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="Welcome:"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.201"
@@ -88,7 +89,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="You are connected as "
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textViewWelcome"
         app:layout_constraintTop_toBottomOf="@+id/textViewFullName1" />
@@ -112,7 +113,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/land_bg2"
+        android:background="@drawable/roundedlayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRole" />
@@ -132,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BranchNumber:"
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/textViewBranchNumber"
         app:layout_constraintStart_toStartOf="@+id/textViewBranchAddressNotToFill"
@@ -153,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Branch Address"
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumberNotToFill"
         app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumberNotToFill" />
@@ -181,7 +182,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email: "
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         app:layout_constraintStart_toStartOf="@+id/textViewName"
         app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
@@ -205,7 +206,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Full Name:  "
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber"
         app:layout_constraintTop_toBottomOf="@+id/textViewPersonalnformations" />
@@ -216,7 +217,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Profil Informations"
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textViewPhoneNumber"
         app:layout_constraintHorizontal_bias="0.508"
@@ -228,7 +229,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number: "
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         app:layout_constraintStart_toStartOf="@+id/textViewEmailnotToFill"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmailnotToFill" />
 
