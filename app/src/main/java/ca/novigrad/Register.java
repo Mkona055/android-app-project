@@ -158,7 +158,7 @@ public class Register extends AppCompatActivity {
                                     addressIsMatching = true;
                                     break;
                                 }
-                                if (branch.getBranchID().compareTo(bAddress) == 0) {
+                                if (branch.getBranchID().compareTo(bNumber) == 0) {
                                     numberIsMatching = true;
                                     break;
                                 }
