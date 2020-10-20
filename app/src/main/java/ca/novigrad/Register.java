@@ -169,7 +169,7 @@ public class Register extends AppCompatActivity {
                                 return;
 
                             } else if (numberIsMatching) {
-                                branchAddress.setError("This branch address is already in our database");
+                                branchID.setError("This branch address is already in our database");
                                 return;
 
                             } else {
