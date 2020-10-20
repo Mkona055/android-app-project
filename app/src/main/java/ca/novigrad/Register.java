@@ -177,8 +177,8 @@ public class Register extends AppCompatActivity {
                                 DatabaseReference dr = FirebaseDatabase.getInstance().getReference("Branches");
                                 HashMap map = new HashMap<>();
 
-                                map.put("BranchAddress", bAddress);
-                                map.put("BranchID", bNumber);
+                                map.put("branchAddress", bAddress);
+                                map.put("branchID", bNumber);
 
                                 dr.child(bNumber).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
