@@ -9,16 +9,15 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="362dp"
-        android:layout_height="433dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="372dp"
+        android:layout_height="462dp"
         android:background="@drawable/bg_register_v2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo"
+        app:layout_constraintVertical_bias="0.142" />
 
     <EditText
         android:id="@+id/editTextCustomerAddress"
@@ -27,11 +26,13 @@
         android:ems="10"
         android:hint="Address"
         android:inputType="textPersonName"
-        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxCustomer" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxCustomer"
+        app:layout_constraintVertical_bias="0.064"
+        tools:visibility="visible" />
 
     <EditText
         android:id="@+id/editTextBranchID"
@@ -41,7 +42,6 @@
         android:ems="10"
         android:hint="Branch ID"
         android:inputType="textPersonName"
-        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -76,11 +76,12 @@
         android:id="@+id/imageLogo"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01"
         app:srcCompat="@drawable/logo" />
 
     <TextView
@@ -89,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="CREATE NEW ACCOUNT"
-        android:textColor="@color/NovigradOrange"
+        android:textColor="#FF6E40"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +103,6 @@
         android:ems="10"
         android:hint="Branch Address"
         android:inputType="textPersonName"
-        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextBranchID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -138,14 +138,14 @@
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="312dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/roundedlayout"
+        android:layout_height="wrap_content"
         android:text="REGISTER"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.155" />
 
     <TextView
         android:id="@+id/textLogin"
@@ -154,10 +154,12 @@
         android:layout_marginTop="8dp"
         android:text="Already Registered? Login Here"
         android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
+        app:layout_constraintVertical_bias="0.133" />
 
     <EditText
         android:id="@+id/editTextRepeatPassword"
@@ -176,11 +178,11 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginBottom="12dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textStatus"
@@ -219,11 +221,13 @@
         android:id="@+id/imageView"
         android:layout_width="80dp"
         android:layout_height="26dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textLogin"
+        app:layout_constraintVertical_bias="0.777"
         app:srcCompat="@drawable/glbmlogo" />
 
     <TextView

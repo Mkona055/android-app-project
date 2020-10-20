@@ -42,25 +42,36 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Let's Get Strated"
-        android:textColor="@color/NovigradBlue"
-        android:textSize="24sp"
+        android:layout_marginTop="4dp"
+        android:text="Welcome to Novigrad Services"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo2" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Let's Get Strated"
+        android:textColor="#435ADC"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="130dp"
-        android:background="@drawable/roundedlayout"
+        android:layout_marginEnd="110dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,11 +81,10 @@
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="130dp"
-        android:background="@drawable/roundedlayout"
+        android:layout_marginEnd="110dp"
         android:text="create an account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

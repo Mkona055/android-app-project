@@ -34,17 +34,15 @@ import java.util.Map;
 public class Register extends AppCompatActivity {
 
     private String TAG = "TAG";
-    private String userID;
-    private String role;
-    private Branch branch;
     private EditText fullName,email, phoneNumber, password, repeatPassword,branchAddress,branchID,customerAddress;
-    private TextView login;
-    private TextView status;
+    private TextView login, loginAccount;
     private CheckBox employee, customer;
     private Button register;
     private FirebaseAuth fAuth;
     private ProgressBar progressBar;
     private FirebaseFirestore fStore;
+    private String userID;
+    private String role;
 
 
 
@@ -61,7 +59,7 @@ public class Register extends AppCompatActivity {
         repeatPassword = findViewById(R.id.editTextRepeatPassword);
 
         login = findViewById(R.id.textLogin);
-        status =findViewById(R.id.textStatus);
+        loginAccount = findViewById(R.id.textLoginAccount);
 
         employee = findViewById(R.id.checkBoxEmployee);
         customer = findViewById(R.id.checkBoxCustomer);
@@ -155,7 +153,7 @@ public class Register extends AppCompatActivity {
                             boolean addressIsMatching = false;
                             boolean numberIsMatching = false;
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                branch = snapshot.getValue(Branch.class);
+                                Branch branch = snapshot.getValue(Branch.class);
                                 if (branch.getBranchAddress().compareTo(bAddress) == 0) {
                                     addressIsMatching = true;
                                     break;
@@ -233,7 +231,7 @@ public class Register extends AppCompatActivity {
                                 }
                             });
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), Login.class));
                             finish();
                         } else{
 
@@ -261,7 +259,7 @@ public class Register extends AppCompatActivity {
 
 
     }
-    private boolean formIsValid(String fStoreEmail, String fStorePassword, String repeatedPassword, String fStoreFullName, String userPhoneNumber,
+    public boolean formIsValid(String fStoreEmail, String fStorePassword, String repeatedPassword, String fStoreFullName, String userPhoneNumber,
                                String bNumber, String cAddress, String bAddress){
 
         //Verification of the Full Name

@@ -3,8 +3,4 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="NovigradBlue">#1f3c88</color>
-    <color name="NovigradOrange">#FF9C00</color>
-    <color name="NovigradYellow">#fff8cd</color>
-    <color name="NovigradSilver">#646464</color>
 </resources>

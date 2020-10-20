@@ -1,8 +1,8 @@
 package ca.novigrad;
 
 public class Branch {
-    String branchID;
-    String branchAddress;
+    private String branchID;
+    private String branchAddress;
 
     public Branch(){
 
