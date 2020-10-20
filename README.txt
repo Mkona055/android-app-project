@@ -7,9 +7,6 @@ Mohamed Konate 300136750
 
 Notre application permet de créer des comptes clients et employés et aussi de se connecter à ceux-ci
 sans perdre les données personnelles des utilisateurs.
-(NB: Le numéro de succursale et l'addresse donnée lors de la création du compte employé ne peuvent etre utilisés qu'une seule fois pour créer un compte)
-
-
 
 
 Informations pour se connecter au compte administrateur:
