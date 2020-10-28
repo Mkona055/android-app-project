@@ -11,24 +11,11 @@
         android:id="@+id/imageView5"
         android:layout_width="80dp"
         android:layout_height="26dp"
-        android:layout_marginEnd="156dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/glbmlogo" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="By:"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+        app:srcCompat="@drawable/glbmlogo" />
 
     <TextView
         android:id="@+id/textViewFullName1"
@@ -44,11 +31,10 @@
 
     <Button
         android:id="@+id/buttonLogout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_width="141dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="70dp"
+        android:background="@drawable/roundedlayout"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
@@ -57,8 +43,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="310dp"
-        android:layout_height="106dp"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,12 +55,12 @@
         android:id="@+id/textViewWelcome"
         android:layout_width="wrap_content"
         android:layout_height="54dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:capitalize="none"
         android:fontFamily="sans-serif-medium"
         android:text="Welcome !"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.141"
@@ -88,7 +74,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-medium"
         android:text="You are connected as "
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@+id/textViewFullName1"
         app:layout_constraintTop_toBottomOf="@+id/textViewFullName1" />
@@ -109,10 +95,8 @@
         android:id="@+id/textViewPhoneNumber"
         android:layout_width="352dp"
         android:layout_height="202dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/land_bg2"
+        android:background="@drawable/roundedlayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="BranchNumber:"
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumberNotToFill"
         app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumberNotToFill" />
@@ -157,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="BranchAddress:"
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumberNotToFill"
         app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumberNotToFill" />
@@ -186,7 +170,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Email: "
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         app:layout_constraintStart_toStartOf="@+id/textViewName"
         app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
@@ -210,7 +194,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Full Name:  "
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber"
         app:layout_constraintTop_toBottomOf="@+id/textViewPersonalnformations" />
@@ -221,7 +205,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Profile Informations"
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textViewPhoneNumber"
         app:layout_constraintHorizontal_bias="0.508"
@@ -234,7 +218,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Phone Number: "
-        android:textColor="#435ADC"
+        android:textColor="@color/NovigradBlue"
         app:layout_constraintStart_toStartOf="@+id/textViewEmailnotToFill"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmailnotToFill" />
 
