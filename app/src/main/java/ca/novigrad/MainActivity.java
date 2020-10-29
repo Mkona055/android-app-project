@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private String userID;
     private Button logout;
+    private TextView manage;
 
 
     @Override
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         branchNumber = findViewById(R.id.textViewBranchNumber);
         branchNumberNotToFill =findViewById(R.id.textViewBranchNumberNotToFill);
 
+        manage = findViewById(R.id.textViewManage);
 
         logout = (Button) findViewById(R.id.buttonLogout);
 
@@ -96,6 +98,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent (MainActivity.this, Login.class));
                 finish();
 
+            }
+        });
+
+
+        manage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ManageBranch.class));
             }
         });
 
