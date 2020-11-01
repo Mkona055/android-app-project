@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ManageBranch.class));
+                startActivity(new Intent(getApplicationContext(), ManageAccount.class));
             }
         });
 

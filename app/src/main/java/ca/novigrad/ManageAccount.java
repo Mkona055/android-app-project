@@ -16,7 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class ManageBranch extends AppCompatActivity {
+public class ManageAccount extends AppCompatActivity {
 
 
     private FirebaseFirestore firStore;
@@ -29,34 +29,34 @@ public class ManageBranch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_branch);
+        setContentView(R.layout.activity_manage_account);
 
 
 
 
         firStore = FirebaseFirestore.getInstance();
-        rcView = findViewById(R.id.rViewBranchList);
+        rcView = findViewById(R.id.rViewAccountList);
 
 
         //GET DATA FROM DATA BASE
         Query query = firStore.collection("users");
 
 
-       FirestoreRecyclerOptions<BranchList> options = new FirestoreRecyclerOptions.Builder<BranchList>()
-              .setQuery(query, BranchList.class)
+       FirestoreRecyclerOptions<AccountList> options = new FirestoreRecyclerOptions.Builder<AccountList>()
+              .setQuery(query, AccountList.class)
                .build();
 
 
-       adapter = new FirestoreRecyclerAdapter<BranchList, ProductViewHolder>(options) {
+       adapter = new FirestoreRecyclerAdapter<AccountList, ProductViewHolder>(options) {
             @NonNull
             @Override
             public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.branch_list,parent,false );
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_list,parent,false );
                 return new ProductViewHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull BranchList model) {
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull AccountList model) {
                 holder.email.setText(model.getEmail());
                 holder.fullName.setText(model.getFullName());
                 holder.phone.setText(model.getPhoneNumber());

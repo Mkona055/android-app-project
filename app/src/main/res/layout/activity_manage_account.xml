@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg1"
-    tools:context=".ManageBranch">
+    tools:context=".ManageAccount">
 
     <ImageView
         android:id="@+id/imageLogo3"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/logo" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rViewBranchList"
+        android:id="@+id/rViewAccountList"
         android:layout_width="0dp"
         android:layout_height="581dp"
         android:layout_marginStart="8dp"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Branch List"
+        android:text="Account List"
         android:textColor="@color/NovigradBlue"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

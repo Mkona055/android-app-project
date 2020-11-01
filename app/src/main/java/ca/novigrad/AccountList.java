@@ -1,6 +1,6 @@
 package ca.novigrad;
 
-public class BranchList {
+public class AccountList {
 
 
     private String FullName;
@@ -10,11 +10,11 @@ public class BranchList {
 
 
 
-    public BranchList(){
+    public AccountList(){
 
     }
 
-    public BranchList( String Email, String FullName, String PhoneNumber) {
+    public AccountList(String Email, String FullName, String PhoneNumber) {
         this.Email = Email;
         this.FullName = FullName;
         this.PhoneNumber = PhoneNumber;
