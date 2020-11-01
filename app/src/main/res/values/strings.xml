@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Novigrad</string>
+    <string name="add_field">Add Field</string>
+    <string name="field_name">Field Name</string>
 </resources>
