@@ -15,8 +15,6 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
-
-
         <activity
             android:name=".DocumentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -27,7 +25,9 @@
             android:name=".ManageService"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ManageAccount" />
+        <activity android:name=".ManageAccount"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".Frontpage"
             android:screenOrientation="portrait"

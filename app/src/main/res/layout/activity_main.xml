@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="12dp"
-        android:text="Manage Services "
+        android:text="MANAGE SERVICE"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textViewPhoneNumber"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="@+id/textViewManage" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/glbmmenutest"
         android:layout_width="80dp"
         android:layout_height="26dp"
         android:layout_marginBottom="8dp"
@@ -239,7 +239,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Manage Account  "
+        android:text="MANAGE ACCOUNT"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textViewPhoneNumber"

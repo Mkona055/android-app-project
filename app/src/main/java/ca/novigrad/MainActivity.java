@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private String userID;
     private Button logout;
     private TextView manage, manage2;
+    private ImageView menutest;
 
 
     @Override
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         manage = findViewById(R.id.textViewManage);
         manage2 = findViewById(R.id.textViewManage2);
+        menutest = findViewById(R.id.glbmmenutest);
 
         logout = (Button) findViewById(R.id.buttonLogout);
 
@@ -127,7 +130,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        menutest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Manage.class));
+            }
+        });
+
     }
+
 
 }
 
