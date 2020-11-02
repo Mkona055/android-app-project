@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private String userID;
     private Button logout;
-    private TextView manage;
+    private TextView manage, manage2;
 
 
     @Override
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         branchNumberNotToFill =findViewById(R.id.textViewBranchNumberNotToFill);
 
         manage = findViewById(R.id.textViewManage);
+        manage2 = findViewById(R.id.textViewManage2);
 
         logout = (Button) findViewById(R.id.buttonLogout);
 
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                         branchNumberNotToFill.setVisibility(View.VISIBLE);
 
 
+
+
                     }else{
                         branchAddress.setVisibility(View.GONE);
                         branchAddressNotToFill.setVisibility(View.GONE);
@@ -83,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
                         branchNumber.setVisibility(View.GONE);
                         branchNumberNotToFill.setVisibility(View.GONE);
                     }
+
+
+                    if (documentSnapshot.getString("Role").compareTo("Administrator") == 0) {
+                        manage.setVisibility(View.VISIBLE);
+                        manage2.setVisibility(View.VISIBLE);
+
+                    }
+
                 }
 
 
@@ -106,6 +117,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), ManageAccount.class));
+            }
+        });
+
+        manage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ManageService.class));
             }
         });
 
