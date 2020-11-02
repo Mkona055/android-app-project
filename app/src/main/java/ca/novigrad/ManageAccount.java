@@ -2,86 +2,58 @@ package ca.novigrad;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 public class ManageAccount extends AppCompatActivity {
 
-
-    private FirebaseFirestore firStore;
-    private RecyclerView rcView;
-
-
-    private FirestoreRecyclerAdapter adapter;
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference accountRef = db.collection("users");
+    private AccountAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_account);
 
-
-
-
-        firStore = FirebaseFirestore.getInstance();
-        rcView = findViewById(R.id.rViewAccountList);
-
-
-        //GET DATA FROM DATA BASE
-        Query query = firStore.collection("users");
-
-
-       FirestoreRecyclerOptions<AccountList> options = new FirestoreRecyclerOptions.Builder<AccountList>()
-              .setQuery(query, AccountList.class)
-               .build();
-
-
-       adapter = new FirestoreRecyclerAdapter<AccountList, ProductViewHolder>(options) {
-            @NonNull
-            @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_list,parent,false );
-                return new ProductViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull AccountList model) {
-                holder.email.setText(model.getEmail());
-                holder.fullName.setText(model.getFullName());
-                holder.phone.setText(model.getPhoneNumber());
-
-            }
-        };
-
-        rcView.setHasFixedSize(true);
-        rcView.setLayoutManager(new LinearLayoutManager(this));
-        rcView.setAdapter(adapter);
+        setUpRecyclerView();
 
     }
 
-    private class ProductViewHolder extends RecyclerView.ViewHolder{
-        private TextView fullName, email, phone;
+    private  void setUpRecyclerView() {
+        Query query = accountRef.orderBy("Role", Query.Direction.DESCENDING);
+
+        FirestoreRecyclerOptions<AccountList> options = new FirestoreRecyclerOptions.Builder<AccountList>()
+                .setQuery(query, AccountList.class)
+                .build();
+        adapter = new AccountAdapter(options);
+        RecyclerView recyclerView = findViewById(R.id.rcView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
 
-        public ProductViewHolder(@NonNull View itemView) {
-            super(itemView);
-            email = itemView.findViewById(R.id.textViewEmail3);
-            fullName = itemView.findViewById(R.id.textViewFullName3);
-            phone = itemView.findViewById(R.id.textViewPhoneNumber3);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
 
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                adapter.deleteItem(viewHolder.getAdapterPosition());
 
-        }
+            }
+        }).attachToRecyclerView(recyclerView);
+
     }
 
     @Override
@@ -95,4 +67,6 @@ public class ManageAccount extends AppCompatActivity {
         super.onStart();
         adapter.startListening();
     }
+
+
 }

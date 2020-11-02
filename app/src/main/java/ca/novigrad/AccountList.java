@@ -6,6 +6,7 @@ public class AccountList {
     private String FullName;
     private String Email;
     private String PhoneNumber;
+    private String Role;
 
 
 
@@ -14,10 +15,11 @@ public class AccountList {
 
     }
 
-    public AccountList(String Email, String FullName, String PhoneNumber) {
+    public AccountList(String Email, String FullName, String PhoneNumber, String Role) {
         this.Email = Email;
         this.FullName = FullName;
         this.PhoneNumber = PhoneNumber;
+        this.Role = Role;
 
 
     }
@@ -49,4 +51,11 @@ public class AccountList {
         this.PhoneNumber = PhoneNumber;
     }
 
+    public String getRole() {
+        return this.Role;
+    }
+
+    public void setRole(String Role) {
+        this.Role = Role;
+    }
 }
