@@ -7,55 +7,91 @@
     android:background="@drawable/bg1"
     tools:context=".DocumentActivity">
 
+  <ImageView
+      android:id="@+id/glbmmenutest6"
+      android:layout_width="80dp"
+      android:layout_height="26dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="165dp"
+      android:layout_marginEnd="166dp"
+      android:layout_marginBottom="29dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/buttonManageAccounnts"
+      app:layout_constraintVertical_bias="0.866"
+      app:srcCompat="@drawable/glbmlogo" />
+
+  <ImageView
+      android:id="@+id/imageLogo6"
+      android:layout_width="200dp"
+      android:layout_height="70dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginStart="106dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="105dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/logo" />
+
   <TextView
       android:id="@+id/TextViewDocument"
       android:layout_width="274dp"
       android:layout_height="51dp"
+      android:layout_below="@+id/imageLogo6"
       android:layout_alignParentStart="true"
-      android:layout_alignParentTop="true"
       android:layout_alignParentEnd="true"
       android:layout_centerHorizontal="true"
-      android:layout_marginStart="56dp"
-      android:layout_marginTop="39dp"
-      android:layout_marginEnd="81dp"
-      android:text="Documents:"
+      android:layout_marginStart="65dp"
+      android:layout_marginTop="14dp"
+      android:layout_marginEnd="72dp"
+      android:text="List Of Documents:"
+      android:textAlignment="center"
       android:textAppearance="@style/TextAppearance.AppCompat.Large"
-      android:textColor="@color/NovigradBlue" />
+      android:textColor="@color/NovigradBlue"
+      android:textSize="24sp" />
 
   <EditText
       android:id="@+id/editTextDocumentToAdd"
-      android:layout_width="306dp"
-      android:layout_height="wrap_content"
+      android:layout_width="345dp"
+      android:layout_height="43dp"
       android:layout_below="@+id/TextViewDocument"
       android:layout_alignParentStart="true"
       android:layout_alignParentEnd="true"
       android:layout_centerHorizontal="true"
-      android:layout_marginStart="41dp"
+      android:layout_marginStart="29dp"
       android:layout_marginTop="46dp"
-      android:layout_marginEnd="63dp"
+      android:layout_marginEnd="37dp"
+      android:background="@color/NovigradYellow"
       android:ems="10"
       android:hint="@string/field_name"
       android:inputType="textPersonName" />
 
   <Button
       android:id="@+id/buttonAddDocument"
-      android:layout_width="118dp"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_below="@+id/editTextDocumentToAdd"
       android:layout_alignParentStart="true"
-      android:layout_marginStart="20dp"
-      android:layout_marginTop="40dp"
+      android:layout_marginStart="62dp"
+      android:layout_marginTop="48dp"
       android:background="@drawable/roundedlayout"
       android:text="ADD" />
 
   <Button
       android:id="@+id/buttonFinish"
-      android:layout_width="115dp"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_below="@+id/editTextDocumentToAdd"
+      android:layout_alignTop="@+id/buttonAddDocument"
       android:layout_alignParentEnd="true"
-      android:layout_marginTop="40dp"
-      android:layout_marginEnd="56dp"
+      android:layout_marginTop="1dp"
+      android:layout_marginEnd="54dp"
       android:background="@drawable/roundedlayout"
       android:text="Finish" />
 
@@ -63,12 +99,13 @@
       android:id="@+id/ListeViewOfDocument"
       android:layout_width="361dp"
       android:layout_height="418dp"
+      android:layout_above="@+id/glbmmenutest6"
       android:layout_below="@+id/editTextDocumentToAdd"
       android:layout_alignParentStart="true"
-      android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"
-      android:layout_marginStart="22dp"
-      android:layout_marginTop="181dp"
-      android:layout_marginBottom="19dp"
-      android:background="@drawable/roundedlayout" />
+      android:layout_alignParentEnd="true"
+      android:layout_marginStart="23dp"
+      android:layout_marginTop="117dp"
+      android:layout_marginEnd="27dp"
+      android:layout_marginBottom="29dp"
+      android:background="@color/NovigradYellow" />
 </RelativeLayout>

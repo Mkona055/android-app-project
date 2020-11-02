@@ -14,7 +14,7 @@
         android:layout_marginStart="33dp"
         android:layout_marginEnd="29dp"
         android:layout_marginBottom="81dp"
-        android:background="@drawable/roundedlayout" />
+        android:background="@color/NovigradYellow" />
 
     <TextView
         android:id="@+id/textViewFormDisplay"
@@ -35,9 +35,11 @@
         android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/ListViewDocument"
+        android:layout_below="@+id/ListViewForm"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="31dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="205dp"
         android:layout_marginBottom="34dp"
         android:text="Documents :"
@@ -48,13 +50,11 @@
         android:id="@+id/ListViewForm"
         android:layout_width="349dp"
         android:layout_height="250dp"
-        android:layout_above="@+id/textViewDocumentDisplay"
         android:layout_below="@+id/textViewFormDisplay"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="23dp"
-        android:background="@drawable/roundedlayout" />
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/NovigradYellow" />
 </RelativeLayout>

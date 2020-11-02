@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg1">
+    android:background="@color/NovigradYellow">
 
     <EditText
         android:id="@+id/editTextUpdateServices"
-        android:layout_width="314dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -15,6 +15,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="59dp"
         android:layout_marginEnd="45dp"
+        android:background="@color/cardview_light_background"
         android:ems="10"
         android:hint="Service Name"
         android:inputType="textPersonName" />

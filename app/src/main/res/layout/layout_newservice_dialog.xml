@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg1"
+    android:background="@color/NovigradYellow"
     android:rotationX="0">
 
     <EditText
         android:id="@+id/editTextUpdateFieldName"
         android:layout_width="354dp"
         android:layout_height="49dp"
+        android:background="@color/cardview_light_background"
         android:ems="10"
         android:hint="Name of Service"
         android:inputType="textPersonName"

@@ -54,6 +54,7 @@ public class ManageService extends AppCompatActivity {
                 newServiceDialog();
             }
         });
+
     }
 
     @Override
