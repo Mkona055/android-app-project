@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private String userID;
     private Button logout;
-    private TextView manage, manage2;
+    private Button continueButton;
     private ImageView menutest;
 
 
@@ -49,13 +49,15 @@ public class MainActivity extends AppCompatActivity {
         branchNumber = findViewById(R.id.textViewBranchNumber);
         branchNumberNotToFill =findViewById(R.id.textViewBranchNumberNotToFill);
 
-        manage = findViewById(R.id.textViewManage);
-        manage2 = findViewById(R.id.textViewManage2);
+
         menutest = findViewById(R.id.glbmmenutest);
 
         logout = (Button) findViewById(R.id.buttonLogout);
+        continueButton = findViewById(R.id.buttonContinue);
 
         userID = fAuth.getCurrentUser().getUid();
+
+
         //GET DATA FROM DATA BASE
         documentReference = fStore.collection("users").document(userID);
         EventListener<DocumentSnapshot> eventListener = new EventListener<DocumentSnapshot>() {
@@ -90,16 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         branchNumberNotToFill.setVisibility(View.GONE);
                     }
 
-
-                    if (documentSnapshot.getString("Role").compareTo("Administrator") == 0) {
-                        manage.setVisibility(View.VISIBLE);
-                        manage2.setVisibility(View.VISIBLE);
-
-                    }
-
                 }
-
-
             }
         };
 
@@ -115,18 +108,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        manage.setOnClickListener(new View.OnClickListener() {
+        continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ManageAccount.class));
-            }
-        });
+                if (role.getText().toString().compareTo("Administrator") == 0){
+                    startActivity(new Intent (MainActivity.this, AdminManagement.class));
+                }
 
-        manage2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ManageService.class));
             }
         });
 
