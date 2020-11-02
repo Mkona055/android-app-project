@@ -26,7 +26,7 @@ import java.util.HashMap;
 
 public class DocumentActivity extends AppCompatActivity {
 
-    private String serviceName;
+    private String serviceID;
     private EditText documentName;
     private Button addDocument, finish;
     private ListView listViewDocuments;
@@ -41,7 +41,7 @@ public class DocumentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_document);
 
         Bundle bundle = getIntent().getExtras();
-        serviceName = bundle.getString("serviceCreated");
+        serviceID = bundle.getString("serviceID");
 
         documentName = findViewById(R.id.editTextDocumentToAdd);
         addDocument = findViewById(R.id.buttonAddDocument);
@@ -66,7 +66,7 @@ public class DocumentActivity extends AppCompatActivity {
 
                     HashMap map = new HashMap<>();
                     map.put("documentName" + numberOfDocument, documentName.getText().toString().trim());
-                    dr.child(serviceName).child("Documents").updateChildren(map);
+                    dr.child(serviceID).child("Documents").updateChildren(map);
                     documentName.setText(null);
 
                 }
@@ -84,7 +84,7 @@ public class DocumentActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Services").child(serviceName).child("Documents");;
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Services").child(serviceID).child("Documents");;
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -149,7 +149,7 @@ public class DocumentActivity extends AppCompatActivity {
     private void updateDocument (final String documentToUpdate , final String newName){
 
 
-        final DatabaseReference ref = dr.child(serviceName).child("Documents");
+        final DatabaseReference ref = dr.child(serviceID).child("Documents");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -177,7 +177,7 @@ public class DocumentActivity extends AppCompatActivity {
     }
 
     private void deleteDocument (final String docToDelete){
-        final DatabaseReference ref = dr.child(serviceName).child("Documents");
+        final DatabaseReference ref = dr.child(serviceID).child("Documents");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Form extends AppCompatActivity {
-    private String serviceName;
+    private String serviceID;
     private EditText fieldName;
     private Button addField, next;
     private ListView form;
@@ -39,7 +39,7 @@ public class Form extends AppCompatActivity {
         setContentView(R.layout.activity_form);
 
         Bundle bundle = getIntent().getExtras();
-        serviceName = bundle.getString("serviceCreated");
+        serviceID = bundle.getString("serviceID");
 
         fieldName = findViewById(R.id.editTextFieldName);
         addField = findViewById(R.id.buttonAddField);
@@ -63,7 +63,7 @@ public class Form extends AppCompatActivity {
 
                     HashMap map = new HashMap<>();
                     map.put("fieldName" + numberOfFields, fieldName.getText().toString().trim());
-                    dr.child(serviceName).child("Form").updateChildren(map);
+                    dr.child(serviceID).child("Form").updateChildren(map);
                     fieldName.setText(null);
 
                 }
@@ -76,7 +76,7 @@ public class Form extends AppCompatActivity {
 
 
                 Intent intent = new Intent(Form.this,DocumentActivity.class);
-                intent.putExtra("serviceCreated", serviceName);
+                intent.putExtra("serviceID", serviceID);
                 startActivity(intent);// add progress bar
                 finish();
             }
@@ -88,7 +88,7 @@ public class Form extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Services").child(serviceName).child("Form");;
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Services").child(serviceID).child("Form");;
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -153,7 +153,7 @@ public class Form extends AppCompatActivity {
     private void updateFieldName(final String fieldToUpdate , final String newName){
 
 
-        final DatabaseReference ref = dr.child(serviceName).child("Form");
+        final DatabaseReference ref = dr.child(serviceID).child("Form");
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -181,7 +181,7 @@ public class Form extends AppCompatActivity {
     }
 
     private void deleteFieldName (final String fieldToDelete){
-        final DatabaseReference ref = dr.child(serviceName).child("Form");
+        final DatabaseReference ref = dr.child(serviceID).child("Form");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
