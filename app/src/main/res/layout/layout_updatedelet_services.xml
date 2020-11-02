@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/NovigradYellow">
+
+    <EditText
+        android:id="@+id/editTextUpdateServices"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="45dp"
+        android:background="@color/cardview_light_background"
+        android:ems="10"
+        android:hint="Service Name"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/buttonUpdateServices"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextUpdateServices"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="98dp"
+        android:background="@drawable/roundedlayout"
+        android:text="Update" />
+
+    <Button
+        android:id="@+id/buttonDeleteServices"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextUpdateServices"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/roundedlayout"
+        android:text="Delete" />
+</RelativeLayout>

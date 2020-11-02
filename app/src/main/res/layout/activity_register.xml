@@ -135,7 +135,7 @@
 
     <Button
         android:id="@+id/buttonRegister"
-        android:layout_width="280dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/roundedlayout"
@@ -222,18 +222,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/glbmlogo" />
-
-    <ScrollView
-        android:layout_width="408dp"
-        android:layout_height="726dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

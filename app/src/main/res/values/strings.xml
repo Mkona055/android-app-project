@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Novigrad</string>
+    <string name="add_field">Add Field</string>
+    <string name="field_name">Field Name</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

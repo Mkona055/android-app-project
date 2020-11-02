@@ -11,10 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManageBranch"></activity>
+        <activity android:name=".AdminManagement"></activity>
+        <activity
+            android:name=".Manage"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DocumentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Form"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ManageService"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ManageAccount"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Frontpage"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,13 +40,16 @@
         </activity>
         <activity
             android:name=".Login"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Register"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

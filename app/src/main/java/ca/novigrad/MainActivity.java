@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private String userID;
     private Button logout;
-    private TextView manage;
+    private Button continueButton;
+    private ImageView menutest;
 
 
     @Override
@@ -47,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
         branchNumber = findViewById(R.id.textViewBranchNumber);
         branchNumberNotToFill =findViewById(R.id.textViewBranchNumberNotToFill);
 
-        manage = findViewById(R.id.textViewManage);
+
+        menutest = findViewById(R.id.glbmmenutest);
 
         logout = (Button) findViewById(R.id.buttonLogout);
+        continueButton = findViewById(R.id.buttonContinue);
 
         userID = fAuth.getCurrentUser().getUid();
+
+
         //GET DATA FROM DATA BASE
         documentReference = fStore.collection("users").document(userID);
         EventListener<DocumentSnapshot> eventListener = new EventListener<DocumentSnapshot>() {
@@ -76,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                         branchNumberNotToFill.setVisibility(View.VISIBLE);
 
 
+
+
                     }else{
                         branchAddress.setVisibility(View.GONE);
                         branchAddressNotToFill.setVisibility(View.GONE);
@@ -83,9 +91,8 @@ public class MainActivity extends AppCompatActivity {
                         branchNumber.setVisibility(View.GONE);
                         branchNumberNotToFill.setVisibility(View.GONE);
                     }
+
                 }
-
-
             }
         };
 
@@ -101,15 +108,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        manage.setOnClickListener(new View.OnClickListener() {
+        continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ManageBranch.class));
+                if (role.getText().toString().compareTo("Administrator") == 0){
+                    startActivity(new Intent (MainActivity.this, AdminManagement.class));
+                }
+
+            }
+        });
+
+        menutest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Manage.class));
             }
         });
 
     }
+
 
 }
 
