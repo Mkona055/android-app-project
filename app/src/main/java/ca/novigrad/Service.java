@@ -1,11 +1,12 @@
 package ca.novigrad;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Service {
     private String serviceName;
-    private List<FieldName> form;
-    private List<Document> documents;
+    private HashMap<String,String> Form;
+    private HashMap<String,String> Documents;
 
     public Service(){
 
@@ -14,11 +15,11 @@ public class Service {
     public String getServiceName(){
         return serviceName;
     }
-    public  List<FieldName> getForm(){
-        return form;
+    public  HashMap getForm(){
+        return Form;
     }
-    public List<Document> getDocuments(){
-        return documents;
+    public HashMap getDocuments(){
+        return Documents;
     }
 
 }

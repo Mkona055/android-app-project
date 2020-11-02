@@ -11,14 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManageAccount"></activity>
         <activity android:name=".DocumentActivity"></activity>
         <activity android:name=".Form" />
         <activity
             android:name=".ManageService"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".Frontpage"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ManageBranch" />
+        <activity
+            android:name=".Frontpage"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Login"
             android:screenOrientation="portrait" />
