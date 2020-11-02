@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ManageBranch" />
+        <activity android:name=".ManageAccount" />
         <activity
             android:name=".Frontpage"
             android:screenOrientation="portrait" />

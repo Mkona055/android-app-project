@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
     tools:context=".Form">
 
     <TextView
@@ -18,7 +19,8 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="51dp"
         android:text="Forms"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/NovigradBlue" />
 
     <EditText
         android:id="@+id/editTextFieldName"
@@ -44,6 +46,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="62dp"
         android:layout_marginTop="48dp"
+        android:background="@drawable/roundedlayout"
         android:text="@string/add_field" />
 
     <Button
@@ -56,6 +59,7 @@
         android:layout_marginTop="47dp"
         android:layout_marginEnd="52dp"
         android:layout_toEndOf="@+id/buttonAddField"
+        android:background="@drawable/roundedlayout"
         android:text="Next" />
 
     <ListView
@@ -70,6 +74,7 @@
         android:layout_marginTop="61dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="38dp"
+        android:background="@drawable/roundedlayout"
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="54dp">
 

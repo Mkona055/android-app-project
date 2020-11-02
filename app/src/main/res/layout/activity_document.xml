@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
     tools:context=".DocumentActivity">
 
   <TextView
@@ -19,7 +19,8 @@
       android:layout_marginTop="39dp"
       android:layout_marginEnd="81dp"
       android:text="Documents:"
-      android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+      android:textAppearance="@style/TextAppearance.AppCompat.Large"
+      android:textColor="@color/NovigradBlue" />
 
   <EditText
       android:id="@+id/editTextDocumentToAdd"
@@ -43,7 +44,8 @@
       android:layout_below="@+id/editTextDocumentToAdd"
       android:layout_alignParentStart="true"
       android:layout_marginStart="20dp"
-      android:layout_marginTop="42dp"
+      android:layout_marginTop="40dp"
+      android:background="@drawable/roundedlayout"
       android:text="ADD" />
 
   <Button
@@ -52,8 +54,9 @@
       android:layout_height="wrap_content"
       android:layout_below="@+id/editTextDocumentToAdd"
       android:layout_alignParentEnd="true"
-      android:layout_marginTop="39dp"
+      android:layout_marginTop="40dp"
       android:layout_marginEnd="56dp"
+      android:background="@drawable/roundedlayout"
       android:text="Finish" />
 
   <ListView
@@ -66,5 +69,6 @@
       android:layout_centerHorizontal="true"
       android:layout_marginStart="22dp"
       android:layout_marginTop="181dp"
-      android:layout_marginBottom="19dp" />
+      android:layout_marginBottom="19dp"
+      android:background="@drawable/roundedlayout" />
 </RelativeLayout>
