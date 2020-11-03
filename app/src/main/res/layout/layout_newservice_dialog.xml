@@ -9,8 +9,8 @@
 
     <EditText
         android:id="@+id/editTextUpdateFieldName"
-        android:layout_width="354dp"
-        android:layout_height="49dp"
+        android:layout_width="292dp"
+        android:layout_height="50dp"
         android:background="@color/cardview_light_background"
         android:ems="10"
         android:hint="Name of Service"

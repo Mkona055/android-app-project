@@ -21,7 +21,7 @@ public class ManageAccount extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference accountRef = db.collection("users");
     private AccountAdapter adapter;
-    private Button back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +29,7 @@ public class ManageAccount extends AppCompatActivity {
         setContentView(R.layout.activity_manage_account); //open the layout here all manage will be done
 
         setUpRecyclerView();
-        back = findViewById(R.id.buttonBack);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),AdminManagement.class));
-                finish();
-            }
-        });
+
 
     }
 

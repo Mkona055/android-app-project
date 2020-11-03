@@ -32,7 +32,6 @@ import java.util.HashMap;
 
 public class ManageService extends AppCompatActivity {
     private DatabaseReference databaseReference ;
-    private DatabaseReference dataReference ;
     private Button addButton;
     private ListView listViewServices;
     private ArrayList<Service> servicesInfo;
@@ -43,13 +42,17 @@ public class ManageService extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_service);
+
+        // is used to store services information as Service object
         servicesInfo = new ArrayList<>();
+        // is used to set up the listView using the serviceNames only
         services = new ArrayList<>();
         addButton = findViewById(R.id.buttonAddServices);
         listViewServices = findViewById(R.id.ListViewServices);
+        // adapter for listView
         serviceAdapter = new ArrayAdapter<>(ManageService.this, android.R.layout.simple_list_item_1,services);
         databaseReference = FirebaseDatabase.getInstance().getReference("Services");
-        dataReference = FirebaseDatabase.getInstance().getReference("Services");
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +65,7 @@ public class ManageService extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        //initializing the listVieW
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -83,6 +86,7 @@ public class ManageService extends AppCompatActivity {
             }
 
         });
+        // when one service is selected we show a dialog to update or delete the service
         listViewServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -91,7 +95,7 @@ public class ManageService extends AppCompatActivity {
                 showUpdateDeleteDialog(serviceID);
             }
         });
-
+        // when one service is long clicked we show a dialog to view the service
         listViewServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -105,7 +109,7 @@ public class ManageService extends AppCompatActivity {
 
     }
 
-
+//the dialog to update or delete the service using is ID i
     public  void showUpdateDeleteDialog(final String serviceID){
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -144,7 +148,7 @@ public class ManageService extends AppCompatActivity {
         });
     }
 
-
+    // the dialog to view the service using is ID i
     public void viewServiceDialog(String serviceID) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -206,6 +210,7 @@ public class ManageService extends AppCompatActivity {
         b.show();
     }
 
+    // the dialog to create a service
     public void newServiceDialog() {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
