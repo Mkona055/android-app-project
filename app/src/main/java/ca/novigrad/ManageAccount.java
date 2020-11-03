@@ -54,7 +54,7 @@ public class ManageAccount extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        //here you have the possibility to supresse an account when you switch left or right
+        //here you have the possibility to delete an account when you swipe left or right
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {

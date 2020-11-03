@@ -80,7 +80,7 @@ public class ManageService extends AppCompatActivity {
 
         });
 
-        //when you just click on any service, you have the ppossibility to update or delete it
+        //when you just click on any service, you have the possibility to update or delete it
         listViewServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -169,7 +169,7 @@ public class ManageService extends AppCompatActivity {
     }
 
 
-    //this dialog is to present the form and the document of the service that we click on
+    //this dialog present the form and the document of the service that we click on
     public void viewServiceDialog(String serviceID) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
