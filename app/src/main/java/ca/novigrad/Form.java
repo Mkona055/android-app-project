@@ -24,6 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*
+Here we manage the different option that can have a form
+
+ */
+
 public class Form extends AppCompatActivity {
     private String serviceID;
     private EditText fieldName;
@@ -39,6 +44,8 @@ public class Form extends AppCompatActivity {
         setContentView(R.layout.activity_form);
 
         Bundle bundle = getIntent().getExtras();
+
+        // we will identify all services by their key.
         serviceID = bundle.getString("serviceID");
 
         fieldName = findViewById(R.id.editTextFieldName);
@@ -49,8 +56,10 @@ public class Form extends AppCompatActivity {
         fieldNamesAdapter = new ArrayAdapter<>(Form.this,  android.R.layout.simple_list_item_1, fieldNames);
         dr = FirebaseDatabase.getInstance().getReference("Services");
 
+        //except the general field that have all form we decided to limit at 4 the add for all service
         numberOfFields = 4;
 
+        //this button walk only if you write the name of the new field
         addField.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -70,6 +79,7 @@ public class Form extends AppCompatActivity {
             }
         });
 
+        //here we direct you to the document when you finish to make your change
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +100,8 @@ public class Form extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Services").child(serviceID).child("Form");;
         databaseReference.addValueEventListener(new ValueEventListener() {
+
+            // here we will start clearing the list of field and then we add the fields to the list
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 fieldNames.clear();
@@ -105,6 +117,8 @@ public class Form extends AppCompatActivity {
 
             }
         });
+
+        //we open a dialog page of form
         form.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -115,6 +129,7 @@ public class Form extends AppCompatActivity {
 
     }
 
+    //we manage the update and delete button
     private void showUpdateDeleteDialog(final String fieldToModify){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -155,6 +170,7 @@ public class Form extends AppCompatActivity {
 
         final DatabaseReference ref = dr.child(serviceID).child("Form");
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    //we use the reference of the field to modify them inside the data base
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String keyOfFieldToUpdate = "";
@@ -183,6 +199,8 @@ public class Form extends AppCompatActivity {
     private void deleteFieldName (final String fieldToDelete){
         final DatabaseReference ref = dr.child(serviceID).child("Form");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            // we get the key of the field to delete it also on the database
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String keyOfFieldToDelete = "";

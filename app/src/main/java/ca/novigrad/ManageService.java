@@ -57,6 +57,7 @@ public class ManageService extends AppCompatActivity {
 
     }
 
+    //we clear the edit place and then list all the services already offers in the listview
     @Override
     protected void onStart() {
         super.onStart();
@@ -78,6 +79,8 @@ public class ManageService extends AppCompatActivity {
             }
 
         });
+
+        //when you just click on any service, you have the ppossibility to update or delete it
         listViewServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -87,6 +90,7 @@ public class ManageService extends AppCompatActivity {
             }
         });
 
+        //when you make a long click on a service, you can see the his form and his document
         listViewServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -102,6 +106,7 @@ public class ManageService extends AppCompatActivity {
 
     }
 
+    //we get the id of the service that we click on
     private String getServiceID(final String serviceName) {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -164,6 +169,7 @@ public class ManageService extends AppCompatActivity {
     }
 
 
+    //this dialog is to present the form and the document of the service that we click on
     public void viewServiceDialog(String serviceID) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -247,6 +253,7 @@ public class ManageService extends AppCompatActivity {
             }
         });
 
+        //this direct you to form activity. there is general type of form and document for service
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,6 +267,7 @@ public class ManageService extends AppCompatActivity {
                     map.put("serviceName", name);
                     databaseReference.child(serviceID).updateChildren(map);
 
+                    //set general fields of form
                     map.clear();
                     map.put("fieldName1","First Name :");
                     map.put("fieldName2","Second Name :");
@@ -267,6 +275,7 @@ public class ManageService extends AppCompatActivity {
                     map.put("fieldName4","Address :");
                     databaseReference.child(serviceID).child("Form").updateChildren(map);
 
+                    //set general field of documents
                     map.clear();
                     map.put("documentName1","Proof of Residence(Picture of electricity bill or bank statement confirming the address) :");
                     databaseReference.child(serviceID).child("Documents").updateChildren(map);
@@ -288,6 +297,7 @@ public class ManageService extends AppCompatActivity {
 
     }
 
+    //we use the key of the service to delete it
     private void deleteService(final String serviceID){
         final DatabaseReference ref = databaseReference.child(serviceID);
         ref.removeValue();
