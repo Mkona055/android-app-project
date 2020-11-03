@@ -12,6 +12,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
+//this class help to direct the administrator to the type of manage that he want to do
+
 public class Manage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
 

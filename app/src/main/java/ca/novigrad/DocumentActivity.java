@@ -86,6 +86,8 @@ public class DocumentActivity extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Services").child(serviceID).child("documents");;
         databaseReference.addValueEventListener(new ValueEventListener() {
+
+            // start by clearing the editext and then set the listview of the document
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 documents.clear();
@@ -111,6 +113,7 @@ public class DocumentActivity extends AppCompatActivity {
 
     }
 
+    //open a dialog page to manage documents
     private void showUpdateDeleteDialog(final String documentToModify){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -124,6 +127,7 @@ public class DocumentActivity extends AppCompatActivity {
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
+        // this button run only if the edit text is not empty
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,6 +150,7 @@ public class DocumentActivity extends AppCompatActivity {
         });
     }
 
+    // we use a key of the field to change it
     private void updateDocument (final String documentToUpdate , final String newName){
 
 
@@ -157,14 +162,14 @@ public class DocumentActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     String doc = snapshot.getValue(String.class);
                     if(doc.equals(documentToUpdate)){
-                        keyOfDocToUpdate = snapshot.getKey();
+                        keyOfDocToUpdate = snapshot.getKey(); // we make the change
                         break;
                     }
 
                 }
 
                 HashMap map = new HashMap<>();
-                map.put(keyOfDocToUpdate,newName);
+                map.put(keyOfDocToUpdate,newName);  // we put inside the database
                 ref.updateChildren(map);
 
             }
@@ -176,6 +181,7 @@ public class DocumentActivity extends AppCompatActivity {
         });
     }
 
+    //we delete the reference of the fied inside the database
     private void deleteDocument (final String docToDelete){
         final DatabaseReference ref = dr.child(serviceID).child("documents");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/*
+        only the administrator can accept or delete the other users. That is why we create a mangeAccount activity
+        Also, he can create, delete, or update some services that a branch want to offer to their clients. that is why we have the manageService activity
+ */
+
 public class AdminManagement extends AppCompatActivity {
     private Button manageServices ;
     private Button manageAccounts;

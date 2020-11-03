@@ -2,7 +2,7 @@ package ca.novigrad;
 
 import java.util.HashMap;
 import java.util.List;
-
+//all services have to content a list of document and form
 public class Service {
     private String serviceName;
     private String serviceID;
