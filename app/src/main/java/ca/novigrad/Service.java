@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Service {
     private String serviceName;
+    private String serviceID;
     private HashMap<String,String> Form;
     private HashMap<String,String> Documents;
 
@@ -20,6 +21,9 @@ public class Service {
     }
     public HashMap getDocuments(){
         return Documents;
+    }
+    public String getServiceID(){
+        return serviceID;
     }
 
 }

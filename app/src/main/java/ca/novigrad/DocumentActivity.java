@@ -66,7 +66,7 @@ public class DocumentActivity extends AppCompatActivity {
 
                     HashMap map = new HashMap<>();
                     map.put("documentName" + numberOfDocument, documentName.getText().toString().trim());
-                    dr.child(serviceID).child("Documents").updateChildren(map);
+                    dr.child(serviceID).child("documents").updateChildren(map);
                     documentName.setText(null);
 
                 }
@@ -84,7 +84,7 @@ public class DocumentActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Services").child(serviceID).child("Documents");;
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Services").child(serviceID).child("documents");;
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -149,7 +149,7 @@ public class DocumentActivity extends AppCompatActivity {
     private void updateDocument (final String documentToUpdate , final String newName){
 
 
-        final DatabaseReference ref = dr.child(serviceID).child("Documents");
+        final DatabaseReference ref = dr.child(serviceID).child("documents");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -177,7 +177,7 @@ public class DocumentActivity extends AppCompatActivity {
     }
 
     private void deleteDocument (final String docToDelete){
-        final DatabaseReference ref = dr.child(serviceID).child("Documents");
+        final DatabaseReference ref = dr.child(serviceID).child("documents");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
