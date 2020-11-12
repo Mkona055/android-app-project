@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminManagement"></activity>
+        <activity android:name=".SelectServices"></activity>
+        <activity android:name=".AdminManagement" />
         <activity
             android:name=".Manage"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -45,7 +46,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Register"
             android:screenOrientation="portrait"
