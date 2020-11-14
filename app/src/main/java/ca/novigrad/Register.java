@@ -216,6 +216,7 @@ public class Register extends AppCompatActivity {
                             user.put("Email", fStoreEmail);
                             user.put("PhoneNumber",userPhoneNumber);
                             user.put("Role", role);
+                            user.put("DeliverServices",false);
 
                            if(role.equals("Employee")){
                                user.put("BranchID", branchID.getText().toString());

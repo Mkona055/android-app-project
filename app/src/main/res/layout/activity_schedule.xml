@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    tools:context=".Schedule">
+
+    <Button
+        android:id="@+id/buttonFinishToBranchActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="301dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="32dp"
+        android:text="Finish" />
+
+    <TextView
+        android:id="@+id/textViewSchedule"
+        android:layout_width="322dp"
+        android:layout_height="37dp"
+        android:layout_below="@+id/imageLogo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="38dp"
+        android:text="Schedule"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/NovigradBlue"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="99dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="441dp"
+        android:layout_below="@+id/textViewSchedule"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="140dp"
+        android:backgroundTint="@color/NovigradYellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSchedule"
+        app:layout_constraintVertical_bias="0.216"
+        app:srcCompat="@drawable/roundedlayout" />
+
+    <Spinner
+        android:id="@+id/spinnerFinishFriday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerFinishThursday"
+        android:layout_alignEnd="@+id/imageView12"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/spinnerFinishSaturday"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerFinishSunday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerFinishSaturday"
+        android:layout_alignEnd="@+id/imageView12"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerFinishSaturday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerFinishFriday"
+        android:layout_alignEnd="@+id/imageView12"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/spinnerFinishSunday"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerFinishThursday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerFinishWednesday"
+        android:layout_alignEnd="@+id/imageView12"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/spinnerFinishFriday"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerFinishWednesday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerFinishTuesday"
+        android:layout_alignEnd="@+id/imageView12"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerFinishThursday"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerFinishTuesday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerFinishMonday"
+        android:layout_alignEnd="@+id/imageView12"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/spinnerFinishWednesday"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageView12"
+        android:layout_alignTop="@+id/imageView12"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Monday :"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView9"
+        android:layout_alignStart="@+id/imageView12"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Tuesday :"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView10"
+        android:layout_alignStart="@+id/imageView12"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Wednesday :"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_alignStart="@+id/imageView12"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:text="Thursday :"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView12"
+        android:layout_alignStart="@+id/imageView12"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Friday :"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView13"
+        android:layout_alignStart="@+id/imageView12"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:text="Saturday :"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_below="@+id/textView14"
+        android:layout_alignStart="@+id/imageView12"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="26dp"
+        android:text="Sunday :"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <Spinner
+        android:id="@+id/spinnerStartingMonday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_alignTop="@+id/imageView12"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/textView9"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerStartingTuesday"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible" />
+
+    <Spinner
+        android:id="@+id/spinnerStartingTuesday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerStartingMonday"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textView10"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerStartingWednesday"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerStartingWednesday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerStartingTuesday"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textView11"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerStartingThursday"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerStartingThursday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerStartingWednesday"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textView12"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerStartingFriday"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerStartingFriday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerStartingThursday"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textView13"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerStartingSaturday"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerStartingSaturday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerStartingFriday"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerStartingSunday"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toTopOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerStartingSunday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/spinnerStartingSaturday"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textView15"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <Spinner
+        android:id="@+id/spinnerFinishMonday"
+        android:layout_width="127dp"
+        android:layout_height="42dp"
+        android:layout_alignTop="@+id/imageView12"
+        android:layout_alignEnd="@+id/imageView12"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerFinishTuesday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintVertical_bias="0.0" />
+
+</RelativeLayout>

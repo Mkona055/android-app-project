@@ -6,8 +6,8 @@ import java.util.List;
 public class Service {
     private String serviceName;
     private String serviceID;
-    private HashMap<String,String> Form;
-    private HashMap<String,String> Documents;
+    private HashMap<String,String> form;
+    private HashMap<String,String> documents;
 
     public Service(){
 
@@ -17,10 +17,10 @@ public class Service {
         return serviceName;
     }
     public  HashMap getForm(){
-        return Form;
+        return form;
     }
     public HashMap getDocuments(){
-        return Documents;
+        return documents;
     }
     public String getServiceID(){
         return serviceID;

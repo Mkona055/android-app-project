@@ -11,12 +11,12 @@
         android:id="@+id/glbmmenutest4"
         android:layout_width="80dp"
         android:layout_height="26dp"
-        android:layout_alignTop="@+id/buttonAddServices"
+        android:layout_below="@+id/textViewNumberOfServicesSelected"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="165dp"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="26dp"
         android:layout_marginEnd="166dp"
         android:layout_marginBottom="29dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,16 +28,15 @@
         app:srcCompat="@drawable/glbmlogo" />
 
     <Button
-        android:id="@+id/buttonAddServicesSelected"
+        android:id="@+id/buttonFinishSelectingServices"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ListViewServiceToSelect"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="19dp"
         android:layout_marginEnd="47dp"
-        android:layout_marginBottom="83dp"
         android:background="@drawable/roundedlayout"
-        android:text="Add"
+        android:text="Finish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -51,7 +50,7 @@
         android:layout_marginStart="51dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="38dp"
-        android:text="List Of Services"
+        android:text="Select  Services"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/NovigradBlue"
@@ -74,31 +73,28 @@
 
     <TextView
         android:id="@+id/textViewNumberOfServicesSelected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonAddServicesSelected"
+        android:layout_width="239dp"
+        android:layout_height="26dp"
+        android:layout_below="@+id/ListViewServiceToSelect"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="93dp"
-        android:layout_toStartOf="@+id/buttonAddServicesSelected"
-        android:text="0 Services Selected"
-        android:textSize="24sp" />
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="27dp"
+        android:layout_toStartOf="@+id/buttonFinishSelectingServices"
+        android:text="No Services Selected"
+        android:textColor="#F4F4F4"
+        android:textSize="18sp" />
 
     <ListView
         android:id="@+id/ListViewServiceToSelect"
         android:layout_width="wrap_content"
         android:layout_height="391dp"
-        android:layout_above="@+id/buttonAddServices"
         android:layout_below="@+id/textViewManageServices"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="13dp"
         android:layout_marginTop="47dp"
         android:layout_marginEnd="11dp"
-        android:layout_marginBottom="19dp"
         android:background="@color/NovigradYellow" />
 
 </RelativeLayout>
