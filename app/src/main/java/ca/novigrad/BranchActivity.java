@@ -1,15 +1,19 @@
 package ca.novigrad;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -142,6 +146,40 @@ public class BranchActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String servicename = services.get(position);
+                deleteDialog(servicename);
+
+            }
+        });
+
+    }
+
+
+    public void deleteDialog(String name ){
+
+        final String  serviceName = name;
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.delete_services_dialoge,null);
+
+        final Button buttonDelete = findViewById(R.id.mbtndelete);
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                services.remove(serviceName);
+
+                serviceAdapter.notifyDataSetChanged();
+
+            }
+        });
+
     }
 
 
