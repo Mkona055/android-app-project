@@ -129,8 +129,11 @@ public class SelectServices extends AppCompatActivity {
 
                             }
                         }
+                    }
 
-
+                    if (servicesInfo.size()==0){
+                        noService.setVisibility(View.VISIBLE);
+                        noService.setText("No services available");
                     }
                     listViewServices.setAdapter(serviceAdapter);
 
@@ -153,6 +156,7 @@ public class SelectServices extends AppCompatActivity {
                         services.add(service.getServiceName());
                         servicesInfo.add(service);
                     }
+
                     listViewServices.setAdapter(serviceAdapter);
 
                 }
@@ -164,10 +168,7 @@ public class SelectServices extends AppCompatActivity {
 
             });
         }
-        if (servicesInfo.size()==0){
-            noService.setVisibility(View.VISIBLE);
-            noService.setText("No service available");
-        }
+
 
 
 
@@ -221,6 +222,43 @@ public class SelectServices extends AppCompatActivity {
                         HashMap map = new HashMap();
                         map.put("DeliverServices", true);
                         documentReference.update(map);
+                        map.clear();
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("schedule");
+                        map.put("startingTime","Not defined yet");
+                        map.put("finishingTime","Not defined yet");
+                        ref.child("Monday").updateChildren(map);
+                        map.clear();
+
+
+                        map.put("startingTime","Not defined yet");
+                        map.put("finishingTime","Not defined yet");
+                        ref.child("Tuesday").updateChildren(map);
+                        map.clear();
+
+
+                        map.put("startingTime","Not defined yet");
+                        map.put("finishingTime","Not defined yet");
+                        ref.child("Wednesday").updateChildren(map);
+                        map.clear();
+
+                        map.put("startingTime","Not defined yet");
+                        map.put("finishingTime","Not defined yet");
+                        ref.child("Thursday").updateChildren(map);
+                        map.clear();
+
+                        map.put("startingTime","Not defined yet");
+                        map.put("finishingTime","Not defined yet");
+                        ref.child("Friday").updateChildren(map);
+                        map.clear();
+
+                        map.put("startingTime","Not defined yet");
+                        map.put("finishingTime","Not defined yet");
+                        ref.child("Saturday").updateChildren(map);
+                        map.clear();
+
+                        map.put("startingTime","Not defined yet");
+                        map.put("finishingTime","Not defined yet");
+                        ref.child("Sunday").updateChildren(map);
                     }
                     Intent intent = new Intent(SelectServices.this,BranchActivity.class);
                     intent.putExtra("branchID",branchID);

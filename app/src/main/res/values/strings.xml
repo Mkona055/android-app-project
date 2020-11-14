@@ -6,7 +6,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="schedule">Schedule</string>
 
-    <string-array name="hoursWithClosed">
+    <string-array name="startingHours">
         <item>1  AM to</item>
         <item>2  AM to </item>
         <item>3  AM to </item>
@@ -33,7 +33,7 @@
         <item>12 PM to </item>
         <item>Closed</item>
     </string-array>
-    <string-array name="hoursWithoutClosed">
+    <string-array name="finishingHours">
         <item>1  AM</item>
         <item>2  AM</item>
         <item>3  AM</item>
@@ -58,6 +58,7 @@
         <item>10 PM</item>
         <item>11 PM</item>
         <item>12 PM</item>
+        <item>Closed</item>
     </string-array>
 
 </resources>

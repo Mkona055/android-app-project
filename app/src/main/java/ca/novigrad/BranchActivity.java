@@ -97,6 +97,8 @@ public class BranchActivity extends AppCompatActivity {
                     DaySchedule daySchedule = dataSnapshot.getValue(DaySchedule.class);
                     if(daySchedule.getStartingTime().contains("Closed") || daySchedule.getFinishingTime().contains("Closed")){
                         schedule.add("Closed");
+                    }else if(daySchedule.getStartingTime().contains("Not defined yet") || daySchedule.getFinishingTime().contains("Not defined yet")){
+                        schedule.add("Not defined yet");
                     }else{
                         schedule.add(daySchedule.getStartingTime()+" to " + daySchedule.getFinishingTime());
                     }

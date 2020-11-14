@@ -71,7 +71,7 @@ public class Schedule extends AppCompatActivity {
         finishingTimeSunday = findViewById(R.id.spinnerFinishSunday);
 
         // we need an adapter for each spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.hoursWithClosed, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.startingHours, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         startingTimeMonday.setAdapter(adapter);
         startingTimeTuesday.setAdapter(adapter);
@@ -81,13 +81,15 @@ public class Schedule extends AppCompatActivity {
         startingTimeSaturday.setAdapter(adapter);
         startingTimeSunday.setAdapter(adapter);
 
-        finishingTimeMonday.setAdapter(adapter);
-        finishingTimeTuesday.setAdapter(adapter);
-        finishingTimeWednesday.setAdapter(adapter);
-        finishingTimeThursday.setAdapter(adapter);
-        finishingTimeFriday.setAdapter(adapter);
-        finishingTimeSaturday.setAdapter(adapter);
-        finishingTimeSunday.setAdapter(adapter);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,R.array.finishingHours, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        finishingTimeMonday.setAdapter(adapter2);
+        finishingTimeTuesday.setAdapter(adapter2);
+        finishingTimeWednesday.setAdapter(adapter2);
+        finishingTimeThursday.setAdapter(adapter2);
+        finishingTimeFriday.setAdapter(adapter2);
+        finishingTimeSaturday.setAdapter(adapter2);
+        finishingTimeSunday.setAdapter(adapter2);
 
 
         finish = findViewById(R.id.buttonFinishToBranchActivity);
