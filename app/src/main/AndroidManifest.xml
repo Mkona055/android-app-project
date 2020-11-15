@@ -15,7 +15,9 @@
         <activity android:name=".Schedule"></activity>
         <activity android:name=".BranchActivity" />
         <activity android:name=".SelectServices" />
-        <activity android:name=".AdminManagement" />
+        <activity android:name=".AdminManagement" >
+
+        </activity>
         <activity
             android:name=".Manage"
             android:theme="@style/AppTheme.NoActionBar" />

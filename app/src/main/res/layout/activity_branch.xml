@@ -265,7 +265,7 @@
         android:layout_marginStart="143dp"
         android:layout_marginTop="287dp"
         android:layout_marginEnd="137dp"
-        android:text="Logout"
+        android:text="LOGOUT"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView

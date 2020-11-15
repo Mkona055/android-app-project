@@ -87,6 +87,7 @@ public class BranchActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        // while initializing the listview we take the last key of the serviceOffered this key will be used to find the nextIndex of the next service we are looking to add
         databaseReference.child("servicesOffered").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,8 +102,6 @@ public class BranchActivity extends AppCompatActivity {
                 try{
                     // this index represent the next serviceOfferedIndex used in SelectServiceActivity
                     nextIndex = Integer.parseInt(extractLastKey.replaceAll("serviceOffered"," ").trim()) + 1 ;
-                    Log.d("TAG key", String.valueOf(nextIndex));
-
                 }catch (NumberFormatException e){}
                 listView.setAdapter(serviceAdapter);
             }
@@ -114,6 +113,7 @@ public class BranchActivity extends AppCompatActivity {
         });
 
         databaseReference.child("schedule").addValueEventListener(new ValueEventListener() {
+            // setting the schedule display
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){

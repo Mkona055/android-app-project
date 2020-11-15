@@ -91,9 +91,10 @@ public class SelectServices extends AppCompatActivity {
         super.onStart();
 
         //initializing the listVieW
-
+        //deliverServices means that the branch has already selected a few services to offer thus has been initialized
         if(deliverServices){
 
+            // we gather all the services already added
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Branches").child(branchID).child("servicesOffered");
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -112,6 +113,7 @@ public class SelectServices extends AppCompatActivity {
 
                 }
             });
+            // we add to the listview only the services not selected yet
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -131,7 +133,7 @@ public class SelectServices extends AppCompatActivity {
                         }
                     }
 
-                    if (servicesInfo.size()==0){
+                    if (servicesInfo.size()==0){ // means that all the services have been selected by the branch they are no others left
                         noService.setVisibility(View.VISIBLE);
                         noService.setText("No services available");
                     }
@@ -145,7 +147,7 @@ public class SelectServices extends AppCompatActivity {
                 }
 
             });
-        }else{
+        }else{ // first time the branch is initialized
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -221,6 +223,7 @@ public class SelectServices extends AppCompatActivity {
                         HashMap map = new HashMap();
                         map.put("DeliverServices", true);
                         documentReference.update(map);
+
                         map.clear();
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("schedule");
                         map.put("startingTime","Not defined yet");

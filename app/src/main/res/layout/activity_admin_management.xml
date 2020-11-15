@@ -11,28 +11,26 @@
         android:id="@+id/buttonManageAccounnts"
         android:layout_width="249dp"
         android:layout_height="67dp"
-        android:layout_marginBottom="280dp"
+        android:layout_marginBottom="272dp"
         android:background="@drawable/roundedlayout"
         android:text="manage accounts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonManageServices"
-        app:layout_constraintVertical_bias="0.985" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonManageServices"
         android:layout_width="256dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="416dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/roundedlayout"
         android:text="manage services"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonManageAccounnts"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonLogout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewManagementTitle"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView8"
