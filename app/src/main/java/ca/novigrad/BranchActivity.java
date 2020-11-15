@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +43,8 @@ public class BranchActivity extends AppCompatActivity {
     private String branchID;
     private String userID;
     private int nextIndex;
+
+    private Button logout;
     private DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,19 @@ public class BranchActivity extends AppCompatActivity {
         sundayTime = findViewById(R.id.textViewSundayTime);
         addService = findViewById(R.id.textViewAddService);
         updateSchedule = findViewById(R.id.textViewUpdateSchedule);
+        logout = findViewById(R.id.btnLogOut);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Logout();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent (BranchActivity.this, Login.class));
+                finish();
+
+            }
+        });
     }
 
     @Override

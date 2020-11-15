@@ -28,9 +28,10 @@
         android:layout_below="@+id/textView17"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="21dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/roundedlayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -44,9 +45,10 @@
         android:layout_alignTop="@+id/textView17"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="313dp"
-        android:layout_marginTop="-3dp"
-        android:layout_marginEnd="8dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="277dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="43dp"
         android:text="Update Schedule"
         android:textColor="#020202" />
 
@@ -123,9 +125,9 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView18"
         android:layout_alignEnd="@+id/ViewSchedule"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="45dp"
         android:layout_toEndOf="@+id/textView18"
         android:text="None"
         android:textColor="#000000"
@@ -228,9 +230,10 @@
         android:layout_below="@+id/listViewServicesBranch"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="113dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="152dp"
         android:text="@string/schedule"
         android:textAlignment="center"
         android:textColor="@color/NovigradBlue"
@@ -249,6 +252,22 @@
         android:textAlignment="center"
         app:srcCompat="@drawable/logo" />
 
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_below="@+id/listViewServicesBranch"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="298dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="17dp"
+        android:text="Logout"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
@@ -264,14 +283,14 @@
 
     <ListView
         android:id="@+id/listViewServicesBranch"
-        android:layout_width="wrap_content"
-        android:layout_height="222dp"
+        android:layout_width="358dp"
+        android:layout_height="208dp"
         android:layout_below="@+id/textView16"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="21dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="32dp"
         android:background="@color/NovigradYellow">
 
     </ListView>
