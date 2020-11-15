@@ -1,5 +1,6 @@
 package ca.novigrad;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ public class BranchActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<String> services;
     private ArrayList<String> schedule;
+    private ArrayList<String> servicesOfferedID;
     private ArrayAdapter<String> serviceAdapter;
     private TextView mondayTime;
     private TextView tuesdayTime;
@@ -51,6 +53,7 @@ public class BranchActivity extends AppCompatActivity {
         userID = bundle.getString("userUID");
         listView = findViewById(R.id.listViewServicesBranch);
         services = new ArrayList<>();
+        servicesOfferedID = new ArrayList<>();
         schedule = new ArrayList<>();
         serviceAdapter = new ArrayAdapter<>(BranchActivity.this,android.R.layout.simple_list_item_1,services);
 
@@ -77,6 +80,7 @@ public class BranchActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String serviceOffered = dataSnapshot.getValue(String.class);
                     services.add(serviceOffered);
+                    servicesOfferedID.add(dataSnapshot.getKey());
                     extractLastKey= dataSnapshot.getKey();
                 }
                 try{
@@ -148,37 +152,42 @@ public class BranchActivity extends AppCompatActivity {
         });
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String servicename = services.get(position);
-                deleteDialog(servicename);
-
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                String serviceOfferedID = servicesOfferedID.get(position);
+                deleteDialog(serviceOfferedID);
+                return true;
             }
         });
 
     }
 
 
-    public void deleteDialog(String name ){
+    public void deleteDialog(final String serviceOfferedID ){
 
-        final String  serviceName = name;
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.delete_services_dialoge,null);
 
-        final Button buttonDelete = findViewById(R.id.mbtndelete);
-
-        buttonDelete.setOnClickListener(new View.OnClickListener() {
+        dialogBuilder.setView(dialogView).setTitle("Delete service");
+        dialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                services.remove(serviceName);
-
-                serviceAdapter.notifyDataSetChanged();
+            public void onClick(DialogInterface dialog, int which) {
 
             }
         });
+        dialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DatabaseReference dbReference = databaseReference.child("servicesOffered").child(serviceOfferedID);
+                dbReference.removeValue();
+                serviceAdapter.notifyDataSetChanged();
+            }
+        });
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
 
     }
 

@@ -3,16 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg1">
+    android:background="@color/NovigradYellow" >
 
-    <Button
-        android:id="@+id/mbtndelete"
+    <TextView
+        android:id="@+id/textView25"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="67dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="45dp"
-        android:background="#65A8DD"
-        tools:text="Delete" />
+        android:text="Do you really intend to delete this service and all the customers demands related ?"
+        android:textColor="#000000" />
 </RelativeLayout>

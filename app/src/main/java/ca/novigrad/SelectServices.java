@@ -186,7 +186,6 @@ public class SelectServices extends AppCompatActivity {
 
                 for(int i = 0 ; i < countItems ; i++){
                     if (sBArray.get(i)){
-                        Log.d("TASSSSSSS", String.valueOf(nextIndex));
                         Service serviceSelected = servicesInfo.get(i);
                         HashMap map = new HashMap();
                         map.put("serviceOffered"+nextIndex ,serviceSelected.getServiceName());
