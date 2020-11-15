@@ -11,13 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Schedule">
-
-        </activity>
+        <activity android:name=".CustomersRequest"></activity>
+        <activity android:name=".Schedule"></activity>
         <activity android:name=".BranchActivity" />
         <activity android:name=".SelectServices" />
         <activity android:name=".AdminManagement" />
-
         <activity
             android:name=".Manage"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -30,8 +28,7 @@
         <activity
             android:name=".ManageService"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ManageAccount"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -44,7 +41,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Login"

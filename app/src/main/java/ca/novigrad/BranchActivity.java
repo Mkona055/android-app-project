@@ -166,6 +166,15 @@ public class BranchActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                Intent intent = new Intent(BranchActivity.this,CustomersRequest.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("userUID",userID);
+                startActivity(intent);
+            }
+        });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
