@@ -19,9 +19,6 @@
 
         </activity>
         <activity
-            android:name=".Manage"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".DocumentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
