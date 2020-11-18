@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private String branchID;
     private Button logout;
     private Button continueButton;
-    private ImageView menutest;
+
     private boolean deliverServices;
 
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         branchNumberNotToFill =findViewById(R.id.textViewBranchNumberNotToFill);
 
 
-        menutest = findViewById(R.id.glbmmenutest);
+
 
         logout = (Button) findViewById(R.id.buttonLogout);
         continueButton = findViewById(R.id.buttonContinue);
@@ -136,12 +136,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        menutest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Manage.class));
-            }
-        });
+
 
     }
 
