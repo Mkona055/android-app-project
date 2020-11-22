@@ -180,6 +180,7 @@ public class BranchActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 String serviceOfferedID = servicesOfferedID.get(position);
+
                 deleteDialog(serviceOfferedID);
                 return true;
             }
@@ -189,6 +190,7 @@ public class BranchActivity extends AppCompatActivity {
 
 
     public void deleteDialog(final String serviceOfferedID ){
+
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -204,6 +206,7 @@ public class BranchActivity extends AppCompatActivity {
         dialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                servicesOfferedID.remove(serviceOfferedID);
                 DatabaseReference dbReference = databaseReference.child("servicesOffered").child(serviceOfferedID);
                 dbReference.removeValue();
                 serviceAdapter.notifyDataSetChanged();

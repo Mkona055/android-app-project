@@ -96,57 +96,9 @@ public class SelectServices extends AppCompatActivity {
 
             // we gather all the services already added
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Branches").child(branchID).child("servicesOffered");
-            ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    servicesOffered.clear();
-                    for(DataSnapshot dataSnapshot :snapshot.getChildren()){
-                        String offered = dataSnapshot.getValue(String.class);
+            gatherServicesOffered(ref); // TO-TEST **********
+            displayServicesNotOffered(databaseReference);// TO-TEST**********
 
-                        servicesOffered.add(offered);
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-            // we add to the listview only the services not selected yet
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    services.clear();
-                    servicesInfo.clear();
-
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                        Service service = postSnapshot.getValue(Service.class);
-                        for (int i = 0 ; i <servicesOffered.size();i++){
-                            if(servicesOffered.get(i).compareTo(service.getServiceName())==0){
-                                break;
-                            }else if (i == servicesOffered.size()-1){
-                                services.add(service.getServiceName());
-                                servicesInfo.add(service);
-
-                            }
-                        }
-                    }
-
-                    if (servicesInfo.size()==0){ // means that all the services have been selected by the branch they are no others left
-                        noService.setVisibility(View.VISIBLE);
-                        noService.setText("No services available");
-                    }
-                    listViewServices.setAdapter(serviceAdapter);
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-
-            });
         }else{ // first time the branch is initialized
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -226,41 +178,8 @@ public class SelectServices extends AppCompatActivity {
 
                         map.clear();
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("schedule");
-                        map.put("startingTime","Not defined yet");
-                        map.put("finishingTime","Not defined yet");
-                        ref.child("Monday").updateChildren(map);
-                        map.clear();
+                        initializeSchedule(ref,map); // TO-TEST *************
 
-
-                        map.put("startingTime","Not defined yet");
-                        map.put("finishingTime","Not defined yet");
-                        ref.child("Tuesday").updateChildren(map);
-                        map.clear();
-
-
-                        map.put("startingTime","Not defined yet");
-                        map.put("finishingTime","Not defined yet");
-                        ref.child("Wednesday").updateChildren(map);
-                        map.clear();
-
-                        map.put("startingTime","Not defined yet");
-                        map.put("finishingTime","Not defined yet");
-                        ref.child("Thursday").updateChildren(map);
-                        map.clear();
-
-                        map.put("startingTime","Not defined yet");
-                        map.put("finishingTime","Not defined yet");
-                        ref.child("Friday").updateChildren(map);
-                        map.clear();
-
-                        map.put("startingTime","Not defined yet");
-                        map.put("finishingTime","Not defined yet");
-                        ref.child("Saturday").updateChildren(map);
-                        map.clear();
-
-                        map.put("startingTime","Not defined yet");
-                        map.put("finishingTime","Not defined yet");
-                        ref.child("Sunday").updateChildren(map);
                     }
                     Intent intent = new Intent(SelectServices.this,BranchActivity.class);
                     intent.putExtra("branchID",branchID);
@@ -270,5 +189,108 @@ public class SelectServices extends AppCompatActivity {
                 }
             }
         });
+
+
+    }
+
+    private void initializeSchedule(DatabaseReference ref,HashMap map) {
+        map.put("startingTime","Not defined yet");
+        map.put("finishingTime","Not defined yet");
+        ref.child("Monday").updateChildren(map);
+        map.clear();
+
+
+        map.put("startingTime","Not defined yet");
+        map.put("finishingTime","Not defined yet");
+        ref.child("Tuesday").updateChildren(map);
+        map.clear();
+
+
+        map.put("startingTime","Not defined yet");
+        map.put("finishingTime","Not defined yet");
+        ref.child("Wednesday").updateChildren(map);
+        map.clear();
+
+        map.put("startingTime","Not defined yet");
+        map.put("finishingTime","Not defined yet");
+        ref.child("Thursday").updateChildren(map);
+        map.clear();
+
+        map.put("startingTime","Not defined yet");
+        map.put("finishingTime","Not defined yet");
+        ref.child("Friday").updateChildren(map);
+        map.clear();
+
+        map.put("startingTime","Not defined yet");
+        map.put("finishingTime","Not defined yet");
+        ref.child("Saturday").updateChildren(map);
+        map.clear();
+
+        map.put("startingTime","Not defined yet");
+        map.put("finishingTime","Not defined yet");
+        ref.child("Sunday").updateChildren(map);
+    }
+
+    private void gatherServicesOffered(DatabaseReference ref){
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                servicesOffered.clear();
+                for(DataSnapshot dataSnapshot :snapshot.getChildren()){
+                    String offered = dataSnapshot.getValue(String.class);
+                    servicesOffered.add(offered);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void displayServicesNotOffered(DatabaseReference ref){
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                services.clear();
+                servicesInfo.clear();
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    Service service = postSnapshot.getValue(Service.class);
+                    for (int i = 0 ; i <servicesOffered.size();i++){
+                        if(servicesOffered.get(i).compareTo(service.getServiceName())==0){
+                            break;
+                        }else if (i == servicesOffered.size()-1){
+                            services.add(service.getServiceName());
+                            servicesInfo.add(service);
+
+                        }
+                    }
+                }
+
+                if (servicesInfo.size()==0){ // means that all the services have been selected by the branch they are no others left
+                    noService.setVisibility(View.VISIBLE);
+                    noService.setText("No services available");
+                }
+                listViewServices.setAdapter(serviceAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+    }
+
+    public ArrayList<String> getServices() {
+        return services;
+    }
+
+    public ArrayList<String> getServicesOffered() {
+        return servicesOffered;
     }
 }

@@ -164,44 +164,11 @@ public class Schedule extends AppCompatActivity {
                         ((TextView) startingTimeSunday.getSelectedView()).setError("The starting time must be closed too");
 
                     }else{
-
                         HashMap map = new HashMap();
+                        setSchedule( map,  db,  mondayStart,  mondayFinish,
+                                 tuesdayStart,  tuesdayFinish,  wednesdayStart, wednesdayFinish, thursdayStart, thursdayFinish,
+                                 fridayStart,  fridayFinish,  saturdayStart,  saturdayFinish,  sundayStart,  sundayFinish); // TO -TEST
 
-                        map.put("startingTime",mondayStart);
-                        map.put("finishingTime",mondayFinish);
-                        db.child("Monday").updateChildren(map);
-                        map.clear();
-
-
-                        map.put("startingTime",tuesdayStart);
-                        map.put("finishingTime",tuesdayFinish);
-                        db.child("Tuesday").updateChildren(map);
-                        map.clear();
-
-
-                        map.put("startingTime",wednesdayStart);
-                        map.put("finishingTime",wednesdayFinish);
-                        db.child("Wednesday").updateChildren(map);
-                        map.clear();
-
-                        map.put("startingTime",thursdayStart);
-                        map.put("finishingTime",thursdayFinish);
-                        db.child("Thursday").updateChildren(map);
-                        map.clear();
-
-                        map.put("startingTime",fridayStart);
-                        map.put("finishingTime",fridayFinish);
-                        db.child("Friday").updateChildren(map);
-                        map.clear();
-
-                        map.put("startingTime",saturdayStart);
-                        map.put("finishingTime",saturdayFinish);
-                        db.child("Saturday").updateChildren(map);
-                        map.clear();
-
-                        map.put("startingTime",sundayStart);
-                        map.put("finishingTime",sundayFinish);
-                        db.child("Sunday").updateChildren(map);
 
                         Intent intent = new Intent(Schedule.this,BranchActivity.class);
                         intent.putExtra("branchID",branchID);
@@ -212,5 +179,46 @@ public class Schedule extends AppCompatActivity {
                 }
         });
 
+    }
+
+    private void setSchedule(HashMap map, DatabaseReference db, String mondayStart, String mondayFinish,
+    String tuesdayStart, String tuesdayFinish, String wednesdayStart,String wednesdayFinish,String thursdayStart,String thursdayFinish,
+                             String fridayStart, String fridayFinish, String saturdayStart, String saturdayFinish, String sundayStart, String sundayFinish) {
+
+        map.put("startingTime",mondayStart);
+        map.put("finishingTime",mondayFinish);
+        db.child("Monday").updateChildren(map);
+        map.clear();
+
+
+        map.put("startingTime",tuesdayStart);
+        map.put("finishingTime",tuesdayFinish);
+        db.child("Tuesday").updateChildren(map);
+        map.clear();
+
+
+        map.put("startingTime",wednesdayStart);
+        map.put("finishingTime",wednesdayFinish);
+        db.child("Wednesday").updateChildren(map);
+        map.clear();
+
+        map.put("startingTime",thursdayStart);
+        map.put("finishingTime",thursdayFinish);
+        db.child("Thursday").updateChildren(map);
+        map.clear();
+
+        map.put("startingTime",fridayStart);
+        map.put("finishingTime",fridayFinish);
+        db.child("Friday").updateChildren(map);
+        map.clear();
+
+        map.put("startingTime",saturdayStart);
+        map.put("finishingTime",saturdayFinish);
+        db.child("Saturday").updateChildren(map);
+        map.clear();
+
+        map.put("startingTime",sundayStart);
+        map.put("finishingTime",sundayFinish);
+        db.child("Sunday").updateChildren(map);
     }
 }

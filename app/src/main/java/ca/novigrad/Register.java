@@ -43,6 +43,9 @@ public class Register extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private String userID;
     private String role;
+    private boolean addressIsMatching;
+    private boolean numberIsMatching;
+
 
 
 
@@ -77,6 +80,7 @@ public class Register extends AppCompatActivity {
         branchID.setVisibility(View.GONE);
         customerAddress = findViewById(R.id.editTextCustomerAddress);
         customerAddress.setVisibility(View.GONE);
+
 
         // if the user is already login
         if(fAuth.getCurrentUser()!= null){
@@ -150,8 +154,8 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            boolean addressIsMatching = false;
-                            boolean numberIsMatching = false;
+                            addressIsMatching = false;
+                            numberIsMatching = false;
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 Branch branch = snapshot.getValue(Branch.class);
                                 if (branch.getBranchAddress().compareTo(bAddress) == 0) {
@@ -197,7 +201,9 @@ public class Register extends AppCompatActivity {
                         }
                     });
                 }
-
+                if(addressIsMatching || numberIsMatching){
+                    return;
+                }
 
                 progressBar.setVisibility(View.VISIBLE);
 
