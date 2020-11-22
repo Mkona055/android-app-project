@@ -21,7 +21,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/glbmmenutest"
         android:layout_width="80dp"
         android:layout_height="26dp"
         android:layout_marginBottom="8dp"
