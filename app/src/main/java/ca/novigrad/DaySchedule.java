@@ -17,11 +17,4 @@ public class DaySchedule {
         return finishingTime;
     }
 
-    public void setFinishingTime(String finishingTime) {
-        this.finishingTime = finishingTime;
-    }
-
-    public void setStartingTime(String startingTime) {
-        this.startingTime = startingTime;
-    }
 }
