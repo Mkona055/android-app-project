@@ -147,7 +147,7 @@ public class Register extends AppCompatActivity {
                 if(role.compareTo("Employee")==0) {
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Branches");
-                    reference.addValueEventListener(new ValueEventListener() {
+                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
 
                         /* we have to verify if the address and the number are already inside our database
                         if not, we have to store them*/
