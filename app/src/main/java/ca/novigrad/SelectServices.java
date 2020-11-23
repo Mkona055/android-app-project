@@ -264,15 +264,7 @@ public class SelectServices extends AppCompatActivity {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     Service service = postSnapshot.getValue(Service.class);
-                    for (int i = 0 ; i <servicesOffered.size();i++){
-                        if(servicesOffered.get(i).compareTo(service.getServiceName())==0){
-                            break;
-                        }else if (i == servicesOffered.size()-1){
-                            services.add(service.getServiceName());
-                            servicesInfo.add(service);
-
-                        }
-                    }
+                    checkEquivalent(service, servicesOffered, services, servicesInfo);
                 }
 
                 if (servicesInfo.size()==0){ // means that all the services have been selected by the branch they are no others left
@@ -293,6 +285,17 @@ public class SelectServices extends AppCompatActivity {
 
     public ArrayList<String> getServices() {
         return services;
+    }
+
+    public void checkEquivalent(Service service, ArrayList<String> servOffered, ArrayList<String> serv, ArrayList<Service> servInfo){
+        for (int i = 0 ; i <servOffered.size();i++){
+            if(servOffered.get(i).compareTo(service.getServiceName())==0){
+                break;
+            }else if (i == servOffered.size()-1){
+                serv.add(service.getServiceName());
+                servInfo.add(service);
+            }
+        }
     }
 
 
