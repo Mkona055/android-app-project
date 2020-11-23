@@ -118,13 +118,7 @@ public class BranchActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     DaySchedule daySchedule = dataSnapshot.getValue(DaySchedule.class);
-                    if(daySchedule.getStartingTime().contains("Closed") || daySchedule.getFinishingTime().contains("Closed")){
-                        schedule.add("Closed");
-                    }else if(daySchedule.getStartingTime().contains("Not defined yet") || daySchedule.getFinishingTime().contains("Not defined yet")){
-                        schedule.add("Not defined yet");
-                    }else{
-                        schedule.add(daySchedule.getStartingTime()+" to " + daySchedule.getFinishingTime());
-                    }
+                    setDaySchedule(daySchedule,schedule);
 
                 }
                 // the schedule array gathers all the schedules of each day sorted in alphabetical order
@@ -185,6 +179,17 @@ public class BranchActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+    }
+
+    public void setDaySchedule(DaySchedule daySchedule, ArrayList schedule) {
+        if(daySchedule.getStartingTime().contains("Closed") || daySchedule.getFinishingTime().contains("Closed")){
+            schedule.add("Closed");
+        }else if(daySchedule.getStartingTime().contains("Not defined yet") || daySchedule.getFinishingTime().contains("Not defined yet")){
+            schedule.add("Not defined yet");
+        }else{
+            schedule.add(daySchedule.getStartingTime()+" to " + daySchedule.getFinishingTime());
+        }
 
     }
 
