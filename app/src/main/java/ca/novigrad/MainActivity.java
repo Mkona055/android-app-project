@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         branchAddress.setVisibility(View.VISIBLE);
-                        branchAddress.setText(documentSnapshot.getString("BranchAddress"));
+                        branchAddress.setText(documentSnapshot.getString("BranchAddress").split("," )[0]);
                         branchAddressNotToFill.setVisibility(View.VISIBLE);
 
                         branchNumber.setVisibility(View.VISIBLE);

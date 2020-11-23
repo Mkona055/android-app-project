@@ -124,6 +124,10 @@ public class ManageService extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = newService.getText().toString().trim();
+                if (TextUtils.isEmpty(name)){
+                    newService.setError("This value cannot be empty in order to update");
+                    return;
+                }
                 updateServiceName(serviceID,name);
 
 
@@ -255,7 +259,7 @@ public class ManageService extends AppCompatActivity {
                     databaseReference.child(serviceID).child("form").updateChildren(map);
 
                     map.clear();
-                    map.put("documentName1","Proof of Residence(Picture of electricity bill or bank statement confirming the address) :");
+                    map.put("documentName1","Proof of Residence");
                     databaseReference.child(serviceID).child("documents").updateChildren(map);
                     b.dismiss();
                     Intent intent = new Intent(ManageService.this,Form.class);
