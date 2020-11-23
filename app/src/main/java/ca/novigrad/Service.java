@@ -10,9 +10,10 @@ public class Service {
     private HashMap<String,String> documents;
 
     public Service(){
-
     }
-
+    public Service (String serviceName){
+        this.serviceName = serviceName;
+    }
     public String getServiceName(){
         return serviceName;
     }

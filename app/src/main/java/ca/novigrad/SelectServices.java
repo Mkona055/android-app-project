@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,10 +44,12 @@ public class SelectServices extends AppCompatActivity {
     private TextView noService;
     private DocumentReference documentReference ;
     private boolean deliverServices;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_services);
+
 
         Bundle bundle = getIntent().getExtras();
 
@@ -193,7 +196,9 @@ public class SelectServices extends AppCompatActivity {
 
     }
 
-    private void initializeSchedule(DatabaseReference ref,HashMap map) {
+    public void initializeSchedule(DatabaseReference ref,HashMap map) {
+
+        ref.child("schedule");
         map.put("startingTime","Not defined yet");
         map.put("finishingTime","Not defined yet");
         ref.child("Monday").updateChildren(map);
@@ -231,7 +236,7 @@ public class SelectServices extends AppCompatActivity {
         ref.child("Sunday").updateChildren(map);
     }
 
-    private void gatherServicesOffered(DatabaseReference ref){
+    public void gatherServicesOffered(DatabaseReference ref){
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -250,7 +255,7 @@ public class SelectServices extends AppCompatActivity {
         });
     }
 
-    private void displayServicesNotOffered(DatabaseReference ref){
+    public void displayServicesNotOffered(DatabaseReference ref){
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -290,7 +295,5 @@ public class SelectServices extends AppCompatActivity {
         return services;
     }
 
-    public ArrayList<String> getServicesOffered() {
-        return servicesOffered;
-    }
+
 }
