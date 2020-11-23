@@ -147,7 +147,7 @@ public class Register extends AppCompatActivity {
                 if(role.compareTo("Employee")==0) {
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Branches");
-                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    reference.addValueEventListener(new ValueEventListener() {
 
                         /* we have to verify if the address and the number are already inside our database
                         if not, we have to store them*/
@@ -201,55 +201,62 @@ public class Register extends AppCompatActivity {
                         }
                     });
                 }
-                if(addressIsMatching || numberIsMatching){
-                    return;
-                }
+
 
                 progressBar.setVisibility(View.VISIBLE);
 
 
-                //if all data entered by the user were correct, we stock them inside our FireStore and register the user
-                fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
-                            userID = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fStore.collection("users").document(userID);
 
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("FullName", fStoreFullName);
-                            user.put("Email", fStoreEmail);
-                            user.put("PhoneNumber",userPhoneNumber);
-                            user.put("Role", role);
-                            user.put("DeliverServices",false);
+                if(addressIsMatching || numberIsMatching){
+                    progressBar.setVisibility(View.GONE);
+                    return;
+                }else{
+                    //if all data entered by the user were correct, we stock them inside our FireStore and register the user
+                    fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                           if(role.equals("Employee")){
-                               user.put("BranchID", branchID.getText().toString());
-                               user.put("BranchAddress", branchAddress.getText().toString());
-                           }else{
-                               user.put("Address",cAddress);
-                           }
+                            if(task.isSuccessful()){
+                                Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                                userID = fAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = fStore.collection("users").document(userID);
 
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSuccess: user Profile is created for" + userID);
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("FullName", fStoreFullName);
+                                user.put("Email", fStoreEmail);
+                                user.put("PhoneNumber",userPhoneNumber);
+                                user.put("Role", role);
+
+
+                                if(role.equals("Employee")){
+                                    user.put("BranchID", branchID.getText().toString());
+                                    user.put("BranchAddress", branchAddress.getText().toString());
+                                    user.put("DeliverServices",false);
+                                }else{
+                                    user.put("Address",cAddress);
                                 }
-                            });
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
-                        } else{
+                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "onSuccess: user Profile is created for" + userID);
+                                    }
+                                });
 
-                            Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
+                            } else{
 
+                                Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            //the progress bar is just see when we finish the process of registration
+                            progressBar.setVisibility(View.GONE);
                         }
+                    });
+                }
 
-                        //the progress bar is just see when we finish the process of registration
-                        progressBar.setVisibility(View.GONE);
-                    }
-                });
 
             }
         });
@@ -325,7 +332,7 @@ public class Register extends AppCompatActivity {
                 return false;
             }
             regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
-            if(bAddress.matches(regex)){
+            if(!bAddress.matches(regex)){
                 branchAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
                 return false;
             }

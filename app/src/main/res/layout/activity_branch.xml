@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textViewAddService"
-        android:layout_width="56dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView16"
         android:layout_alignParentEnd="true"
@@ -42,8 +42,8 @@
 
     <TextView
         android:id="@+id/textViewUpdateSchedule"
-        android:layout_width="63dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView17"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
@@ -231,9 +231,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="77dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="152dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="110dp"
         android:text="@string/schedule"
         android:textAlignment="center"
         android:textColor="@color/NovigradBlue"
