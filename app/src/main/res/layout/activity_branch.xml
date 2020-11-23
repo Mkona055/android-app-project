@@ -58,9 +58,9 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView24"
         android:layout_alignEnd="@+id/ViewSchedule"
-        android:layout_marginStart="54dp"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="41dp"
+        android:layout_marginEnd="39dp"
         android:layout_toEndOf="@+id/textView24"
         android:text="None"
         android:textColor="#040405" />
@@ -72,7 +72,7 @@
         android:layout_alignTop="@+id/textView22"
         android:layout_alignEnd="@+id/ViewSchedule"
         android:layout_marginStart="47dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="40dp"
         android:layout_toEndOf="@+id/textView22"
         android:text="None"
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView23"
         android:layout_alignEnd="@+id/ViewSchedule"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="57dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="40dp"
         android:layout_toEndOf="@+id/textView23"
@@ -125,9 +125,9 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView18"
         android:layout_alignEnd="@+id/ViewSchedule"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="-1dp"
-        android:layout_marginEnd="42dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="40dp"
         android:layout_toEndOf="@+id/textView18"
         android:text="None"
         android:textColor="#000000"
@@ -152,8 +152,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView21"
         android:layout_alignStart="@+id/ViewSchedule"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
         android:text="Saturday :"
         android:textColor="#3F51B5" />
 
@@ -163,8 +163,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView22"
         android:layout_alignStart="@+id/ViewSchedule"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
         android:text="Sunday :"
         android:textColor="#3F51B5" />
 
@@ -174,8 +174,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ViewSchedule"
         android:layout_alignTop="@+id/ViewSchedule"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:text="Monday:"
         android:textColor="#3F51B5" />
 
@@ -186,7 +186,7 @@
         android:layout_below="@+id/textView19"
         android:layout_alignStart="@+id/ViewSchedule"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="5dp"
         android:text="Thursday :"
         android:textColor="#3F51B5" />
 
@@ -197,7 +197,7 @@
         android:layout_below="@+id/textView20"
         android:layout_alignStart="@+id/ViewSchedule"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="5dp"
         android:text="Friday :"
         android:textColor="#3F51B5" />
 
@@ -207,8 +207,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView18"
         android:layout_alignStart="@+id/ViewSchedule"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
         android:text="Wednesday :"
         android:textColor="#3F51B5" />
 
