@@ -19,19 +19,17 @@ public class BranchActivityTest {
         schedule = new ArrayList<>();
         branchActivity = new BranchActivity();
         branchActivity.setDaySchedule(daySchedule,schedule);
-        assertEquals("Closed",schedule.get(0));
 
-        schedule.clear();
         daySchedule = new DaySchedule("Not defined yet","Not defined yet");
         branchActivity = new BranchActivity();
         branchActivity.setDaySchedule(daySchedule,schedule);
-        assertEquals("Not defined yet",schedule.get(0));
 
-        schedule.clear();
         daySchedule = new DaySchedule("1 AM","2 PM");
         branchActivity = new BranchActivity();
         branchActivity.setDaySchedule(daySchedule,schedule);
-        assertEquals("1 AM to 2 PM",schedule.get(0));
+        assertEquals("Closed",schedule.get(0));
+        assertEquals("Not defined yet",schedule.get(1));
+        assertEquals("1 AM to 2 PM",schedule.get(2));
 
     }
 
