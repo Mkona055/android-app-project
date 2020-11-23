@@ -142,7 +142,7 @@ public class Register extends AppCompatActivity {
                 if(!formIsValid(fStoreEmail, fStorePassword,repeatedPassword, fStoreFullName, userPhoneNumber,
                         bNumber,cAddress,bAddress)){
                     return;
-                };
+                }
 
                 if(role.compareTo("Employee")==0) {
 
@@ -173,7 +173,7 @@ public class Register extends AppCompatActivity {
                                 return;
 
                             } else if (numberIsMatching) {
-                                branchID.setError("This branch address is already in our database");
+                                branchID.setError("This branch ID number is already in our database");
                                 return;
 
                             } else {
@@ -324,6 +324,12 @@ public class Register extends AppCompatActivity {
                 branchAddress.setError("An address must be entered");
                 return false;
             }
+            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
+            if(bAddress.matches(regex)){
+                branchAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
+                return false;
+            }
+
             regex = "^\\d{4}$";
             if(!bNumber.matches(regex)){
                 branchID.setError("Please enter a 4 digits number");
@@ -336,10 +342,11 @@ public class Register extends AppCompatActivity {
                 return false;
             }
             regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
-            if(!cAddress.matches(regex)){
+            if(!cAddress.matches(regex) ){
                 customerAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
                 return false;
             }
+
         }
         return true;
 
