@@ -21,11 +21,9 @@ public class BranchActivityTest {
         branchActivity.setDaySchedule(daySchedule,schedule);
 
         daySchedule = new DaySchedule("Not defined yet","Not defined yet");
-        branchActivity = new BranchActivity();
         branchActivity.setDaySchedule(daySchedule,schedule);
 
         daySchedule = new DaySchedule("1 AM","2 PM");
-        branchActivity = new BranchActivity();
         branchActivity.setDaySchedule(daySchedule,schedule);
         assertEquals("Closed",schedule.get(0));
         assertEquals("Not defined yet",schedule.get(1));
