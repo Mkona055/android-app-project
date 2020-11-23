@@ -131,7 +131,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String fStoreEmail = email.getText().toString().trim();
-                String fStorePassword = password.getText().toString().trim();
+                final String fStorePassword = password.getText().toString().trim();
                 String repeatedPassword = repeatPassword.getText().toString().trim();
                 final String fStoreFullName = fullName.getText().toString().trim();
                 final String userPhoneNumber = phoneNumber.getText().toString().trim();
@@ -188,6 +188,51 @@ public class Register extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Toast.makeText(Register.this, "Success", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                                //if all data entered by the user were correct, we stock them inside our FireStore and register the user
+                                fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        progressBar.setVisibility(View.VISIBLE);
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                                            userID = fAuth.getCurrentUser().getUid();
+                                            DocumentReference documentReference = fStore.collection("users").document(userID);
+
+                                            Map<String, Object> user = new HashMap<>();
+                                            user.put("FullName", fStoreFullName);
+                                            user.put("Email", fStoreEmail);
+                                            user.put("PhoneNumber",userPhoneNumber);
+                                            user.put("Role", role);
+
+
+                                            if(role.equals("Employee")){
+                                                user.put("BranchID", branchID.getText().toString());
+                                                user.put("BranchAddress", branchAddress.getText().toString());
+                                                user.put("DeliverServices",false);
+                                            }else{
+                                                user.put("Address",cAddress);
+                                            }
+
+                                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "onSuccess: user Profile is created for" + userID);
+                                                }
+                                            });
+
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                            finish();
+                                        } else{
+
+                                            Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                        //the progress bar is just see when we finish the process of registration
+                                        progressBar.setVisibility(View.GONE);
                                     }
                                 });
                             }
@@ -203,58 +248,13 @@ public class Register extends AppCompatActivity {
                 }
 
 
-                progressBar.setVisibility(View.VISIBLE);
+
 
 
 
                 if(addressIsMatching || numberIsMatching){
                     progressBar.setVisibility(View.GONE);
                     return;
-                }else{
-                    //if all data entered by the user were correct, we stock them inside our FireStore and register the user
-                    fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            if(task.isSuccessful()){
-                                Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
-                                userID = fAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore.collection("users").document(userID);
-
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("FullName", fStoreFullName);
-                                user.put("Email", fStoreEmail);
-                                user.put("PhoneNumber",userPhoneNumber);
-                                user.put("Role", role);
-
-
-                                if(role.equals("Employee")){
-                                    user.put("BranchID", branchID.getText().toString());
-                                    user.put("BranchAddress", branchAddress.getText().toString());
-                                    user.put("DeliverServices",false);
-                                }else{
-                                    user.put("Address",cAddress);
-                                }
-
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "onSuccess: user Profile is created for" + userID);
-                                    }
-                                });
-
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                finish();
-                            } else{
-
-                                Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-
-                            //the progress bar is just see when we finish the process of registration
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    });
                 }
 
 
