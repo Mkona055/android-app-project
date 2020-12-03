@@ -60,5 +60,7 @@
         <item>12 PM</item>
         <item>Closed</item>
     </string-array>
+    <string name="title_activity_fill_form">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

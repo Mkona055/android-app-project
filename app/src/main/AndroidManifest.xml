@@ -11,13 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
-        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
-
-
-
+        <activity android:name=".FillForm"></activity>
+        <activity android:name=".SelectServicesForCustomer" /> <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
         <!-- #### LIVRABLE 1 START HERE -->
         <!-- Frontpage activity, *** Let's Get Started *** -->
         <activity
@@ -28,101 +23,48 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Login Activity, *** Login to your account ***** -->
+        </activity> <!-- Login Activity, *** Login to your account ***** -->
         <activity
             android:name=".Login"
-            android:screenOrientation="portrait" />
-
-        <!-- Register Activity, *** Create a new Account *** -->
+            android:screenOrientation="portrait" /> <!-- Register Activity, *** Create a new Account *** -->
         <activity
             android:name=".Register"
-            android:screenOrientation="portrait" />
-
-        <!-- Main Activity, Profile Page *** Welcome USER, Your are Connected as ROLE *** -->
+            android:screenOrientation="portrait" /> <!-- Main Activity, Profile Page *** Welcome USER, Your are Connected as ROLE *** -->
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <!-- #### LIVRABLE 1 END HERE -->
-
-
-
-        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
-
-
-
+            android:screenOrientation="portrait" /> <!-- #### LIVRABLE 1 END HERE -->
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
         <!-- #### LIVRABLE 2 START HERE -->
-
         <!-- Administrator Management Activity, *** MANAGE SERVICE or MANAGE ACCOUNT *** -->
-        <activity android:name=".AdminManagement"
-            android:screenOrientation="portrait" />
-
-        <!-- Manage Service Activity, CRUD SERVICES *** CREATE, READ, UPDATE, DELETE *** -->
+        <activity
+            android:name=".AdminManagement"
+            android:screenOrientation="portrait" /> <!-- Manage Service Activity, CRUD SERVICES *** CREATE, READ, UPDATE, DELETE *** -->
         <activity
             android:name=".ManageService"
-            android:screenOrientation="portrait"
-            />
-        <!-- Document Activity, Add DOCUMENT required for created services-->
+            android:screenOrientation="portrait" /> <!-- Document Activity, Add DOCUMENT required for created services -->
         <activity
             android:name=".DocumentActivity"
-            android:screenOrientation="portrait"
-            />
-
-        <!-- Form Activity, Add FIELD required for created services-->
+            android:screenOrientation="portrait" /> <!-- Form Activity, Add FIELD required for created services -->
         <activity
             android:name=".Form"
-            android:screenOrientation="portrait"
-            />
-
-        <!-- Manage Account Activity, List View and delete Account -->
+            android:screenOrientation="portrait" /> <!-- Manage Account Activity, List View and delete Account -->
         <activity
             android:name=".ManageAccount"
-            android:screenOrientation="portrait" />
-
-        <!-- #### LIVRABLE 2 END HERE -->
-
-
-
-        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
-
-
-
+            android:screenOrientation="portrait" /> <!-- #### LIVRABLE 2 END HERE -->
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
         <!-- #### LIVRABLE 3 START HERE -->
-
-        <activity android:name=".CustomersRequest"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Schedule"
-            android:screenOrientation="portrait"
-           />
-
-        <activity android:name=".SelectServices"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".BranchActivity"
-            android:screenOrientation="portrait"/>
-
-        <!-- #### LIVRABLE 3 END HERE -->
-
-
-
-        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
-
-
-        <!-- #### LIVRABLE 4 START HERE -->
-
-
-
-
-
-        <!-- #### LIVRABLE 4 END HERE -->
-
-
-
-        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
-
-
+        <activity
+            android:name=".CustomersRequest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Schedule"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectServices"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BranchActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
