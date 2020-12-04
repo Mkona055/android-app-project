@@ -1,9 +1,5 @@
 package ca.novigrad;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,16 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -33,19 +30,23 @@ public class ManageService extends AppCompatActivity {
     private DatabaseReference databaseReference ;
     private Button addButton;
     private ListView listViewServices;
+    private ArrayList<Service> servicesInfo;
     private ArrayList<String> services;
     private  ArrayAdapter<String> serviceAdapter;
-    private String ID;
-    private static final String NO_ID = "none";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_service);
-        ID = NO_ID;
+
+        // is used to store services information as Service object
+        servicesInfo = new ArrayList<>();
+        // is used to set up the listView using the serviceNames only
         services = new ArrayList<>();
         addButton = findViewById(R.id.buttonAddServices);
         listViewServices = findViewById(R.id.ListViewServices);
-        serviceAdapter = new ArrayAdapter<>(ManageService.this, android.R.layout.simple_expandable_list_item_1,services);
+        // adapter for listView
+        serviceAdapter = new ArrayAdapter<>(ManageService.this, android.R.layout.simple_list_item_1,services);
         databaseReference = FirebaseDatabase.getInstance().getReference("Services");
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -60,13 +61,16 @@ public class ManageService extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //initializing the listVieW
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 services.clear();
+                servicesInfo.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     Service service = postSnapshot.getValue(Service.class);
                     services.add(service.getServiceName());
+                    servicesInfo.add(service);
                 }
                 listViewServices.setAdapter(serviceAdapter);
 
@@ -78,53 +82,30 @@ public class ManageService extends AppCompatActivity {
             }
 
         });
+        // when one service is selected we show a dialog to update or delete the service
         listViewServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-
-                String key = getServiceID(services.get(position));
-                showUpdateDeleteDialog(key);
+                Service serviceClicked = servicesInfo.get(position);
+                String serviceID = serviceClicked.getServiceID();
+                showUpdateDeleteDialog(serviceID);
             }
         });
-
+        // when one service is long clicked we show a dialog to view the service
         listViewServices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                ID = getServiceID(services.get(position));
-                if(ID.compareTo(NO_ID)== 0){
+                Service serviceClicked = servicesInfo.get(position);
+                String serviceID = serviceClicked.getServiceID();
+                viewServiceDialog(serviceID);
 
-                }else{
-                    viewServiceDialog(ID);
-                }
                 return true;
             }
         });
 
     }
 
-    private String getServiceID(final String serviceName) {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Service service = snapshot.getValue(Service.class);
-                    if (service.getServiceName().compareTo(serviceName) == 0){
-                        ID = snapshot.getKey();
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //reference.child(mock).removeValue();
-        return ID;
-    }
-
+//the dialog to update or delete the service using is ID i
     public  void showUpdateDeleteDialog(final String serviceID){
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -143,6 +124,10 @@ public class ManageService extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = newService.getText().toString().trim();
+                if (TextUtils.isEmpty(name)){
+                    newService.setError("This value cannot be empty in order to update");
+                    return;
+                }
                 updateServiceName(serviceID,name);
 
 
@@ -163,7 +148,7 @@ public class ManageService extends AppCompatActivity {
         });
     }
 
-
+    // the dialog to view the service using is ID i
     public void viewServiceDialog(String serviceID) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -173,9 +158,9 @@ public class ManageService extends AppCompatActivity {
         final ListView form = dialogView.findViewById(R.id.ListViewForm);
         final ListView listViewDocuments = dialogView.findViewById(R.id.ListViewDocument);
         final ArrayList<String> formElements = new ArrayList<>();
-        final ArrayAdapter<String> formElementsAdapter = new ArrayAdapter<>(ManageService.this, android.R.layout.simple_expandable_list_item_1,formElements);
+        final ArrayAdapter<String> formElementsAdapter = new ArrayAdapter<>(ManageService.this, android.R.layout.simple_list_item_1,formElements);
         final ArrayList<String> documents = new ArrayList<>();
-        final ArrayAdapter<String> documentsAdapter = new ArrayAdapter<>(ManageService.this, android.R.layout.simple_expandable_list_item_1,documents);
+        final ArrayAdapter<String> documentsAdapter = new ArrayAdapter<>(ManageService.this, android.R.layout.simple_list_item_1,documents);
 
         dialogBuilder.setView(dialogView).setTitle("Update Service ").setPositiveButton("Close", new DialogInterface.OnClickListener() {
             @Override
@@ -185,7 +170,7 @@ public class ManageService extends AppCompatActivity {
 
         final AlertDialog b = dialogBuilder.create();
 
-        final DatabaseReference refForm = databaseReference.child(serviceID).child("Form");;
+        final DatabaseReference refForm = databaseReference.child(serviceID).child("form");;
         refForm.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -204,7 +189,7 @@ public class ManageService extends AppCompatActivity {
             }
         });
 
-        DatabaseReference refDoc = databaseReference.child(serviceID).child("Documents");;
+        DatabaseReference refDoc = databaseReference.child(serviceID).child("documents");;
         refDoc.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -225,6 +210,7 @@ public class ManageService extends AppCompatActivity {
         b.show();
     }
 
+    // the dialog to create a service
     public void newServiceDialog() {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -261,15 +247,20 @@ public class ManageService extends AppCompatActivity {
                     databaseReference.child(serviceID).updateChildren(map);
 
                     map.clear();
+                    map.put("serviceID", serviceID);
+                    databaseReference.child(serviceID).updateChildren(map);
+
+
+                    map.clear();
                     map.put("fieldName1","First Name :");
                     map.put("fieldName2","Second Name :");
                     map.put("fieldName3","Date of birth :");
                     map.put("fieldName4","Address :");
-                    databaseReference.child(serviceID).child("Form").updateChildren(map);
+                    databaseReference.child(serviceID).child("form").updateChildren(map);
 
                     map.clear();
-                    map.put("documentName1","Proof of Residence(Picture of electricity bill or bank statement confirming the address) :");
-                    databaseReference.child(serviceID).child("Documents").updateChildren(map);
+                    map.put("documentName1","Proof of Residence");
+                    databaseReference.child(serviceID).child("documents").updateChildren(map);
                     b.dismiss();
                     Intent intent = new Intent(ManageService.this,Form.class);
                     intent.putExtra("serviceID",serviceID);

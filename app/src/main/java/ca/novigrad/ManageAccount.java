@@ -21,27 +21,21 @@ public class ManageAccount extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference accountRef = db.collection("users");
     private AccountAdapter adapter;
-    private Button back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_account);
+        setContentView(R.layout.activity_manage_account); //open the layout here all manage will be done
 
         setUpRecyclerView();
-        back = findViewById(R.id.buttonBack);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),AdminManagement.class));
-                finish();
-            }
-        });
+
 
     }
 
     private  void setUpRecyclerView() {
-        Query query = accountRef.orderBy("Role", Query.Direction.DESCENDING);
+
+        Query query = accountRef.orderBy("Role", Query.Direction.DESCENDING); //read the data inside the database
 
         FirestoreRecyclerOptions<AccountList> options = new FirestoreRecyclerOptions.Builder<AccountList>()
                 .setQuery(query, AccountList.class)
@@ -53,6 +47,7 @@ public class ManageAccount extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
+        //here you have the possibility to delete an account when you swipe left or right
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {

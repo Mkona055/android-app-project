@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    tools:context=".BranchActivity">
+
+    <TextView
+        android:id="@+id/textViewAddService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView16"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="337dp"
+        android:layout_toEndOf="@+id/textView16"
+        android:text="Add Service"
+        android:textColor="#020202" />
+
+    <View
+        android:id="@+id/ViewSchedule"
+        android:layout_width="373dp"
+        android:layout_height="206dp"
+        android:layout_below="@+id/textView17"
+        android:layout_alignBottom="@+id/listViewServicesBranch"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="-277dp"
+        android:background="@drawable/roundedlayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRole" />
+
+    <TextView
+        android:id="@+id/textViewUpdateSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView17"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="27dp"
+        android:text="Update Schedule"
+        android:textColor="#020202" />
+
+    <TextView
+        android:id="@+id/textViewMondayTime"
+        android:layout_width="183dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView24"
+        android:layout_alignEnd="@+id/ViewSchedule"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="39dp"
+        android:layout_toEndOf="@+id/textView24"
+        android:text="None"
+        android:textColor="#040405" />
+
+    <TextView
+        android:id="@+id/textViewSaturdayTime"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView22"
+        android:layout_alignEnd="@+id/ViewSchedule"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="40dp"
+        android:layout_toEndOf="@+id/textView22"
+        android:text="None"
+        android:textColor="#060709"
+        android:textColorHint="#090606" />
+
+    <TextView
+        android:id="@+id/textViewSundayTime"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView23"
+        android:layout_alignEnd="@+id/ViewSchedule"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="40dp"
+        android:layout_toEndOf="@+id/textView23"
+        android:text="None"
+        android:textColor="#1C1D23"
+        android:textColorHint="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textViewFridayTime"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView21"
+        android:layout_alignEnd="@+id/ViewSchedule"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="40dp"
+        android:layout_toEndOf="@+id/textView21"
+        android:text="None"
+        android:textColor="#010102" />
+
+    <TextView
+        android:id="@+id/textViewWednesdayTime"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView19"
+        android:layout_alignEnd="@+id/ViewSchedule"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="40dp"
+        android:layout_toEndOf="@+id/textView19"
+        android:text="None"
+        android:textColor="#0B0C0E" />
+
+    <TextView
+        android:id="@+id/textViewTuesdayTime"
+        android:layout_width="183dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView18"
+        android:layout_alignEnd="@+id/ViewSchedule"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="40dp"
+        android:layout_toEndOf="@+id/textView18"
+        android:text="None"
+        android:textColor="#000000"
+        android:textColorHint="#000000" />
+
+    <TextView
+        android:id="@+id/textViewThursdayTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView20"
+        android:layout_alignEnd="@+id/ViewSchedule"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="40dp"
+        android:layout_toEndOf="@+id/textView20"
+        android:text="None"
+        android:textColor="#131419" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView21"
+        android:layout_alignStart="@+id/ViewSchedule"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Saturday :"
+        android:textColor="#3F51B5" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView22"
+        android:layout_alignStart="@+id/ViewSchedule"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Sunday :"
+        android:textColor="#3F51B5" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ViewSchedule"
+        android:layout_alignTop="@+id/ViewSchedule"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Monday:"
+        android:textColor="#3F51B5" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView19"
+        android:layout_alignStart="@+id/ViewSchedule"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Thursday :"
+        android:textColor="#3F51B5" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView20"
+        android:layout_alignStart="@+id/ViewSchedule"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Friday :"
+        android:textColor="#3F51B5" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="81dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView18"
+        android:layout_alignStart="@+id/ViewSchedule"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Wednesday :"
+        android:textColor="#3F51B5" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView24"
+        android:layout_alignStart="@+id/ViewSchedule"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Tuesday:"
+        android:textColor="#3F51B5" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listViewServicesBranch"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="110dp"
+        android:text="@string/schedule"
+        android:textAlignment="center"
+        android:textColor="@color/NovigradBlue"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="202dp"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="105dp"
+        android:textAlignment="center"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@+id/listViewServicesBranch"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="143dp"
+        android:layout_marginTop="287dp"
+        android:layout_marginEnd="137dp"
+        android:background="@drawable/roundedlayout"
+        android:text="logout" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView11"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="17dp"
+        android:text="Services Offered "
+        android:textAlignment="center"
+        android:textColor="@color/NovigradBlue"
+        android:textSize="24sp" />
+
+    <ListView
+        android:id="@+id/listViewServicesBranch"
+        android:layout_width="wrap_content"
+        android:layout_height="176dp"
+        android:layout_below="@+id/textView16"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="29dp"
+        android:background="@color/NovigradYellow">
+
+    </ListView>
+
+</RelativeLayout>

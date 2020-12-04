@@ -43,6 +43,9 @@ public class Register extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private String userID;
     private String role;
+    private boolean addressIsMatching;
+    private boolean numberIsMatching;
+
 
 
 
@@ -77,6 +80,7 @@ public class Register extends AppCompatActivity {
         branchID.setVisibility(View.GONE);
         customerAddress = findViewById(R.id.editTextCustomerAddress);
         customerAddress.setVisibility(View.GONE);
+
 
         // if the user is already login
         if(fAuth.getCurrentUser()!= null){
@@ -127,7 +131,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String fStoreEmail = email.getText().toString().trim();
-                String fStorePassword = password.getText().toString().trim();
+                final String fStorePassword = password.getText().toString().trim();
                 String repeatedPassword = repeatPassword.getText().toString().trim();
                 final String fStoreFullName = fullName.getText().toString().trim();
                 final String userPhoneNumber = phoneNumber.getText().toString().trim();
@@ -138,7 +142,7 @@ public class Register extends AppCompatActivity {
                 if(!formIsValid(fStoreEmail, fStorePassword,repeatedPassword, fStoreFullName, userPhoneNumber,
                         bNumber,cAddress,bAddress)){
                     return;
-                };
+                }
 
                 if(role.compareTo("Employee")==0) {
 
@@ -150,8 +154,8 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            boolean addressIsMatching = false;
-                            boolean numberIsMatching = false;
+                            addressIsMatching = false;
+                            numberIsMatching = false;
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 Branch branch = snapshot.getValue(Branch.class);
                                 if (branch.getBranchAddress().compareTo(bAddress) == 0) {
@@ -169,7 +173,7 @@ public class Register extends AppCompatActivity {
                                 return;
 
                             } else if (numberIsMatching) {
-                                branchID.setError("This branch address is already in our database");
+                                branchID.setError("This branch ID number is already in our database");
                                 return;
 
                             } else {
@@ -184,6 +188,51 @@ public class Register extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Toast.makeText(Register.this, "Success", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                                //if all data entered by the user were correct, we stock them inside our FireStore and register the user
+                                fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        progressBar.setVisibility(View.VISIBLE);
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                                            userID = fAuth.getCurrentUser().getUid();
+                                            DocumentReference documentReference = fStore.collection("users").document(userID);
+
+                                            Map<String, Object> user = new HashMap<>();
+                                            user.put("FullName", fStoreFullName);
+                                            user.put("Email", fStoreEmail);
+                                            user.put("PhoneNumber",userPhoneNumber);
+                                            user.put("Role", role);
+
+
+                                            if(role.equals("Employee")){
+                                                user.put("BranchID", branchID.getText().toString());
+                                                user.put("BranchAddress", branchAddress.getText().toString());
+                                                user.put("DeliverServices",false);
+                                            }else{
+                                                user.put("Address",cAddress);
+                                            }
+
+                                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "onSuccess: user Profile is created for" + userID);
+                                                }
+                                            });
+
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                            finish();
+                                        } else{
+
+                                            Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                        //the progress bar is just see when we finish the process of registration
+                                        progressBar.setVisibility(View.GONE);
                                     }
                                 });
                             }
@@ -199,50 +248,15 @@ public class Register extends AppCompatActivity {
                 }
 
 
-                progressBar.setVisibility(View.VISIBLE);
 
 
-                //if all data entered by the user were correct, we stock them inside our FireStore and register the user
-                fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
-                            userID = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fStore.collection("users").document(userID);
 
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("FullName", fStoreFullName);
-                            user.put("Email", fStoreEmail);
-                            user.put("PhoneNumber",userPhoneNumber);
-                            user.put("Role", role);
 
-                           if(role.equals("Employee")){
-                               user.put("BranchID", branchID.getText().toString());
-                               user.put("BranchAddress", branchAddress.getText().toString());
-                           }else{
-                               user.put("Address",cAddress);
-                           }
+                if(addressIsMatching || numberIsMatching){
+                    progressBar.setVisibility(View.GONE);
+                    return;
+                }
 
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSuccess: user Profile is created for" + userID);
-                                }
-                            });
-
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
-                        } else{
-
-                            Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-
-                        //the progress bar is just see when we finish the process of registration
-                        progressBar.setVisibility(View.GONE);
-                    }
-                });
 
             }
         });
@@ -317,6 +331,12 @@ public class Register extends AppCompatActivity {
                 branchAddress.setError("An address must be entered");
                 return false;
             }
+            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
+            if(!bAddress.matches(regex)){
+                branchAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
+                return false;
+            }
+
             regex = "^\\d{4}$";
             if(!bNumber.matches(regex)){
                 branchID.setError("Please enter a 4 digits number");
@@ -328,6 +348,12 @@ public class Register extends AppCompatActivity {
                 customerAddress.setError("An address must be entered");
                 return false;
             }
+            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
+            if(!cAddress.matches(regex) ){
+                customerAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
+                return false;
+            }
+
         }
         return true;
 

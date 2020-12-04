@@ -26,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
     private DocumentReference documentReference;
     private FirebaseFirestore fStore;
     private String userID;
+    private String branchID;
     private Button logout;
     private Button continueButton;
-    private ImageView menutest;
+
+    private boolean deliverServices;
 
 
     @Override
@@ -50,15 +52,18 @@ public class MainActivity extends AppCompatActivity {
         branchNumberNotToFill =findViewById(R.id.textViewBranchNumberNotToFill);
 
 
-        menutest = findViewById(R.id.glbmmenutest);
+
 
         logout = (Button) findViewById(R.id.buttonLogout);
         continueButton = findViewById(R.id.buttonContinue);
 
         userID = fAuth.getCurrentUser().getUid();
-
+        deliverServices = false;
 
         //GET DATA FROM DATA BASE
+        final Intent intent = new Intent(MainActivity.this,SelectServices.class);
+        intent.putExtra("userUID",userID);
+
         documentReference = fStore.collection("users").document(userID);
         EventListener<DocumentSnapshot> eventListener = new EventListener<DocumentSnapshot>() {
             @Override
@@ -74,14 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
 
                         branchAddress.setVisibility(View.VISIBLE);
-                        branchAddress.setText(documentSnapshot.getString("BranchAddress"));
+                        branchAddress.setText(documentSnapshot.getString("BranchAddress").split("," )[0]);
                         branchAddressNotToFill.setVisibility(View.VISIBLE);
 
                         branchNumber.setVisibility(View.VISIBLE);
                         branchNumber.setText(documentSnapshot.getString("BranchID"));
                         branchNumberNotToFill.setVisibility(View.VISIBLE);
-
-
+                        branchID = documentSnapshot.getString("BranchID");
+                        deliverServices = documentSnapshot.getBoolean("DeliverServices");
 
 
                     }else{
@@ -113,17 +118,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (role.getText().toString().compareTo("Administrator") == 0){
                     startActivity(new Intent (MainActivity.this, AdminManagement.class));
+                }else if(role.getText().toString().compareTo("Employee") == 0){
+                    if(!deliverServices){
+                        intent.putExtra("branchID",branchID);
+                        intent.putExtra("deliverServices",deliverServices);
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(MainActivity.this,BranchActivity.class);
+                        intent.putExtra("branchID",branchID);
+                        intent.putExtra("userUID",userID);
+                        intent.putExtra("deliverServices",deliverServices);
+                        startActivity(intent);
+                    }
+
                 }
 
             }
         });
 
-        menutest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Manage.class));
-            }
-        });
+
 
     }
 
