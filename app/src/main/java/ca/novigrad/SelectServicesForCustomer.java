@@ -29,6 +29,7 @@ public class SelectServicesForCustomer extends AppCompatActivity {
     private Button finishButton;
     private ListView listViewServices;
     private ArrayList<Service> servicesInfo;
+    private ArrayList<String> servicesKey;
     private ArrayList<String> services;
     private ArrayList<String> servicesOffered;
     private ArrayAdapter<String> serviceAdapter;
@@ -57,7 +58,7 @@ public class SelectServicesForCustomer extends AppCompatActivity {
         servicesInfo = new ArrayList<>();
         // is used to set up the listView using the serviceNames only
         services = new ArrayList<>();
-
+        servicesKey = new ArrayList<>();
         listViewServices = findViewById(R.id.ListViewServiceToSelectCustomer);
 
         // adapter for listView
@@ -99,6 +100,7 @@ public class SelectServicesForCustomer extends AppCompatActivity {
                     for(String serviceName:services){
                         if (service.getServiceName().compareTo(serviceName)==0){
                             servicesInfo.add(service);
+                            servicesKey.add(dataSnapshot.getKey());
                         }
                     }
 
@@ -122,7 +124,8 @@ public class SelectServicesForCustomer extends AppCompatActivity {
                 Intent intent = new Intent(SelectServicesForCustomer.this, FillForm.class);
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
-                intent.putExtra("Service", (Parcelable) servicesInfo.get(position));
+                intent.putExtra("serviceSelectedKey", servicesKey.get(position));
+                intent.putExtra("serviceSelectedName", servicesInfo.get(position).getServiceName());
                 startActivity(intent);
             }
         });

@@ -23,7 +23,7 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/textViewServiceSelectedForm"
+        android:id="@+id/textViewServiceSelectedDocument"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageLogo7"
@@ -48,17 +48,17 @@
         app:srcCompat="@drawable/glbmlogo" />
 
     <Button
-        android:id="@+id/buttonNextToDocumentsFilling"
+        android:id="@+id/buttonContinueToRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="52dp"
-        android:text="next" />
+        android:text="Finish" />
 
     <ListView
-        android:id="@+id/listViewServiceForm"
+        android:id="@+id/listViewDocumentToUpload"
         android:layout_width="match_parent"
         android:layout_height="410dp"
         android:layout_above="@+id/imageView13"
