@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.Rating;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -95,9 +96,9 @@ public class FillDocument extends AppCompatActivity {
                 map.put("serviceSelectedKey",serviceSelectedKey);
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("Requests").child(requestKey);
                 ref.updateChildren(map);
-//                Intent intent = new Intent(FillForm.this, FillDocument.class );
-//                intent.putExtra("userUID", userID);
-//                intent.putExtra("branchID", branchID);
+                Intent intent = new Intent(FillDocument.this, RatingEmployes.class );
+                intent.putExtra("userUID", userID);
+                intent.putExtra("branchID", branchID);
 //                intent.putExtra("serviceSelectedKey", serviceSelectedKey);
 //                intent.putExtra("serviceSelectedName", bundle.getString("serviceSelectedName"));
 //                HashMap map = new HashMap<>();
@@ -112,10 +113,10 @@ public class FillDocument extends AppCompatActivity {
 //                    }
 //                }
 //                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("Requests");
-//                String requestKey = ref.push().getKey();
-//                intent.putExtra("requestKey",requestKey);
-//                ref.child(requestKey).updateChildren(map);
-//                startActivity(intent);
+                String requestKey = ref.push().getKey();
+                intent.putExtra("requestKey",requestKey);
+                ref.child(requestKey).updateChildren(map);
+                startActivity(intent);
             }
         });
 
