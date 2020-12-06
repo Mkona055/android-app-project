@@ -24,8 +24,8 @@ public class Search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        Bundle bundle = getIntent().getExtras();
-        userID = bundle.getString("userID");
+//        Bundle bundle = getIntent().getExtras();
+//        userID = bundle.getString("userID");
 
         spinner = findViewById(R.id.spinnerTypeOfSearch);
         searchButton = findViewById(R.id.imageViewbtnSearch);

@@ -26,7 +26,6 @@ import java.util.ArrayList;
 
 public class SelectServicesForCustomer extends AppCompatActivity {
     private DatabaseReference databaseReference ;
-    private Button finishButton;
     private ListView listViewServices;
     private ArrayList<Service> servicesInfo;
     private ArrayList<String> servicesKey;
@@ -35,10 +34,9 @@ public class SelectServicesForCustomer extends AppCompatActivity {
     private ArrayAdapter<String> serviceAdapter;
     private String branchID;
     private String userID;
-    private int nextIndex;
     private TextView noService;
-    private DocumentReference documentReference ;
-    private boolean deliverServices;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,13 +44,12 @@ public class SelectServicesForCustomer extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        // we get the employee information from MainActivity
+
         branchID = bundle.getString("branchID");
         userID = bundle.getString("userUID");
 
 
         servicesOffered = new ArrayList<>();
-        documentReference = FirebaseFirestore.getInstance().collection("users").document(userID);
         servicesInfo = new ArrayList<>();
         services = new ArrayList<>();
         servicesKey = new ArrayList<>();
