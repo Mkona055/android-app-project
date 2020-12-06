@@ -11,7 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Search"></activity>
+        <activity android:name=".Search">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".RatingEmployes" />
         <activity android:name=".ViewDocumentFilled" />
         <activity android:name=".ViewFormFilled" />
@@ -25,11 +31,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".FillDocument">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".FillForm" />
         <activity android:name=".SelectServicesForCustomer" /> <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
