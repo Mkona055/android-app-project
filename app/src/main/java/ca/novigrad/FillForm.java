@@ -78,6 +78,7 @@ public class FillForm extends AppCompatActivity {
                 intent.putExtra("serviceSelectedKey", serviceSelectedKey);
                 intent.putExtra("serviceSelectedName", bundle.getString("serviceSelectedName"));
                 HashMap map = new HashMap<>();
+                int count = 0;
                 for(Pair p : fieldNames){
                     String fName = p.getFieldName();
                     String filling  = p.getFilling();
@@ -85,13 +86,20 @@ public class FillForm extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"field " + fName+ "must be filled ", Toast.LENGTH_LONG);
                         return;
                     }else{
-                        map.put(fName,filling);
+                        map.put("field"+count,fName + "/"+filling);
                     }
                 }
+
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("Requests");
                 String requestKey = ref.push().getKey();
-                intent.putExtra("requestKey",requestKey);
+                ref.child(requestKey).child("formFilled").updateChildren(map);
+                map.clear();
+                map.put("missingDocuments",true);
+                map.put("status","In processing");
+                map.put("sender",fieldNames.get(0).getFilling() + " "+fieldNames.get(1).getFilling() );
+                map.put("serviceRequested",bundle.getString("serviceSelectedName"));
                 ref.child(requestKey).updateChildren(map);
+                intent.putExtra("requestKey",requestKey);
                 startActivity(intent);
             }
         });
