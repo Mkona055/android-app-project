@@ -43,8 +43,6 @@ public class ManageSearch extends AppCompatActivity {
 
         String searchText = mSearchField.getText().toString();
 
-         //open the layout here all manage will be done
-
 
             setUpRecyclerView(searchText);
 

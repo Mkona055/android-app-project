@@ -8,6 +8,10 @@ public class Pair {
         this.fieldName = fieldName;
         this.filling = TO_FILL;
     }
+    public Pair(String fieldName, String filling){
+        this.fieldName = fieldName;
+        this.filling = filling;
+    }
 
     public String getFieldName() {
         return fieldName;

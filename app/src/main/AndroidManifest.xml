@@ -11,6 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ViewDocumentFilled"></activity>
+        <activity android:name=".ViewFormFilled" />
+        <activity android:name=".ManageSearch">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
         <activity android:name=".FillDocument">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,15 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FillForm">
-
-        </activity>
+        <activity android:name=".FillForm" />
         <activity android:name=".SelectServicesForCustomer" /> <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
         <!-- #### LIVRABLE 1 START HERE -->
         <!-- Frontpage activity, *** Let's Get Started *** -->
         <activity
             android:name=".Frontpage"
-            android:screenOrientation="portrait"></activity> <!-- Login Activity, *** Login to your account ***** -->
+            android:screenOrientation="portrait" /> <!-- Login Activity, *** Login to your account ***** -->
         <activity
             android:name=".Login"
             android:screenOrientation="portrait" /> <!-- Register Activity, *** Create a new Account *** -->

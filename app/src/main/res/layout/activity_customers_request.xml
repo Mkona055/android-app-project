@@ -50,4 +50,13 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
+    <ListView
+        android:id="@+id/listViewRequests"
+        android:layout_width="372dp"
+        android:layout_height="479dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="61dp" />
+
 </RelativeLayout>

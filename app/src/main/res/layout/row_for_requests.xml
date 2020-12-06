@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/NovigradYellow">
+
+    <RelativeLayout
+        android:layout_width="410dp"
+        android:layout_height="105dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewRequestSender"
+            android:layout_width="177dp"
+            android:layout_height="37dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="59dp"
+            android:layout_marginBottom="13dp"
+            android:layout_toStartOf="@+id/textViewStatus"
+            android:text="Request Provenance"
+            android:textAlignment="center"
+            android:textColor="#514D4D" />
+
+        <TextView
+            android:id="@+id/textViewTypeOfRequest"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_above="@+id/textViewStatus"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="14dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="137dp"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="11dp"
+            android:text="Status"
+            android:textAlignment="center"
+            android:textColor="#3C3B3B" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
