@@ -42,13 +42,12 @@ public class FillForm extends AppCompatActivity {
         setContentView(R.layout.activity_fill_form);
 
         final Bundle bundle = getIntent().getExtras();
-        // we get the employee information from MainActivity
-        //branchID = bundle.getString("branchID");
-        //userID = bundle.getString("userUID");
+        branchID = bundle.getString("branchID");
+        userID = bundle.getString("userUID");
         next = findViewById(R.id.buttonNextToDocumentsFilling);
-        serviceSelectedKey ="-MLBRlHznL1Ste49lNHQ"; //bundle.getString("serviceSelectedKey");
+        serviceSelectedKey = bundle.getString("serviceSelectedKey");
         serviceSelectedName = findViewById(R.id.textViewServiceSelectedForm);
-        serviceSelectedName.setText("Driver's license form");//bundle.getString("serviceSelectedName") + " form");
+        serviceSelectedName.setText(bundle.getString("serviceSelectedName") + " form");
         fieldNames = new ArrayList<>();
         fillingAdapter = new FormFillingAdapter(this,R.layout.row_for_recycler_view,fieldNames);
         listView = findViewById(R.id.listViewServiceForm);

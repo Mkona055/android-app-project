@@ -28,6 +28,7 @@ public class ManageSearch extends AppCompatActivity {
 
     private String typeOfSearch;
     private String searchedText;
+    private String userID;
 
     private DocumentReference documentReference;
     private FirebaseFirestore fStore;
@@ -54,7 +55,7 @@ public class ManageSearch extends AppCompatActivity {
         mUserDatabase = FirebaseDatabase.getInstance().getReference("Branches");
         typeOfSearch = bundle.getString("typeofSearch");
         searchedText = bundle.getString("searchText");
-
+        userID = bundle.getString("userID");
         setUpRecyclerView(searchedText,typeOfSearch);
 
 
@@ -66,7 +67,7 @@ public class ManageSearch extends AppCompatActivity {
     }
 
     private  void setUpRecyclerView(String searchText,String typeOfSearch) {
-        Toast.makeText(ManageSearch.this, "Started Search", Toast.LENGTH_LONG).show();
+        Toast.makeText(ManageSearch.this, "Searching..", Toast.LENGTH_SHORT).show();
 
         Query query = mUserDatabase.orderByChild("branchAddress").startAt(searchText).endAt(searchText + "\uf8ff"); //read the data inside the database
 
@@ -75,6 +76,7 @@ public class ManageSearch extends AppCompatActivity {
                 .build();
         adapter = new SearchAdapter(options);
         RecyclerView recyclerView = findViewById(R.id.result_list);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

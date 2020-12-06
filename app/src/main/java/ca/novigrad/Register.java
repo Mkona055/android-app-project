@@ -183,6 +183,7 @@ public class Register extends AppCompatActivity {
 
                                 map.put("branchAddress", bAddress);
                                 map.put("branchID", bNumber);
+                                map.put("Rating","No ratings yet");
 
                                 dr.child(bNumber).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
