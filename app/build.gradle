@@ -53,7 +53,6 @@ dependencies {
 
 
 
-
 }
 dependencies {
     // Import the Firebase BoM
@@ -84,4 +83,7 @@ dependencies {
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.firebase:firebase-database:19.5.1'
+
+    // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
 }
