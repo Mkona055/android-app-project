@@ -1,5 +1,6 @@
 package ca.novigrad;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,9 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
 
@@ -24,6 +33,10 @@ public class RatingEmployes extends AppCompatActivity {
     private Button finish;
     private String branchID;
     private String userID;
+
+    private FirebaseAuth fAuth;
+    private DocumentReference documentReference;
+    private FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,13 +116,13 @@ public class RatingEmployes extends AppCompatActivity {
             }
         });
 
+
+
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap map = new HashMap();
-                map.put("Rate",rate);
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID);
-                ref.updateChildren(map);
+                HashMap map = new HashMap<>();
+
                 Intent intent = new Intent(RatingEmployes.this, MainActivity.class );
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
@@ -125,6 +138,9 @@ public class RatingEmployes extends AppCompatActivity {
                 }else if(!set2 && set1){
                     rate =1;
                 }
+                map.put("Rate",rate);
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID);
+                ref.updateChildren(map);
 
                 startActivity(intent);
             }
