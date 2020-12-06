@@ -20,6 +20,9 @@ public class SearchAdapter extends FirebaseRecyclerAdapter<SearchList, SearchAda
         super(options);
     }
 
+
+
+
     @Override
     protected void onBindViewHolder(@NonNull SearchHolder holder, int position, @NonNull SearchList model) {
         holder.branch_address.setText(model.getBranchAddress());

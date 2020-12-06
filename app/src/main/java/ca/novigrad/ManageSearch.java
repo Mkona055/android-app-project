@@ -30,6 +30,8 @@ public class ManageSearch extends AppCompatActivity {
     private EditText mSearchField;
     private ImageView mSearchBtn;
 
+    String searchText ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +43,10 @@ public class ManageSearch extends AppCompatActivity {
         mSearchBtn =  (ImageView) findViewById(R.id.imageViewbtn);
 
 
-        String searchText = mSearchField.getText().toString();
+        searchText = mSearchField.getText().toString();
 
+        setUpRecyclerView(searchText);
 
-            setUpRecyclerView(searchText);
-
-
-
-        mSearchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchText = mSearchField.getText().toString();
-
-                setUpRecyclerView(searchText);
-            }
-        });
 
 
     }
@@ -75,6 +66,10 @@ public class ManageSearch extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
+
+
+
+
 
     @Override
     protected void onStop() {
