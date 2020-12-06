@@ -4,16 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -27,31 +24,27 @@ public class ManageSearch extends AppCompatActivity {
     private SearchAdapter adapter;
     private DatabaseReference mUserDatabase;
 
-    private EditText mSearchField;
-    private ImageView mSearchBtn;
-
-    String searchText ;
+    private String typeOfSearch;
+    private String searchedText;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_search);
+        Bundle bundle = getIntent().getExtras();
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference("Branches");
-        mSearchField = (EditText) findViewById(R.id.search_field);
-        mSearchBtn =  (ImageView) findViewById(R.id.imageViewbtn);
+        typeOfSearch = bundle.getString("typeofSearch");
+        searchedText = bundle.getString("searchText");
 
-
-        searchText = mSearchField.getText().toString();
-
-        setUpRecyclerView(searchText);
+        setUpRecyclerView(searchedText,typeOfSearch);
 
 
 
     }
 
-    private  void setUpRecyclerView(String searchText) {
+    private  void setUpRecyclerView(String searchText,String typeOfSearch) {
         Toast.makeText(ManageSearch.this, "Started Search", Toast.LENGTH_LONG).show();
 
         Query query = mUserDatabase.orderByChild("branchAddress").startAt(searchText).endAt(searchText + "\uf8ff"); //read the data inside the database
@@ -66,10 +59,6 @@ public class ManageSearch extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
-
-
-
-
 
     @Override
     protected void onStop() {
