@@ -38,7 +38,7 @@ public class ManageSearch extends AppCompatActivity {
         mUserDatabase = FirebaseDatabase.getInstance().getReference("Branches");
         typeOfSearch = bundle.getString("typeofSearch");
         searchedText = bundle.getString("searchText");
-        userID = bundle.getString("userID");
+//        userID = bundle.getString("userID");
         setUpRecyclerView(searchedText,typeOfSearch);
 
 
