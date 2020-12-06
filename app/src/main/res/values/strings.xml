@@ -60,6 +60,11 @@
         <item>12 PM</item>
         <item>Closed</item>
     </string-array>
+    <string-array name="typeOfSearch">
+        <item>Address</item>
+        <item>Service</item>
+        <item>Working Hours</item>
+    </string-array>
     <string name="title_activity_fill_form">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
 
