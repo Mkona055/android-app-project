@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (role.getText().toString().compareTo("Administrator") == 0){
                     startActivity(new Intent (MainActivity.this, AdminManagement.class));
+
                 }else if(role.getText().toString().compareTo("Employee") == 0){
                     if(!deliverServices){
                         intent.putExtra("branchID",branchID);
@@ -131,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
 
+                }else if (role.getText().toString().compareTo("Customer") == 0){
+                    Intent intent = new Intent(MainActivity.this, SelectServicesForCustomer.class);
+                    intent.putExtra("userUID",userID);
+                    startActivity(intent);
                 }
 
             }

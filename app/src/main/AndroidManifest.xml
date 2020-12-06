@@ -11,15 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".FillDocument">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FillForm">
+
+        </activity>
+        <activity android:name=".SelectServicesForCustomer" /> <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
         <!-- #### LIVRABLE 1 START HERE -->
         <!-- Frontpage activity, *** Let's Get Started *** -->
         <activity
             android:name=".Frontpage"
-            android:screenOrientation="portrait">
-
-        </activity> <!-- Login Activity, *** Login to your account ***** -->
+            android:screenOrientation="portrait"></activity> <!-- Login Activity, *** Login to your account ***** -->
         <activity
             android:name=".Login"
             android:screenOrientation="portrait" /> <!-- Register Activity, *** Create a new Account *** -->
@@ -46,7 +53,7 @@
             android:screenOrientation="portrait" /> <!-- Manage Account Activity, List View and delete Account -->
         <activity
             android:name=".ManageAccount"
-            android:screenOrientation="portrait" /><!-- #### LIVRABLE 2 END HERE -->
+            android:screenOrientation="portrait" /> <!-- #### LIVRABLE 2 END HERE -->
         <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
         <!-- #### LIVRABLE 3 START HERE -->
         <activity
@@ -60,20 +67,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".BranchActivity"
-            android:screenOrientation="portrait" /><!-- #### LIVRABLE 3 END HERE -->
-        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-        <!-- #### LIVRABLE 4 START HERE -->
-
-        <activity android:name=".ManageSearch"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-
-        </activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -78,6 +78,7 @@ buildscript {
 dependencies {
 
 
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'com.google.firebase:firebase-firestore:22.0.0'
     implementation 'androidx.drawerlayout:drawerlayout:1.0.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
