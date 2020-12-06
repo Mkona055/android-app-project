@@ -1,5 +1,6 @@
 package ca.novigrad;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,8 +15,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -70,23 +74,33 @@ public class RatingEmployes extends AppCompatActivity {
         stark2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!set2 && set1){
+                if(!set2 ){
+                    stark1.setBackgroundColor(Color.YELLOW);
                     stark2.setBackgroundColor(Color.YELLOW);
+                    set1 = true;
                     set2 = true;
                 }else{
                     stark2.setBackgroundColor(Color.WHITE);
-                    set2 = false;
+                    stark1.setBackgroundColor(Color.WHITE);
+                    set1 = set2 = false;
                 }
             }
         });
         stark3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!set3 && set1 && set2){
+                if(!set3 ){
+                    stark1.setBackgroundColor(Color.YELLOW);
+                    stark2.setBackgroundColor(Color.YELLOW);
                     stark3.setBackgroundColor(Color.YELLOW);
+                    set1 = true;
+                    set2 = true;
                     set3 = true;
                 }else{
                     stark3.setBackgroundColor(Color.WHITE);
+                    stark2.setBackgroundColor(Color.WHITE);
+                    stark1.setBackgroundColor(Color.WHITE);
+                    set1 = set2 = false;
                     set3 = false;
                 }
             }
@@ -94,11 +108,22 @@ public class RatingEmployes extends AppCompatActivity {
         stark4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!set4 && set1 && set2 && set3){
+                if(!set4 ){
                     stark4.setBackgroundColor(Color.YELLOW);
+                    stark1.setBackgroundColor(Color.YELLOW);
+                    stark2.setBackgroundColor(Color.YELLOW);
+                    stark3.setBackgroundColor(Color.YELLOW);
+                    set1 = true;
+                    set2 = true;
+                    set3 = true;
                     set4 = true;
                 }else{
                     stark4.setBackgroundColor(Color.WHITE);
+                    stark3.setBackgroundColor(Color.WHITE);
+                    stark2.setBackgroundColor(Color.WHITE);
+                    stark1.setBackgroundColor(Color.WHITE);
+                    set1 = set2 = false;
+                    set3 = false;
                     set4 = false;
                 }
             }
@@ -106,11 +131,26 @@ public class RatingEmployes extends AppCompatActivity {
         stark5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!set5 && set1 && set2 && set3 && set4){
+                if(!set5){
                     stark5.setBackgroundColor(Color.YELLOW);
+                    stark4.setBackgroundColor(Color.YELLOW);
+                    stark1.setBackgroundColor(Color.YELLOW);
+                    stark2.setBackgroundColor(Color.YELLOW);
+                    stark3.setBackgroundColor(Color.YELLOW);
+                    set1 = true;
+                    set2 = true;
+                    set3 = true;
+                    set4 = true;
                     set5 = true;
                 }else{
                     stark5.setBackgroundColor(Color.WHITE);
+                    stark4.setBackgroundColor(Color.WHITE);
+                    stark3.setBackgroundColor(Color.WHITE);
+                    stark2.setBackgroundColor(Color.WHITE);
+                    stark1.setBackgroundColor(Color.WHITE);
+                    set1 = set2 = false;
+                    set3 = false;
+                    set4 = false;
                     set5 = false;
                 }
             }
@@ -121,9 +161,9 @@ public class RatingEmployes extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap map = new HashMap<>();
+                final HashMap map = new HashMap<>();
 
-                Intent intent = new Intent(RatingEmployes.this, MainActivity.class );
+                final Intent intent = new Intent(RatingEmployes.this, Search.class );
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
 
@@ -138,9 +178,29 @@ public class RatingEmployes extends AppCompatActivity {
                 }else if(!set2 && set1){
                     rate =1;
                 }
-                map.put("Rate",rate);
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID);
-                ref.updateChildren(map);
+
+                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID);
+                ref.child("Rating").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            String rating = dataSnapshot.getValue(String.class);
+                            if(rating.compareTo("No ratings yet") == 0){
+
+                            }else{
+                                rate = (rate + Integer.parseInt(rating.split("/")[0].trim()))/2 ;
+
+                            }
+                            map.put("Rating",rate+"/5");
+                            ref.updateChildren(map);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
                 startActivity(intent);
             }

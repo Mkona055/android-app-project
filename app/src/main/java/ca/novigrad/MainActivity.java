@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }else if (role.getText().toString().compareTo("Customer") == 0){
-                    Intent intent = new Intent(MainActivity.this, SelectServicesForCustomer.class);
+                    Intent intent = new Intent(MainActivity.this, Search.class);
                     intent.putExtra("userUID",userID);
                     startActivity(intent);
                 }

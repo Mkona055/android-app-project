@@ -12,14 +12,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Search extends AppCompatActivity {
     private Spinner spinner;
     private ImageView searchButton;
     private EditText searchFor;
+    private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        Bundle bundle = getIntent().getExtras();
+        userID = bundle.getString("userID");
+
         spinner = findViewById(R.id.spinnerTypeOfSearch);
         searchButton = findViewById(R.id.imageViewbtnSearch);
         searchFor = findViewById(R.id.editTextSearch_field);
@@ -41,6 +48,7 @@ public class Search extends AppCompatActivity {
                 Intent intent = new Intent(Search.this,ManageSearch.class);
                 intent.putExtra("typeofSearch",spinner.getSelectedItem().toString());
                 intent.putExtra("searchText",searchFor.getText().toString());
+                intent.putExtra("userID",userID);
                 startActivity(intent);
             }
         });

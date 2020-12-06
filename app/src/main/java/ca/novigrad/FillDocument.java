@@ -52,14 +52,14 @@ public class FillDocument extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_document);
         final Bundle bundle = getIntent().getExtras();
-        // we get the employee information from MainActivity
-        //branchID = bundle.getString("branchID");
-        //userID = bundle.getString("userUID");
-        requestKey = "test15";//bundle.getString("requestKey");
+
+        branchID = bundle.getString("branchID");
+        userID = bundle.getString("userUID");
+        requestKey = bundle.getString("requestKey");
         next = findViewById(R.id.buttonContinueToRating);
-        serviceSelectedKey ="-MLBRlHznL1Ste49lNHQ"; //bundle.getString("serviceSelectedKey");
+        serviceSelectedKey =bundle.getString("serviceSelectedKey");
         serviceSelectedName = findViewById(R.id.textViewServiceSelectedDocument);
-        serviceSelectedName.setText("Driver's license document");//bundle.getString("serviceSelectedName") + " document");
+        serviceSelectedName.setText(bundle.getString("serviceSelectedName") + " document");
 
         documents = new ArrayList<>();
         documentAdapter = new DocumentAdapter(this,R.layout.row_for_document_upload,documents);
@@ -94,28 +94,13 @@ public class FillDocument extends AppCompatActivity {
                 }
                 HashMap map = new HashMap();
                 map.put("serviceSelectedKey",serviceSelectedKey);
+                map.put("missingDocuments",false);
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("Requests").child(requestKey);
                 ref.updateChildren(map);
                 Intent intent = new Intent(FillDocument.this, RatingEmployes.class );
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
-//                intent.putExtra("serviceSelectedKey", serviceSelectedKey);
-//                intent.putExtra("serviceSelectedName", bundle.getString("serviceSelectedName"));
-//                HashMap map = new HashMap<>();
-//                for(Pair p : fieldNames){
-//                    String fName = p.getFieldName();
-//                    String filling  = p.getFilling();
-//                    if(filling.compareTo(Pair.TO_FILL)==0){
-//                        Toast.makeText(getApplicationContext(),"field " + fName+ "must be filled ", Toast.LENGTH_LONG);
-//                        return;
-//                    }else{
-//                        map.put(fName,filling);
-//                    }
-//                }
-//                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("Requests");
-                String requestKey = ref.push().getKey();
                 intent.putExtra("requestKey",requestKey);
-                ref.child(requestKey).updateChildren(map);
                 startActivity(intent);
             }
         });
