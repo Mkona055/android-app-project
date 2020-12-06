@@ -52,11 +52,8 @@ public class SelectServicesForCustomer extends AppCompatActivity {
 
 
         servicesOffered = new ArrayList<>();
-        // a reference to the employee information in the Firestore
         documentReference = FirebaseFirestore.getInstance().collection("users").document(userID);
-        // is used to store services information as Service object
         servicesInfo = new ArrayList<>();
-        // is used to set up the listView using the serviceNames only
         services = new ArrayList<>();
         servicesKey = new ArrayList<>();
         listViewServices = findViewById(R.id.ListViewServiceToSelectCustomer);

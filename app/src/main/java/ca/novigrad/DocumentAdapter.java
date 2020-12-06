@@ -30,7 +30,7 @@ public class DocumentAdapter extends ArrayAdapter<Image> {
 
         convertView = layoutInflater.inflate(mResource, parent, false);
         ImageView imageView = convertView.findViewById(R.id.imageViewForDocument);
-        TextView documentName = convertView.findViewById(R.id.textViewServiceSelectedDocument);
+        TextView documentName = convertView.findViewById(R.id.textViewForDocument);
         documentName.setText(getItem(position).getDocumentName());
         if(!(getItem(position).getImage() == null)){
             imageView.setImageURI(getItem(position).getImage());

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,11 +15,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +34,7 @@ import java.util.HashMap;
 public class FillDocument extends AppCompatActivity {
     private String branchID;
     private String userID;
+    private String requestKey;
     private String serviceSelectedKey;
     private ListView listView;
     private TextView serviceSelectedName;
@@ -33,6 +42,8 @@ public class FillDocument extends AppCompatActivity {
     private ArrayList<Image> documents;
     private DocumentAdapter documentAdapter;
     private DatabaseReference db;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
     private Image tmpImage;
     public Uri imageUri;
     @Override
@@ -43,6 +54,7 @@ public class FillDocument extends AppCompatActivity {
         // we get the employee information from MainActivity
         //branchID = bundle.getString("branchID");
         //userID = bundle.getString("userUID");
+        requestKey = "test15";//bundle.getString("requestKey");
         next = findViewById(R.id.buttonContinueToRating);
         serviceSelectedKey ="-MLBRlHznL1Ste49lNHQ"; //bundle.getString("serviceSelectedKey");
         serviceSelectedName = findViewById(R.id.textViewServiceSelectedDocument);
@@ -50,7 +62,7 @@ public class FillDocument extends AppCompatActivity {
 
         documents = new ArrayList<>();
         documentAdapter = new DocumentAdapter(this,R.layout.row_for_document_upload,documents);
-        listView = findViewById(R.id.listViewServiceForm);
+        listView = findViewById(R.id.listViewDocumentToUpload);
         db = FirebaseDatabase.getInstance().getReference("Services").child(serviceSelectedKey);
         db.child("documents").addValueEventListener(new ValueEventListener() {
             @Override
@@ -67,10 +79,13 @@ public class FillDocument extends AppCompatActivity {
 
             }
         });
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 //                Intent intent = new Intent(FillForm.this, FillDocument.class );
 //                intent.putExtra("userUID", userID);
 //                intent.putExtra("branchID", branchID);
@@ -96,6 +111,35 @@ public class FillDocument extends AppCompatActivity {
         });
 
 
+    }
+
+    private void uploadPicture(String path) {
+        final ProgressDialog pD = new ProgressDialog(this);
+        pD.setTitle("Uploading Image ...");
+        pD.show();
+        StorageReference riversRef = storageReference.child("images/" + requestKey).child(path);
+        riversRef.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        pD.dismiss();
+                        Snackbar.make((findViewById(android.R.id.content)),"Image Uploaded", Snackbar.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        pD.dismiss();
+                        Toast.makeText(getApplicationContext(), "Failed To Upload",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        double progressPercent = (100.00 * snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
+                        pD.setMessage("Percentage " + (int) progressPercent + "%");
+                    }
+                });
     }
 
     @Override
@@ -125,6 +169,8 @@ public class FillDocument extends AppCompatActivity {
             imageUri = data.getData();
             tmpImage.setImage(imageUri);
             documentAdapter.notifyDataSetChanged();
+            uploadPicture(tmpImage.getDocumentName());
+            
         }
     }
 }
