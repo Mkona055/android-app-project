@@ -14,6 +14,10 @@ public class RequestTest {
     private String serviceRequested;
     private  String selectedKey;
 
+    private Pair pair;
+    private String fieldName;
+    private String filling;
+
     private SelectServicesForCustomer serviceSelected;
     private ListView servicesForCustomer;
 
@@ -36,15 +40,13 @@ public class RequestTest {
 
     }
     @Test
-    public void checkSelectServicesForCustomer(){
+    public void checkPair(){
+        fieldName = "myFieldName";
+        pair = new Pair(fieldName, filling);
+        pair.setFilling("myFilling");
+        assertEquals("myFieldName", pair.getFieldName());
+        assertEquals("myFilling", pair.getFilling());
 
     }
-    @Test
-    public void checkFillForm(){
 
-    }
-    @Test
-    public void checkFillDocument(){
-
-    }
 }
