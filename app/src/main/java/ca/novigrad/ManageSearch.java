@@ -48,17 +48,20 @@ public class ManageSearch extends AppCompatActivity {
     private  void setUpRecyclerView(String searchText,String typeOfSearch) {
         Toast.makeText(ManageSearch.this, "Searching..", Toast.LENGTH_SHORT).show();
 
-        Query query = mUserDatabase.orderByChild("branchAddress").startAt(searchText).endAt(searchText + "\uf8ff"); //read the data inside the database
+        if(typeOfSearch.compareTo("Address") == 0){
+            Query query = mUserDatabase.orderByChild("branchAddress").startAt(searchText).endAt(searchText + "\uf8ff"); //read the data inside the database
 
-        FirebaseRecyclerOptions<SearchList> options = new FirebaseRecyclerOptions.Builder<SearchList>()
-                .setQuery(query, SearchList.class)
-                .build();
-        adapter = new SearchAdapter(options);
-        RecyclerView recyclerView = findViewById(R.id.result_list);
+            FirebaseRecyclerOptions<SearchList> options = new FirebaseRecyclerOptions.Builder<SearchList>()
+                    .setQuery(query, SearchList.class)
+                    .build();
+            adapter = new SearchAdapter(options);
+            RecyclerView recyclerView = findViewById(R.id.result_list);
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(adapter);
+        }
+
 
     }
 

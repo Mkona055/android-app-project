@@ -155,7 +155,7 @@ public class RatingEmployes extends AppCompatActivity {
             public void onClick(View v) {
                 final HashMap map = new HashMap<>();
 
-                final Intent intent = new Intent(RatingEmployes.this, Search.class );
+                final Intent intent = new Intent(RatingEmployes.this, MainActivity.class );
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
 
@@ -182,7 +182,7 @@ public class RatingEmployes extends AppCompatActivity {
 
                     }
                 });
-                Toast.makeText(RatingEmployes.this,"Your request has been sent" , Toast.LENGTH_LONG).show();
+                Toast.makeText(RatingEmployes.this,"Your request has been sent. You will receive at your address the decision about it" , Toast.LENGTH_LONG).show();
 
             }
         });

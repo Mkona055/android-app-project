@@ -118,7 +118,7 @@ public class ViewDocumentFilled extends AppCompatActivity {
 
         ImageView imageView = dialogView.findViewById(R.id.imageViewDocumentChosen);
         Picasso.get().load(image.getImage()).into(imageView);
-        
+
         final AlertDialog b = dialogBuilder.create();
         b.show();
     }
@@ -158,6 +158,7 @@ public class ViewDocumentFilled extends AppCompatActivity {
                 intent.putExtra("serviceRequested",serviceRequested);
                 intent.putExtra("serviceSelectedKey",serviceSelectedKey);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -167,6 +168,14 @@ public class ViewDocumentFilled extends AppCompatActivity {
                 HashMap map = new HashMap();
                 map.put("status","Approved");
                 db2.updateChildren(map);
+                Intent intent = new Intent(ViewDocumentFilled.this,CustomersRequest.class);
+                intent.putExtra("branchID",branchID);
+                intent.putExtra("userID",userID);
+                intent.putExtra("requestKey",requestKey);
+                intent.putExtra("serviceRequested",serviceRequested);
+                intent.putExtra("serviceSelectedKey",serviceSelectedKey);
+                startActivity(intent);
+                finish();
             }
         });
         final AlertDialog b = dialogBuilder.create();

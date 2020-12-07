@@ -74,6 +74,7 @@ public class CustomersRequest extends AppCompatActivity {
                 intent.putExtra("serviceRequested",requests.get(position).getServiceRequested());
                 intent.putExtra("serviceSelectedKey",requests.get(position).getServiceSelectedKey());
                 startActivity(intent);
+                finish();
             }
         });
     }
