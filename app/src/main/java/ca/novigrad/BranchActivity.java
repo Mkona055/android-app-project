@@ -3,7 +3,6 @@ package ca.novigrad;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -183,7 +182,7 @@ public class BranchActivity extends AppCompatActivity {
 
     }
 
-    public void setDaySchedule(DaySchedule daySchedule, ArrayList schedule) {
+    public static void setDaySchedule(DaySchedule daySchedule, ArrayList schedule) {
         if(daySchedule.getStartingTime().contains("Closed") || daySchedule.getFinishingTime().contains("Closed")){
             schedule.add("Closed");
         }else if(daySchedule.getStartingTime().contains("Not defined yet") || daySchedule.getFinishingTime().contains("Not defined yet")){
