@@ -86,6 +86,7 @@ public class FillForm extends AppCompatActivity {
                         return;
                     }else{
                         map.put("field"+count,fName + "/"+filling);
+                        count++;
                     }
                 }
 

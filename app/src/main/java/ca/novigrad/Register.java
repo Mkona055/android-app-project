@@ -183,7 +183,7 @@ public class Register extends AppCompatActivity {
 
                                 map.put("branchAddress", bAddress);
                                 map.put("branchID", bNumber);
-                                map.put("Rating","No ratings yet");
+                                map.put("rating","No ratings yet");
 
                                 dr.child(bNumber).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -240,10 +240,46 @@ public class Register extends AppCompatActivity {
 
                         }
 
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 
+                        }
+                    });
+                }else {
+                    fAuth.createUserWithEmailAndPassword(fStoreEmail, fStorePassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressBar.setVisibility(View.VISIBLE);
+                            if(task.isSuccessful()){
+                                Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                                userID = fAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = fStore.collection("users").document(userID);
+
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("FullName", fStoreFullName);
+                                user.put("Email", fStoreEmail);
+                                user.put("PhoneNumber",userPhoneNumber);
+                                user.put("Role", role);
+                                user.put("Address",cAddress);
+
+
+                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "onSuccess: user Profile is created for" + userID);
+                                    }
+                                });
+
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
+                            } else{
+
+                                Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            //the progress bar is just see when we finish the process of registration
+                            progressBar.setVisibility(View.GONE);
                         }
                     });
                 }
@@ -332,7 +368,7 @@ public class Register extends AppCompatActivity {
                 branchAddress.setError("An address must be entered");
                 return false;
             }
-            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
+            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+(\\s\\w+)+";
             if(!bAddress.matches(regex)){
                 branchAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
                 return false;
@@ -349,7 +385,7 @@ public class Register extends AppCompatActivity {
                 customerAddress.setError("An address must be entered");
                 return false;
             }
-            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
+            regex = "^\\d+\\s[A-z]+\\s[A-z]+,+\\s[A-z]+,+\\s[A-z]+,+(\\s\\w+)+";
             if(!cAddress.matches(regex) ){
                 customerAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
                 return false;

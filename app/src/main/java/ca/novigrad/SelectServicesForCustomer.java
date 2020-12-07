@@ -34,7 +34,7 @@ public class SelectServicesForCustomer extends AppCompatActivity {
     private ArrayAdapter<String> serviceAdapter;
     private String branchID;
     private String userID;
-    private TextView noService;
+
 
 
     @Override
@@ -59,15 +59,12 @@ public class SelectServicesForCustomer extends AppCompatActivity {
         serviceAdapter = new ArrayAdapter<>(SelectServicesForCustomer.this, android.R.layout.simple_list_item_1,services);
         databaseReference = FirebaseDatabase.getInstance().getReference("Branches");
 
-        // is used when the user does not select any service
-        noService = findViewById(R.id.textViewNumberOfServicesSelected);
-        noService.setVisibility(View.GONE);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // while initializing the listview we take the last key of the serviceOffered this key will be used to find the nextIndex of the next service we are looking to add
+
         databaseReference.child(branchID).child("servicesOffered").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

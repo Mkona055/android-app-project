@@ -12,23 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Search">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".RatingEmployes" />
         <activity android:name=".ViewDocumentFilled" />
         <activity android:name=".ViewFormFilled" />
         <activity android:name=".ManageSearch">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".FillDocument">
 
@@ -39,7 +27,13 @@
         <!-- Frontpage activity, *** Let's Get Started *** -->
         <activity
             android:name=".Frontpage"
-            android:screenOrientation="portrait" /> <!-- Login Activity, *** Login to your account ***** -->
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity> <!-- Login Activity, *** Login to your account ***** -->
         <activity
             android:name=".Login"
             android:screenOrientation="portrait" /> <!-- Register Activity, *** Create a new Account *** -->

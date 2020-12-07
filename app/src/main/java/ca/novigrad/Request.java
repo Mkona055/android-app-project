@@ -11,6 +11,9 @@ public class Request {
         this.status = status;
         this.serviceRequested = serviceRequested;
     }
+    public Request(){
+
+    }
 
     public String getSender() {
         return sender;

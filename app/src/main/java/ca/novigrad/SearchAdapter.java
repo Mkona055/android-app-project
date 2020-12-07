@@ -41,10 +41,10 @@ public class SearchAdapter extends FirebaseRecyclerAdapter<SearchList, SearchAda
             public void OnItemClicked(View v, int layoutPosition) {
 
             //Toast.makeText(context,test , Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(context, MainActivity.class);
+            Intent intent = new Intent(context, SelectServicesForCustomer.class);
+            intent.putExtra("branchID", test );
             context.startActivity(intent);
 
-            intent.putExtra("BranchID", test );
 
             }
         });

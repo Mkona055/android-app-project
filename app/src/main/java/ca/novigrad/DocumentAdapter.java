@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class DocumentAdapter extends ArrayAdapter<Image> {
@@ -33,7 +36,12 @@ public class DocumentAdapter extends ArrayAdapter<Image> {
         TextView documentName = convertView.findViewById(R.id.textViewForDocument);
         documentName.setText(getItem(position).getDocumentName());
         if(!(getItem(position).getImage() == null)){
-            imageView.setImageURI(getItem(position).getImage());
+            if(getItem(position).getImage().toString().contains("https://")){
+                Picasso.get().load(getItem(position).getImage()).into(imageView);
+            }else{
+                imageView.setImageURI(getItem(position).getImage());
+            }
+
         }
 
         return convertView;

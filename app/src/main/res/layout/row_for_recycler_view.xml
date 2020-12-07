@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="58dp">
+        android:layout_height="73dp">
 
         <TextView
             android:id="@+id/textViewFieldName"
@@ -20,7 +20,7 @@
             android:layout_marginTop="10dp"
             android:text="Name :"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewToFill"

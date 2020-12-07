@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -211,6 +212,10 @@ public class BranchActivity extends AppCompatActivity {
         dialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                if(servicesOfferedID.size() == 1){
+                    Toast.makeText(BranchActivity.this,"Failed - A branch must offer at least one service",Toast.LENGTH_LONG);
+                    return;
+                }
                 servicesOfferedID.remove(serviceOfferedID);
                 DatabaseReference dbReference = databaseReference.child("servicesOffered").child(serviceOfferedID);
                 dbReference.removeValue();

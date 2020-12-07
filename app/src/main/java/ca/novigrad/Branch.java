@@ -6,6 +6,7 @@ public class Branch {
     private String branchID;
     private String branchAddress;
     private HashMap<String,HashMap<String,String>> schedule;
+    private String rating;
 
     public Branch(){
 
@@ -16,5 +17,8 @@ public class Branch {
 
     public String getBranchID() {
         return branchID;
+    }
+    public String getRating(){
+        return rating;
     }
 }

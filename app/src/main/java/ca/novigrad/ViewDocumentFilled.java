@@ -8,11 +8,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +35,7 @@ public class ViewDocumentFilled extends AppCompatActivity {
     private ListView listView;
     private TextView title;
     private ImageView next;
-    private ArrayList<Image> formFilled;
+    private ArrayList<Image> documents;
     private ArrayList<String> docs;
     private DocumentAdapter adapter;
     private String branchID;
@@ -53,19 +57,31 @@ public class ViewDocumentFilled extends AppCompatActivity {
         serviceRequested = bundle.getString("serviceRequested");
         serviceSelectedKey = bundle.getString("serviceSelectedKey");
         listView = findViewById(R.id.listViewDocumentFilled);
-        formFilled = new ArrayList<>();
-        adapter = new DocumentAdapter(this,R.layout.row_for_recycler_view,formFilled);
-        title = findViewById(R.id.textViewFormFilledTitle);
-        next = findViewById(R.id.imageViewMoveToDocumentsChecking);
-        db = FirebaseDatabase.getInstance().getReference("Services").child(serviceSelectedKey).child("document");
+        docs = new ArrayList<>();
+        documents = new ArrayList<>();
+        adapter = new DocumentAdapter(this,R.layout.row_for_document_upload,documents);
+        title = findViewById(R.id.textViewDocumentFilledTitle);
+        next = findViewById(R.id.imageViewOpenDialogJudge);
+        db = FirebaseDatabase.getInstance().getReference("Services").child(serviceSelectedKey).child("documents");
         db2 = FirebaseDatabase.getInstance().getReference("Branches").child(branchID).child("Requests").child(requestKey);
-        storageReference = FirebaseStorage.getInstance().getReference().child("images/" + requestKey);
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        title.setText(serviceRequested + " documents");
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String docName = dataSnapshot.getValue(String.class);
                     docs.add(docName);
+                }
+
+                for(final String docName :docs){
+                    downloadFile(docName);
                 }
             }
 
@@ -74,12 +90,7 @@ public class ViewDocumentFilled extends AppCompatActivity {
 
             }
         });
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        title.setText(serviceRequested + " documents");
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,22 +98,44 @@ public class ViewDocumentFilled extends AppCompatActivity {
 
             }
         });
-        for(String docName :docs){
-            downloadFile(docName);
-        }
-        listView.setAdapter(adapter);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openViewDocumentDialog(position);
+            }
+        });
+    }
+
+    private void openViewDocumentDialog(int position) {
+        Image image = documents.get(position);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.view_document,null);
+        dialogBuilder.setView(dialogView).setTitle(image.getDocumentName());
+
+        ImageView imageView = dialogView.findViewById(R.id.imageViewDocumentChosen);
+        Picasso.get().load(image.getImage()).into(imageView);
+        
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
     }
 
     private void downloadFile(final String docName) {
-        storageReference.child(docName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageReference.child("images/").child(requestKey+"/").child(docName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                formFilled.add(new Image(uri,docName));
+                documents.add(new Image(uri,docName));
+                if(documents.size() == docs.size()){
+                    listView.setAdapter(adapter);
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                Toast.makeText(ViewDocumentFilled.this,"Pictures loading failed",Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -88,7 +88,7 @@ public class FillDocument extends AppCompatActivity {
             public void onClick(View v) {
                 for(Image document : documents){
                     if(document.getImage()==null){
-                        Toast.makeText(FillDocument.this,"Upload an image for " + document.getDocumentName(),Toast.LENGTH_LONG);
+                        Toast.makeText(FillDocument.this,"Upload an image for " + document.getDocumentName(),Toast.LENGTH_LONG).show();
                         return;
                     }
                 }

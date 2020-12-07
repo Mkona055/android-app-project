@@ -38,7 +38,7 @@ public class CustomersRequest extends AppCompatActivity {
         requests = new ArrayList<>();
         requestsKeys = new ArrayList<>();
         requestAdapter = new RequestAdapter(this,R.layout.row_for_requests,requests);
-        listView = findViewById(R.id.listViewServiceForm);
+        listView = findViewById(R.id.listViewRequests);
         db = FirebaseDatabase.getInstance().getReference("Branches").child(branchID).child("Requests");
         db.addValueEventListener(new ValueEventListener() {
             @Override

@@ -59,17 +59,16 @@
 
     <ListView
         android:id="@+id/listViewDocumentToUpload"
-        android:layout_width="match_parent"
-        android:layout_height="410dp"
+        android:layout_width="384dp"
+        android:layout_height="386dp"
         android:layout_above="@+id/imageView13"
-        android:layout_below="@+id/textViewServiceSelectedForm"
+        android:layout_below="@+id/textViewServiceSelectedDocument"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="56dp"
-        >
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="80dp">
 
     </ListView>
 

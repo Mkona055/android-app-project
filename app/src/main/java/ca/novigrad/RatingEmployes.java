@@ -46,7 +46,8 @@ public class RatingEmployes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating_employes);
-
+        Bundle bundle = getIntent().getExtras();
+        branchID = bundle.getString("branchID");
         finish =findViewById(R.id.finishRating);
         stark2 = findViewById(R.id.btnStark2);
         stark3 = findViewById(R.id.btnStark3);
@@ -65,10 +66,14 @@ public class RatingEmployes extends AppCompatActivity {
                 if(!set1) {
                     stark1.setBackgroundColor(Color.YELLOW);
                     set1 = true;
-                }else{
-                    stark1.setBackgroundColor(Color.WHITE);
-                    set1 = false;
+
                 }
+                rate = 1 ;
+                stark5.setBackgroundColor(Color.WHITE);
+                stark4.setBackgroundColor(Color.WHITE);
+                stark3.setBackgroundColor(Color.WHITE);
+                stark2.setBackgroundColor(Color.WHITE);
+                set2 = set3 = set4 = set5 = false;
             }
         });
         stark2.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +84,13 @@ public class RatingEmployes extends AppCompatActivity {
                     stark2.setBackgroundColor(Color.YELLOW);
                     set1 = true;
                     set2 = true;
-                }else{
-                    stark2.setBackgroundColor(Color.WHITE);
-                    stark1.setBackgroundColor(Color.WHITE);
-                    set1 = set2 = false;
+
                 }
+                rate = 2;
+                stark5.setBackgroundColor(Color.WHITE);
+                stark4.setBackgroundColor(Color.WHITE);
+                stark3.setBackgroundColor(Color.WHITE);
+                set3 = set4 = set5 = false;
             }
         });
         stark3.setOnClickListener(new View.OnClickListener() {
@@ -96,13 +103,12 @@ public class RatingEmployes extends AppCompatActivity {
                     set1 = true;
                     set2 = true;
                     set3 = true;
-                }else{
-                    stark3.setBackgroundColor(Color.WHITE);
-                    stark2.setBackgroundColor(Color.WHITE);
-                    stark1.setBackgroundColor(Color.WHITE);
-                    set1 = set2 = false;
-                    set3 = false;
+
                 }
+                rate = 3;
+                stark5.setBackgroundColor(Color.WHITE);
+                stark4.setBackgroundColor(Color.WHITE);
+                set4 = set5 = false;
             }
         });
         stark4.setOnClickListener(new View.OnClickListener() {
@@ -117,15 +123,10 @@ public class RatingEmployes extends AppCompatActivity {
                     set2 = true;
                     set3 = true;
                     set4 = true;
-                }else{
-                    stark4.setBackgroundColor(Color.WHITE);
-                    stark3.setBackgroundColor(Color.WHITE);
-                    stark2.setBackgroundColor(Color.WHITE);
-                    stark1.setBackgroundColor(Color.WHITE);
-                    set1 = set2 = false;
-                    set3 = false;
-                    set4 = false;
                 }
+                rate = 4;
+                stark5.setBackgroundColor(Color.WHITE);
+                set5 = false;
             }
         });
         stark5.setOnClickListener(new View.OnClickListener() {
@@ -142,17 +143,8 @@ public class RatingEmployes extends AppCompatActivity {
                     set3 = true;
                     set4 = true;
                     set5 = true;
-                }else{
-                    stark5.setBackgroundColor(Color.WHITE);
-                    stark4.setBackgroundColor(Color.WHITE);
-                    stark3.setBackgroundColor(Color.WHITE);
-                    stark2.setBackgroundColor(Color.WHITE);
-                    stark1.setBackgroundColor(Color.WHITE);
-                    set1 = set2 = false;
-                    set3 = false;
-                    set4 = false;
-                    set5 = false;
                 }
+                rate = 5;
             }
         });
 
@@ -167,33 +159,22 @@ public class RatingEmployes extends AppCompatActivity {
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
 
-                if (set5){
-                    rate = 5;
-                }else if(!set5 && set4){
-                    rate =4;
-                }else if(!set4 && set3){
-                    rate =3;
-                }else if(!set3 && set2){
-                    rate =2;
-                }else if(!set2 && set1){
-                    rate =1;
-                }
-
                 final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID);
-                ref.child("Rating").addValueEventListener(new ValueEventListener() {
+                ref.child("rating").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                            String rating = dataSnapshot.getValue(String.class);
+
+                            String rating = snapshot.getValue(String.class);
                             if(rating.compareTo("No ratings yet") == 0){
 
                             }else{
                                 rate = (rate + Integer.parseInt(rating.split("/")[0].trim()))/2 ;
 
                             }
-                            map.put("Rating",rate+"/5");
+                            map.put("rating",rate+"/5");
                             ref.updateChildren(map);
-                        }
+
+                            startActivity(intent);
                     }
 
                     @Override
@@ -201,8 +182,8 @@ public class RatingEmployes extends AppCompatActivity {
 
                     }
                 });
+                Toast.makeText(RatingEmployes.this,"Your request has been sent" , Toast.LENGTH_LONG).show();
 
-                startActivity(intent);
             }
         });
     }
