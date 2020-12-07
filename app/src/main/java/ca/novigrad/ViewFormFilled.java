@@ -69,7 +69,7 @@ public class ViewFormFilled extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String fieldAndFilling = dataSnapshot.getValue(String.class);
-                    String[] split = fieldAndFilling.split("/");
+                    String[] split = fieldAndFilling.split("%");
                     Pair formField = new Pair (split[0],split[1]);
                     formFilled.add(formField);
                 }

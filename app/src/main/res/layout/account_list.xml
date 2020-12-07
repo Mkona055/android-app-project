@@ -39,7 +39,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewPhoneNumber4"
+            android:id="@+id/textViewRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PhoneNumber"
@@ -53,8 +53,8 @@
             android:layout_marginBottom="8dp"
             android:text="Role"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber4"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumber4" />
+            app:layout_constraintStart_toStartOf="@+id/textViewRating"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRating" />
 
         <TextView
             android:id="@+id/textViewBranchIDLabel"

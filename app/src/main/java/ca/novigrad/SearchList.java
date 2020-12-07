@@ -5,6 +5,7 @@ public class SearchList {
 
     private String BranchID;
     private String BranchAddress;
+    private String Rating;
 
 
 
@@ -33,6 +34,14 @@ public class SearchList {
 
     public String getBranchAddress() {
         return this.BranchAddress;
+    }
+
+    public String getRating() {
+        return this.Rating;
+    }
+
+    public void setRating(String rating) {
+        Rating = rating;
     }
 
     public void setBranchAddress(String BranchAddress) {

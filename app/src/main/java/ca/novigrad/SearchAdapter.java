@@ -33,6 +33,7 @@ public class SearchAdapter extends FirebaseRecyclerAdapter<SearchList, SearchAda
     protected void onBindViewHolder(@NonNull SearchHolder holder, int position, @NonNull SearchList model) {
         holder.branch_address.setText(model.getBranchAddress());
         holder.branch_id.setText(model.getBranchID());
+        holder.branchRating.setText(model.getRating());
 
          test = model.getBranchID();
 
@@ -63,7 +64,7 @@ public class SearchAdapter extends FirebaseRecyclerAdapter<SearchList, SearchAda
 
     class SearchHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView branch_id, branch_address;
+        private TextView branch_id, branch_address,branchRating;
         private ItemClickListener itemClickListener;
 
 
@@ -73,6 +74,7 @@ public class SearchAdapter extends FirebaseRecyclerAdapter<SearchList, SearchAda
 
             branch_id = itemView.findViewById(R.id.textViewBranchID4);
             branch_address = itemView.findViewById(R.id.textViewBranchAddress4);
+            branchRating = itemView.findViewById(R.id.textViewRatingID5);
 
             itemView.setOnClickListener(this);
         }

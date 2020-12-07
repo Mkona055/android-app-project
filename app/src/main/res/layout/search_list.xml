@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="83dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:background="@color/NovigradYellow">
@@ -20,42 +20,35 @@
             android:id="@+id/textViewBranchAddress4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
             android:text="Branch Address"
             android:textColor="#454040"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textViewBranchID4"
+            app:layout_constraintStart_toEndOf="@+id/textViewBranchAddressLabel"
             app:layout_constraintTop_toBottomOf="@+id/textViewBranchID4" />
 
         <TextView
             android:id="@+id/textViewBranchID4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="52dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:text="Branch ID"
             android:textColor="#454040"
-            app:layout_constraintStart_toEndOf="@+id/textViewPhoneNumberLabel"
+            app:layout_constraintStart_toEndOf="@+id/textViewBranchIDLabel"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewPhoneNumber4"
+            android:id="@+id/textViewRatingID5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Available Schedule"
-            app:layout_constraintStart_toStartOf="@+id/textViewBranchAddress4"
+            android:layout_marginStart="72dp"
+            android:text="rating"
+            android:textColor="#454040"
+            app:layout_constraintStart_toEndOf="@+id/textViewPhoneNumberLabel"
             app:layout_constraintTop_toBottomOf="@+id/textViewBranchAddress4" />
-
-        <TextView
-            android:id="@+id/textViewEmail4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Services List"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumber4"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumber4" />
 
         <TextView
             android:id="@+id/textViewBranchIDLabel"
@@ -70,25 +63,19 @@
             android:id="@+id/textViewBranchAddressLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="Branch Address:"
-            app:layout_constraintStart_toStartOf="@+id/textViewBranchIDLabel"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewBranchIDLabel" />
 
         <TextView
             android:id="@+id/textViewPhoneNumberLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Schedule:            "
-            app:layout_constraintStart_toStartOf="@+id/textViewBranchAddressLabel"
+            android:layout_marginStart="8dp"
+            android:text="Rating:"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewBranchAddressLabel" />
-
-        <TextView
-            android:id="@+id/textViewEmailLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ServiceOffered:"
-            app:layout_constraintStart_toStartOf="@+id/textViewPhoneNumberLabel"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumberLabel" />
 
         <ImageView
             android:id="@+id/imageView_add"

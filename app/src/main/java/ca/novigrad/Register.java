@@ -368,7 +368,7 @@ public class Register extends AppCompatActivity {
                 branchAddress.setError("An address must be entered");
                 return false;
             }
-            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+(\\s\\w+)+";
+            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
             if(!bAddress.matches(regex)){
                 branchAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
                 return false;
@@ -385,7 +385,7 @@ public class Register extends AppCompatActivity {
                 customerAddress.setError("An address must be entered");
                 return false;
             }
-            regex = "^\\d+\\s[A-z]+\\s[A-z]+,+\\s[A-z]+,+\\s[A-z]+,+(\\s\\w+)+";
+            regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
             if(!cAddress.matches(regex) ){
                 customerAddress.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
                 return false;

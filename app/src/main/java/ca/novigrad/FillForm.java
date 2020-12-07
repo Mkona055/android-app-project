@@ -82,10 +82,10 @@ public class FillForm extends AppCompatActivity {
                     String fName = p.getFieldName();
                     String filling  = p.getFilling();
                     if(filling.compareTo(Pair.TO_FILL)==0){
-                        Toast.makeText(getApplicationContext(),"field " + fName+ "must be filled ", Toast.LENGTH_LONG);
+                        Toast.makeText(getApplicationContext(),"field " + fName+ "must be filled ", Toast.LENGTH_LONG).show();
                         return;
                     }else{
-                        map.put("field"+count,fName + "/"+filling);
+                        map.put("field"+count,fName + "%"+filling);
                         count++;
                     }
                 }

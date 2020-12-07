@@ -50,7 +50,7 @@ public class AccountAdapter extends FirestoreRecyclerAdapter<AccountList, Accoun
 
             email = itemView.findViewById(R.id.textViewBranchID4);
             fullName = itemView.findViewById(R.id.textViewBranchAddress4);
-            phone = itemView.findViewById(R.id.textViewPhoneNumber4);
+            phone = itemView.findViewById(R.id.textViewRating);
             role = itemView.findViewById(R.id.textViewEmail4);
 
 
