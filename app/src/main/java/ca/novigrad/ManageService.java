@@ -162,7 +162,7 @@ public class ManageService extends AppCompatActivity {
         final ArrayList<String> documents = new ArrayList<>();
         final ArrayAdapter<String> documentsAdapter = new ArrayAdapter<>(ManageService.this, android.R.layout.simple_list_item_1,documents);
 
-        dialogBuilder.setView(dialogView).setTitle("Update Service ").setPositiveButton("Close", new DialogInterface.OnClickListener() {
+        dialogBuilder.setView(dialogView).setTitle("View Service ").setPositiveButton("Close", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
