@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".GreetingActivity"></activity>
         <activity android:name=".Search"></activity>
-        <activity android:name=".RatingEmployes" />
+        <activity android:name=".RatingEmployee" />
         <activity android:name=".ViewDocumentFilled" />
         <activity android:name=".ViewFormFilled" />
         <activity android:name=".ManageSearch"></activity>

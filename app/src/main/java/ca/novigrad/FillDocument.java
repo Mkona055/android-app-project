@@ -97,7 +97,7 @@ public class FillDocument extends AppCompatActivity {
                 map.put("missingDocuments",false);
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Branches").child(branchID).child("Requests").child(requestKey);
                 ref.updateChildren(map);
-                Intent intent = new Intent(FillDocument.this, RatingEmployes.class );
+                Intent intent = new Intent(FillDocument.this, RatingEmployee.class );
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
                 intent.putExtra("requestKey",requestKey);

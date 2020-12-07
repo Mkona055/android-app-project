@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
 
-public class RatingEmployes extends AppCompatActivity {
+public class RatingEmployee extends AppCompatActivity {
 
     private ImageButton stark1, stark2, stark3, stark4, stark5;
     private double rate = 0;
@@ -155,7 +155,7 @@ public class RatingEmployes extends AppCompatActivity {
             public void onClick(View v) {
                 final HashMap map = new HashMap<>();
 
-                final Intent intent = new Intent(RatingEmployes.this, GreetingActivity.class );
+                final Intent intent = new Intent(RatingEmployee.this, GreetingActivity.class );
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
 
