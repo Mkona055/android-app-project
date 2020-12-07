@@ -11,28 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Search">
-        </activity>
+        <activity android:name=".GreetingActivity"></activity>
+        <activity android:name=".Search"></activity>
         <activity android:name=".RatingEmployes" />
         <activity android:name=".ViewDocumentFilled" />
         <activity android:name=".ViewFormFilled" />
-        <activity android:name=".ManageSearch">
-        </activity>
-        <activity android:name=".FillDocument">
-
-        </activity>
+        <activity android:name=".ManageSearch"></activity>
+        <activity android:name=".FillDocument"></activity>
         <activity android:name=".FillForm" />
         <activity android:name=".SelectServicesForCustomer" /> <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
         <!-- #### LIVRABLE 1 START HERE -->
         <!-- Frontpage activity, *** Let's Get Started *** -->
         <activity
             android:name=".Frontpage"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity> <!-- Login Activity, *** Login to your account ***** -->
         <activity
             android:name=".Login"

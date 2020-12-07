@@ -155,7 +155,7 @@ public class RatingEmployes extends AppCompatActivity {
             public void onClick(View v) {
                 final HashMap map = new HashMap<>();
 
-                final Intent intent = new Intent(RatingEmployes.this, MainActivity.class );
+                final Intent intent = new Intent(RatingEmployes.this, GreetingActivity.class );
                 intent.putExtra("userUID", userID);
                 intent.putExtra("branchID", branchID);
 
@@ -168,7 +168,7 @@ public class RatingEmployes extends AppCompatActivity {
                             if(rating.compareTo("No ratings yet") == 0){
 
                             }else{
-                                rate = (rate + Integer.parseInt(rating.split("/")[0].trim()))/2 ;
+                                rate = (rate + Double.parseDouble(rating.split("/")[0].trim()))/2 ;
 
                             }
                             map.put("rating",rate+"/5");
@@ -182,7 +182,6 @@ public class RatingEmployes extends AppCompatActivity {
 
                     }
                 });
-                Toast.makeText(RatingEmployes.this,"Your request has been sent. You will receive at your address the decision about it" , Toast.LENGTH_LONG).show();
 
             }
         });

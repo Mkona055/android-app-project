@@ -87,7 +87,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="132dp"
         android:layout_marginEnd="8dp"
-        android:text="Finsh" />
+        android:text="Finish" />
 
     <ImageView
         android:id="@+id/imageView15"

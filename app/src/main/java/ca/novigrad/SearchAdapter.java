@@ -2,6 +2,7 @@ package ca.novigrad;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,18 +31,18 @@ public class SearchAdapter extends FirebaseRecyclerAdapter<SearchList, SearchAda
 
 
     @Override
-    protected void onBindViewHolder(@NonNull SearchHolder holder, int position, @NonNull SearchList model) {
+    protected void onBindViewHolder(@NonNull SearchHolder holder, int position, @NonNull final SearchList model) {
         holder.branch_address.setText(model.getBranchAddress());
         holder.branch_id.setText(model.getBranchID());
         holder.branchRating.setText(model.getRating());
 
-         test = model.getBranchID();
+
 
         holder.SetItemClickLister(new ItemClickListener() {
             @Override
             public void OnItemClicked(View v, int layoutPosition) {
-
-            //Toast.makeText(context,test , Toast.LENGTH_LONG).show();
+            test = model.getBranchID();
+            Log.d("IDDDDDDD",test );
             Intent intent = new Intent(context, SelectServicesForCustomer.class);
             intent.putExtra("branchID", test );
             context.startActivity(intent);
