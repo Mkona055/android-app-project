@@ -9,28 +9,26 @@
 
     <Button
         android:id="@+id/buttonManageAccounnts"
-        android:layout_width="249dp"
-        android:layout_height="67dp"
-        android:layout_marginBottom="272dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:background="@drawable/roundedlayout"
         android:text="manage accounts"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonManageServices" />
 
     <Button
         android:id="@+id/buttonManageServices"
-        android:layout_width="256dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="52dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:background="@drawable/roundedlayout"
         android:text="manage services"
-        app:layout_constraintBottom_toTopOf="@+id/buttonManageAccounnts"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewManagementTitle"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewManagementTitle" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -45,7 +43,7 @@
     <TextView
         android:id="@+id/textViewManagementTitle"
         android:layout_width="370dp"
-        android:layout_height="69dp"
+        android:layout_height="0dp"
         android:layout_marginTop="24dp"
         android:text="ACCOUNTS AND SERVICES MANAGEMENT"
         android:textAlignment="center"
@@ -65,8 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonManageAccounnts"
-        app:layout_constraintVertical_bias="0.866"
         app:srcCompat="@drawable/glbmlogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

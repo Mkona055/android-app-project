@@ -4,47 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/NovigradYellow"
+    android:background="@color/NovigradOrange"
     android:rotationX="0">
+
+    <View
+        android:id="@+id/viewSchedule2"
+        android:layout_width="381dp"
+        android:layout_height="186dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/roundedlayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextUpdateFieldName"
         android:layout_width="292dp"
         android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:background="@color/cardview_light_background"
         android:ems="10"
         android:hint="Name of Service"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintTop_toTopOf="@+id/viewSchedule2" />
 
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/roundedlayout"
         android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUpdateFieldName"
-        app:layout_constraintVertical_bias="0.282" />
+        app:layout_constraintStart_toStartOf="@+id/viewSchedule2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUpdateFieldName" />
 
     <Button
         android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
         android:background="@drawable/roundedlayout"
         android:text="Continue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toEndOf="@+id/buttonUpdate"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUpdateFieldName"
-        app:layout_constraintVertical_bias="0.282" />
+        app:layout_constraintEnd_toEndOf="@+id/viewSchedule2"
+        app:layout_constraintTop_toTopOf="@+id/buttonUpdate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

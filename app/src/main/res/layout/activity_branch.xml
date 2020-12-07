@@ -7,15 +7,33 @@
     android:background="@drawable/bg1"
     tools:context=".BranchActivity">
 
+    <ImageView
+        android:id="@+id/glbmmenutest"
+        android:layout_width="80dp"
+        android:layout_height="26dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="163dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcView"
+        app:layout_constraintVertical_bias="0.866"
+        app:srcCompat="@drawable/glbmlogo" />
+
     <TextView
         android:id="@+id/textViewAddService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView16"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="55dp"
         android:layout_marginBottom="337dp"
         android:layout_toEndOf="@+id/textView16"
         android:text="Add Service"
@@ -47,8 +65,8 @@
         android:layout_alignTop="@+id/textView17"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="-1dp"
-        android:layout_marginEnd="27dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="40dp"
         android:text="Update Schedule"
         android:textColor="#020202" />
 

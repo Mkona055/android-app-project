@@ -134,7 +134,7 @@
         android:layout_height="32dp"
         android:layout_below="@+id/finishRating"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="69dp"
         android:layout_marginEnd="163dp"
         app:srcCompat="@drawable/glbmlogo" />
 

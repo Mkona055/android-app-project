@@ -8,6 +8,17 @@
     tools:context=".ManageSearch">
 
 
+    <ImageView
+        android:id="@+id/glbmmenutest8"
+        android:layout_width="80dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/glbmlogo" />
+
     <TextView
         android:id="@+id/heading_label"
         android:layout_width="wrap_content"
@@ -23,9 +34,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/result_list"
-        android:layout_width="391dp"
+        android:layout_width="0dp"
         android:layout_height="505dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading_label" />
