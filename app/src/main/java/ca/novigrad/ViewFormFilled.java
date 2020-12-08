@@ -62,11 +62,13 @@ public class ViewFormFilled extends AppCompatActivity {
                 intent.putExtra("serviceRequested",serviceRequested);
                 intent.putExtra("serviceSelectedKey", serviceSelectedKey);
                 startActivity(intent);
+                finish();
             }
         });
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                formFilled.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String fieldAndFilling = dataSnapshot.getValue(String.class);
                     String[] split = fieldAndFilling.split("%");

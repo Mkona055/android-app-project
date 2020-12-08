@@ -134,7 +134,7 @@ public class FillForm extends AppCompatActivity {
                 if (TextUtils.isEmpty(fieldToFill.getText().toString())){
                     fieldToFill.setError("This section must be filled");
                 }
-                if(fieldName.contains("Name")){
+                if(fieldName.toLowerCase().contains("Name")){
                     String regex = "^[a-zA-Z\\s]+";
                     if(!fieldToFill.getText().toString().matches(regex)){
                         fieldToFill.setError("The name section does not accept any special character and digits");
@@ -145,7 +145,7 @@ public class FillForm extends AppCompatActivity {
                     }
                     return;
                 }
-                if(fieldName.contains("number")){
+                if(fieldName.toLowerCase().contains("number")){
                     // verification of the phone Number
                     String regex = "^\\d{10}$";
                     if(!fieldToFill.getText().toString().matches(regex)){
@@ -157,7 +157,7 @@ public class FillForm extends AppCompatActivity {
                     }
                     return;
                 }
-                if(fieldName.contains("Date")){
+                if(fieldName.toLowerCase().contains("date")){
                     String regex = "[0-9][0-9]\\/[0-9][0-9]\\/[0-9][0-9][0-9][0-9]";
                     if(!fieldToFill.getText().toString().matches(regex)){
                         fieldToFill.setError("DD/MM/AAAA");
@@ -168,7 +168,7 @@ public class FillForm extends AppCompatActivity {
                     }
                     return;
                 }
-                if (fieldName.contains("Type of permit")){
+                if (fieldName.toLowerCase().contains("type of permit")){
                     String regex = "G[0-9]";
                     if(!fieldToFill.getText().toString().matches(regex)){
                         fieldToFill.setError("The format must be GX where X is a digit");
@@ -180,7 +180,7 @@ public class FillForm extends AppCompatActivity {
                     return;
 
                 }
-                if(fieldName.contains("Address")){
+                if(fieldName.toLowerCase().contains("address")){
                     String regex = "^\\d+(\\s[A-z]+\\s[A-z]+)+,+\\s[A-z]+,+\\s[A-z]+,+\\s+\\w+";
                     if(!fieldToFill.getText().toString().matches(regex)){
                         fieldToFill.setError("The format must be similar to \"123 Park Street, Camden, ME, 04843\" with spaces after each coma");
@@ -191,7 +191,9 @@ public class FillForm extends AppCompatActivity {
                     }
                     return;
                 }
-
+                fieldNames.get(position).setFilling(fieldToFill.getText().toString());
+                b.dismiss();
+                fillingAdapter.notifyDataSetChanged();
             }
         });
 
